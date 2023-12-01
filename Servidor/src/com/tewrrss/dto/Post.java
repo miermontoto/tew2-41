@@ -3,6 +3,10 @@ package com.tewrrss.dto;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="post")
 public class Post implements Serializable {
 	private static final long serialVersionUID = 99834L;
 
@@ -21,6 +25,7 @@ public class Post implements Serializable {
 		this.setCommunityName(communityName);
 	}
 
+	@XmlElement
 	public String getContent() {
 		return content;
 	}
@@ -29,10 +34,12 @@ public class Post implements Serializable {
 		this.content = content;
 	}
 
+	@XmlElement
 	public String getCreationDate() {
 		return creationDate.split("\\.")[0];
 	}
 
+	@XmlElement
 	public String getRawCreationDate() {
 		return this.creationDate;
 	}
@@ -49,6 +56,7 @@ public class Post implements Serializable {
 		this.userEmail = userEmail;
 	}
 
+	@XmlElement
 	public String getCommunityName() {
 		return communityName;
 	}
@@ -61,6 +69,7 @@ public class Post implements Serializable {
 		this.userName = userName;
 	}
 
+	@XmlElement
 	public String getUserName() {
 		return userName;
 	}
