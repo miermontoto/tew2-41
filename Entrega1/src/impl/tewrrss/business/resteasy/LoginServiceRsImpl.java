@@ -12,8 +12,7 @@ public class LoginServiceRsImpl implements LoginServiceRs{
 
 		if (Factories.services.createLoginService().verify(user.getEmail(), user.getPassword()) != null)
 			//Si el usuario existe
-			return GestorSesion.getInstance().registrarLogin(user.getEmail());
-
+			return GestorSesion.getInstance().registrarLogin(user.getEmail()); // Retorna un token, para devolverlo
 		return "";
 	} 
 }
