@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template-logged.xhtml">
+
+	<ui:define name="cuerpo">
+		<br />
+		<p:panel header="#{msgs.posts_create}" update="@all">
+			<h:form>
+			<p:messages id="formMessages"/>
+			<p:inputTextarea id="content" rows="3" cols="30"
+				value="#{posts.content}" required="true"
+				requiredMessage="#{msgs.posts_create_error}"/>
+				<br/>
+			<p:commandButton value="#{msgs.posts_create_button}"
+				action="#{posts.add()}" update="formMessages tablaMensajes" />
+			</h:form>
+		</p:panel>
+		<br />
+		<hr />
+		<br />
+		<p:panel header="#{msgs.communities_view}" update="@all">
+		<p:dataTable id="tablaMensajes" var="mensaje" value="#{posts.getPostsInCommunity()}">
+			<p:column>
+				<f:facet name="header">#{msgs.posts_list_content}</f:facet>
+				#{mensaje.content}
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msgs.posts_list_user}</f:facet>
+	    		<p:commandLink value="#{mensaje.userName}" action="viewUser" actionListener="#{user.setUser(user.findByEmail(mensaje.userEmail))}" update="@all" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msgs.posts_list_date}</f:facet>
+				#{mensaje.creationDate}
+			</p:column>
+		</p:dataTable>
+		</p:panel>
+	</ui:define>
+
+	<ui:define name="pie">
+		<ui:include src="/snippets/footer.xhtml" />
+	</ui:define>
+
+</ui:composition>

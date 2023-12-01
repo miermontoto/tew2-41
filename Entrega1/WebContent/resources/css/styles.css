@@ -1,0 +1,112 @@
+@charset 'UTF-8';
+
+:root {
+	--primary: hsl(0, 0%, 1%);
+	--secondary: hsl(0, 0%, 14%);
+	--light: hsl(0, 0%, 50%);
+	--white: hsl(0, 0%, 99%);
+	--link: var(--white);
+	--dot: var(--white);
+}
+
+body, * {
+	color: var(--white);
+	font-family: monospace;
+	font-size: 18px;
+	background: var(--primary);
+}
+
+* {
+	text-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.ui-widget {
+	font-family: monospace;
+}
+
+.ui-inputfield {
+	color: var(--white) !important;
+	font-family: monospace !important;
+	background: var(--primary) !important;
+}
+
+.ui-widget-content.ui-panel {
+	border: none;
+}
+
+td, td * {
+	background: var(--secondary) !important;
+}
+
+.ui-state-hover, .ui-state-hover .ui-menuitem-text, .ui-state-focus {
+	background: var(--secondary) !important;
+	border-color: var(--white) !important;
+}
+
+.ui-messages-error, .ui-message-error {
+	color: #b94a48 !important;
+	background-color: #f2dede !important;
+	border-color: #eed3d7 !important;
+}
+
+.ui-state-hover * {
+	color: var(--white) !important;
+	background: none;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-menu, .ui-menu .ui-menu-child, .ui-widget, .ui-corner-all {
+	background: var(--primary);
+}
+
+a, a:visited {
+	color: var(--link) !important;
+}
+
+button {
+	color: black;
+	background-color: var(--white);
+	padding: 10px 15px;
+	margin: 5px;
+	text-decoration: none;
+	user-select: none;
+}
+
+button:hover {
+	animation: MULTICOLOR 1s infinite;
+}
+
+@keyframes MULTICOLOR {
+	0%   { background-color:#9f0; color:#f3c; }
+	10%  { background-color:#6ff; color:#f0c; }
+	20%  { background-color:#39f; color:#9f0; }
+	30%  { background-color:#3c0; color:#fff; }
+	40%  { background-color:#03f; color:#f90; }
+	50%  { background-color:#9f0; color:#f30; }
+	60%  { background-color:#f0c; color:#fff; }
+	70%  { background-color:#0ff; color:#f30; }
+	80%  { background-color:#9f0; color:#066; }
+	90%  { background-color:#f90; color:#03f; }
+	100% { background-color:#03f; color:#f90; }
+}
+
+code {
+	color: var(--white);
+	background-color: var(--secondary);
+	padding: 0 5px;
+	border-radius: 5px;
+}
+
+::selection {
+	background-color: var(--white);
+	color: var(--secondary);
+}
+
+table {
+	table-layout: auto !important;
+}
+
+hr {
+	margin-bottom: 2em;
+	margin-top: 2em;
+}

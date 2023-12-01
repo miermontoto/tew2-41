@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template-logged.xhtml">
+
+	<ui:define name="cuerpo">
+
+		<p:panel header="#{msgs.user}" update="@all">
+			<h:form>
+				<ui:include src="/snippets/profile-data.xhtml" />
+				<hr />
+				<ui:include src="/snippets/user-posts.xhtml" />
+			</h:form>
+		</p:panel>
+	</ui:define>
+
+	<ui:define name="pie">
+		<ui:include src="/snippets/footer.xhtml" />
+	</ui:define>
+
+</ui:composition>

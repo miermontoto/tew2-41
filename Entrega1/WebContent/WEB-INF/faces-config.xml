@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+	version="2.3">
+
+	<validator>
+		<validator-id>emailValidator</validator-id>
+		<validator-class>com.tewrrss.util.EmailValidator</validator-class>
+	</validator>
+
+	<application>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+	</application>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>registro</from-outcome>
+			<to-view-id>/register.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/restricted/index.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listAllCommunities</from-outcome>
+			<to-view-id>/restricted/communities-list-all.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listJoinedCommunities</from-outcome>
+			<to-view-id>/restricted/communities-list-joined.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>createCommunity</from-outcome>
+			<to-view-id>/restricted/communities-create.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listUserPosts</from-outcome>
+			<to-view-id>/restricted/posts-user.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>listLastPosts</from-outcome>
+			<to-view-id>/restricted/posts-new.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>viewCommunity</from-outcome>
+			<to-view-id>/restricted/communities-view.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>viewUser</from-outcome>
+			<to-view-id>/restricted/user-profile.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{info.resetDatabase}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/restricted/index.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>anadirMiembros</from-outcome>
+			<to-view-id>/restricted/members-add.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/login.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/restricted/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<navigation-rule>
+		<from-view-id>/register.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/restricted/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/restricted/communities-list-all.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>joined</from-outcome>
+			<to-view-id>/restricted/communities-list-all.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+</faces-config>

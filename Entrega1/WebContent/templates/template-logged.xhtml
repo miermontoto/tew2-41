@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template-cabecera.xhtml">
+
+	<ui:define name="menubar">
+		<p:menubar>
+			<p:menuitem value="#{msgs.app_title}" icon="ui-icon-home" action="index" />
+
+			<p:submenu name="communities" label="#{msgs.communities}" icon="ui-icon-note">
+				<p:menuitem value="#{msgs.communities_create}" action="createCommunity" />
+				<p:menuitem value="#{msgs.communities_list}" action="listAllCommunities" />
+				<p:menuitem value="#{msgs.communities_list_joined}" action="listJoinedCommunities" />
+			</p:submenu>
+
+			<p:submenu name="posts" label="#{msgs.posts}" icon="ui-icon-comment">
+				<p:menuitem value="#{msgs.posts_list}" action="listUserPosts" />
+				<p:menuitem value="#{msgs.posts_last}" action="listLastPosts" />
+			</p:submenu>
+
+			<p:submenu name="admin" label="#{msgs.menu_admin}" icon="ui-icon-key" rendered="#{info.sessionRole eq 0}">
+				<p:menuitem value="#{msgs.menu_admin_resetdb}" actionListener="#{info.resetDatabase}" update="@all" />
+				<p:menuitem value="#{msgs.members_add}" action="anadirMiembros" />
+			</p:submenu>
+
+			<p:submenu label="#{info.sessionUsername}" icon="ui-icon-person" style="float:right">
+				<p:menuitem value="#{info.sessionRoleName}" style="cursor:default" />
+				<p:separator />
+				<p:menuitem value="#{msgs.session_profile}" action="viewUser" actionListener="#{user.setUser(info.sessionUser)}"
+					update="@all" icon="ui-icon-contact" />
+				<p:menuitem value="#{msgs.session_logout}" action="#{login.logout}" icon="ui-icon-power"/>
+			</p:submenu>
+
+			<p:submenu name="lang" style="float:right" label="#{msgs.selected_lang}">
+				<p:menuitem value="Español" actionListener="#{settings.setSpanish}" update="@all" />
+				<p:menuitem value="English" actionListener="#{settings.setEnglish}" update="@all" />
+			</p:submenu>
+		</p:menubar>
+	</ui:define>
+</ui:composition>

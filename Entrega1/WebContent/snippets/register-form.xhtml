@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:form id="registroForm">
+		<p:panel header="#{msgs.session_register_title}">
+			<h:messages globalOnly="true" styleClass="error" />
+			<p:inputText id="nombre" value="#{registro.nombre}"
+				placeholder="#{msgs.session_register_placeholder_user}" required="true" />
+			<br />
+			<p:inputText id="email" value="#{registro.email}"
+				placeholder="#{msgs.session_register_placeholder_email}" required="true">
+				<f:validator validatorId="emailValidator" />
+			</p:inputText>
+			<br />
+			<p:message for="email" />
+			<p:password id="contrasena" value="#{registro.contrasena}"
+				placeholder="#{msgs.session_register_placeholder_pass}" required="true" />
+			<br />
+
+			<p:password id="confirmarContrasena"
+				value="#{registro.confirmarContrasena}"
+				placeholder="#{msgs.session_register_placeholder_pass2}" required="true" />
+			<br />
+
+			<h:selectBooleanCheckbox value="#{registro.rgpd}"></h:selectBooleanCheckbox>
+			#{msgs.session_register_rgpd}
+
+			<br />
+			<p:commandButton value="#{msgs.session_register_button}"
+				action="#{registro.registrarUsuario}" ajax="false" />
+		</p:panel>
+	</h:form>
+</ui:composition>

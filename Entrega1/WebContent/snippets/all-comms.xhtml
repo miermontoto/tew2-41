@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:panel header="#{msgs.communities_list}" update="@all">
+	<h:form>
+		<p:outputLabel value="#{msgs.communities_list_search}" style="margin-right: 2em;"/>
+		<p:inputText id="inputSearch" value="#{communities.input}"
+			placeholder="#{msgs.communities_list_search_placeholder}">
+			<p:ajax event="keyup" update="table" listener="#{communities.search()}"/>
+		</p:inputText>
+
+		<hr />
+
+		<p:dataTable var="item" id="table" value="#{communities.listado}">
+			<p:column>
+				<f:facet name="header">#{msgs.communities_list_name}</f:facet>#{item.name}
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msgs.communities_list_desc}</f:facet>#{item.description}
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">#{msgs.communities_list_actions}</f:facet>
+				<p:commandLink value="#{msgs.communities_list_join}"
+					action="#{communities.join(item)}"
+					immediate="true" update="table" rendered="#{communities.ableToJoin(item)}" />
+				<br />
+				<p:commandLink value="#{msgs.communities_list_delete}"
+					action="#{communities.delete(item)}"
+					immediate="true" update="table" rendered="#{info.sessionRole eq 0}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	</p:panel>
+
+</ui:composition>

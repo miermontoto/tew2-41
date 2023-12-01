@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+    <p:panel header="#{msgs.communities_list_joined}" update="@all">
+	<h:form>
+		<p:dataTable var="item" id="table" value="#{communities.listJoined()}" style="width: 60vw;">
+			<p:column>
+				<f:facet name="header">#{msgs.communities_list_name}</f:facet>
+				<p:commandLink value="#{item.name}" action="viewCommunity" actionListener="#{posts.setCurrentCommunity(item)}" update="@all" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msgs.communities_list_desc}</f:facet>
+				#{item.description}
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msgs.communities_list_actions}</f:facet>
+				<p:commandLink value="#{msgs.communities_list_leave}"
+					action="#{communities.leave(item)}" type="submit"
+					immediate="true" update="table" />
+			</p:column>
+		</p:dataTable>
+		<br />
+		<p:commandButton value="#{msgs.communities_list_view_all}" action="listAllCommunities" update="@all" />
+	</h:form>
+	</p:panel>
+
+</ui:composition>

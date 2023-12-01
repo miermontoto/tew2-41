@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:panelGrid columns="2">
+		<p:outputLabel value="#{msgs.user_name}" for="name" />
+		<h:outputText id="name" value="#{user.name}" />
+		<p:outputLabel value="#{msgs.user_email}" for="email" />
+		<h:outputText id="email" value="#{user.email}" />
+		<p:outputLabel value="#{msgs.user_role}" for="role" />
+		<h:outputText id="role" value="#{user.role}" />
+		<p:outputLabel value="#{msgs.user_communities}" for="communities" />
+		<h:outputText id="communities" value="#{user.communities}" />
+		<p:outputLabel value="#{msgs.user_posts}" for="posts" />
+		<h:outputText id="posts" value="#{user.numberOfPosts}" />
+	</p:panelGrid>
+
+</ui:composition>

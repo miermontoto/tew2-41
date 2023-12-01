@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:panel header="#{msgs.user_posts_list}" update="@all">
+		<p:dataTable var="post" value="#{user.listPosts()}" id="table">
+			<p:column>
+				<f:facet name="header">#{msgs.posts_list_community}</f:facet>
+				<p:commandLink value="#{post.communityName}" action="viewCommunity" actionListener="#{posts.setCurrentCommunity(communities.findByName(post.communityName))}" update="@all" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msgs.posts_list_date}</f:facet>
+				#{post.creationDate}
+			</p:column>
+			<p:column style="text-align: left;">
+				<f:facet name="header">#{msgs.posts_list_content}</f:facet>
+				#{post.content}
+			</p:column>
+			<p:column rendered="#{user.displayActions()}">
+				<f:facet name="header">#{msgs.posts_list_actions}</f:facet>
+				<p:commandLink value="#{msgs.posts_list_delete}" action="#{posts.remove(post)}" update="@all" />
+			</p:column>
+		</p:dataTable>
+	</p:panel>
+
+</ui:composition>
