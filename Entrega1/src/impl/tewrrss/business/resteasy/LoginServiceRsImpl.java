@@ -15,5 +15,5 @@ public class LoginServiceRsImpl implements LoginServiceRs{
 			return GestorSesion.getInstance().registrarLogin(user.getEmail());
 
 		return "";
-	}
+	} 
 }
