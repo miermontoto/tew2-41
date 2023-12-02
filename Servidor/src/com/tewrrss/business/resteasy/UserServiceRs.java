@@ -43,7 +43,7 @@ public interface UserServiceRs extends UserService{
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	String add(UserToken user);
 	
-	@PUT
+	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	String update(UserToken user) throws EntityNotFoundException;
 	

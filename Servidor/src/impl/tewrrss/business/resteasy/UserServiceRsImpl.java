@@ -34,7 +34,7 @@ public class UserServiceRsImpl implements UserServiceRs{
 	@Override
 	public List<User> listAll(String token) {
 		// TODO Auto-generated method stub
-		if (GestorSesion.getInstance().comprobarToken(token) != null) {
+		if (GestorSesion.getInstance().checkToken(token) != null) {
 			return listAll();
 		}		
 		return null;
@@ -44,7 +44,7 @@ public class UserServiceRsImpl implements UserServiceRs{
 	public Optional<User> findByEmail(String email, String token)
 			throws EntityNotFoundException, NotAuthorizedException {
 		// TODO Auto-generated method stub
-		if (GestorSesion.getInstance().comprobarToken(token) != null) {
+		if (GestorSesion.getInstance().checkToken(token) != null) {
 			return findByEmail(email);
 		}
 		return null;
@@ -53,7 +53,7 @@ public class UserServiceRsImpl implements UserServiceRs{
 	@Override
 	public String remove(UserToken user) {
 		// TODO Auto-generated method stub
-		if (GestorSesion.getInstance().comprobarToken(user.getToken()) != null) {
+		if (GestorSesion.getInstance().checkToken(user.getToken()) != null) {
 			return remove(CreateUser(user));
 		}
 		return null;
@@ -62,7 +62,7 @@ public class UserServiceRsImpl implements UserServiceRs{
 	@Override
 	public String add(UserToken user) {
 		// TODO Auto-generated method stub
-		if (GestorSesion.getInstance().comprobarToken(user.getToken()) != null) {
+		if (GestorSesion.getInstance().checkToken(user.getToken()) != null) {
 			return add(CreateUser(user));
 		}
 		return null;
@@ -71,7 +71,7 @@ public class UserServiceRsImpl implements UserServiceRs{
 	@Override
 	public String update(UserToken user) throws EntityNotFoundException {
 		// TODO Auto-generated method stub
-		if (GestorSesion.getInstance().comprobarToken(user.getToken()) != null) {
+		if (GestorSesion.getInstance().checkToken(user.getToken()) != null) {
 			return update(CreateUser(user));
 		}
 		return null;
@@ -80,7 +80,7 @@ public class UserServiceRsImpl implements UserServiceRs{
 	@Override
 	public List<User> getUsersInCommunity(CommunityToken community) {
 		// TODO Auto-generated method stub
-		if (GestorSesion.getInstance().comprobarToken(community.getToken()) != null) {
+		if (GestorSesion.getInstance().checkToken(community.getToken()) != null) {
 			return getUsersInCommunity(CreateCommunity(community));
 		}
 		return null;

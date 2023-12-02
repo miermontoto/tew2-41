@@ -23,7 +23,7 @@ public class GestorSesion {
 		logins.put(token, email);
 		return token;
 	}
-	public String comprobarToken(String token) {
+	public String checkToken(String token) {
 		return logins.getOrDefault(token, null);
 	}
 
