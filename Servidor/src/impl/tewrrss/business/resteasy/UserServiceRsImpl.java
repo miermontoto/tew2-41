@@ -7,28 +7,15 @@ import javax.persistence.EntityNotFoundException;
 import javax.ws.rs.NotAuthorizedException;
 
 import com.tewrrss.business.resteasy.UserServiceRs;
-import com.tewrrss.dto.Community;
 import com.tewrrss.dto.CommunityToken;
 import com.tewrrss.dto.User;
 import com.tewrrss.dto.UserToken;
 import com.tewrrss.infrastructure.GestorSesion;
 
-import impl.tewrrss.business.users.Add;
-import impl.tewrrss.business.users.FindByEmail;
-import impl.tewrrss.business.users.GetUsersInCommunity;
-import impl.tewrrss.business.users.ListAll;
-import impl.tewrrss.business.users.Remove;
-import impl.tewrrss.business.users.Update;
+import impl.tewrrss.business.UserServiceImpl;
 
-public class UserServiceRsImpl implements UserServiceRs{
+public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs {
 
-	private User CreateUser(UserToken user) {
-		return new User(user.getEmail(), user.getUsername(), user.getPassword(), user.getRole());
-	}
-	private Community CreateCommunity(CommunityToken com) {
-		return new Community(com.getName(), com.getDescription());
-	}
-	
 	
 	
 	@Override
@@ -54,7 +41,7 @@ public class UserServiceRsImpl implements UserServiceRs{
 	public String remove(UserToken user) {
 		// TODO Auto-generated method stub
 		if (GestorSesion.getInstance().checkToken(user.getToken()) != null) {
-			return remove(CreateUser(user));
+			return remove(ClassCreation.CreateUser(user));
 		}
 		return null;
 	}
@@ -63,7 +50,7 @@ public class UserServiceRsImpl implements UserServiceRs{
 	public String add(UserToken user) {
 		// TODO Auto-generated method stub
 		if (GestorSesion.getInstance().checkToken(user.getToken()) != null) {
-			return add(CreateUser(user));
+			return add(ClassCreation.CreateUser(user));
 		}
 		return null;
 	}
@@ -72,7 +59,7 @@ public class UserServiceRsImpl implements UserServiceRs{
 	public String update(UserToken user) throws EntityNotFoundException {
 		// TODO Auto-generated method stub
 		if (GestorSesion.getInstance().checkToken(user.getToken()) != null) {
-			return update(CreateUser(user));
+			return update(ClassCreation.CreateUser(user));
 		}
 		return null;
 	}
@@ -81,41 +68,12 @@ public class UserServiceRsImpl implements UserServiceRs{
 	public List<User> getUsersInCommunity(CommunityToken community) {
 		// TODO Auto-generated method stub
 		if (GestorSesion.getInstance().checkToken(community.getToken()) != null) {
-			return getUsersInCommunity(CreateCommunity(community));
+			return getUsersInCommunity(ClassCreation.CreateCommunity(community));
 		}
 		return null;
 	}
-	@Override
-	public List<User> listAll() {
-		// TODO Auto-generated method stub
-		return new ListAll().listAll();
-	}
-	@Override
-	public Optional<User> findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return new FindByEmail().findByEmail(email);
-	}
-	@Override
-	public String remove(User user) {
-		// TODO Auto-generated method stub
-		return new Remove().remove(user);
-	}
-	@Override
-	public String add(User user) {
-		// TODO Auto-generated method stub
-		return new Add().add(user);
-	}
-	@Override
-	public String update(User user) {
-		// TODO Auto-generated method stub
-		return new Update().update(user);
-	}
-	@Override
-	public List<User> getUsersInCommunity(Community community) {
-		// TODO Auto-generated method stub
-		return new GetUsersInCommunity().getUsersInCommunity(community);
 
-	}
+
 
 
 }

@@ -9,11 +9,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.business.PostService;
-import com.tewrrss.dto.Community;
 import com.tewrrss.dto.CommunityToken;
 import com.tewrrss.dto.Post;
 import com.tewrrss.dto.PostToken;
-import com.tewrrss.dto.User;
 import com.tewrrss.dto.UserComToken;
 import com.tewrrss.dto.PostUserToken;
 import com.tewrrss.dto.UserToken;
