@@ -14,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.CommunityToken;
-import com.tewrrss.dto.User;
 import com.tewrrss.dto.UserComToken;
 import com.tewrrss.dto.UserToken;
 
@@ -56,6 +55,6 @@ public interface CommunityServiceRs {
 	@GET
 	@Path(value = "{search}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	List<Community> search(@PathParam(value = "search") String search);
+	List<Community> search(@PathParam(value = "search") String search, String Token);
 	
 }

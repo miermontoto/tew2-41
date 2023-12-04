@@ -16,7 +16,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.business.UserService;
-import com.tewrrss.dto.Community;
 import com.tewrrss.dto.CommunityToken;
 import com.tewrrss.dto.User;
 import com.tewrrss.dto.UserToken;

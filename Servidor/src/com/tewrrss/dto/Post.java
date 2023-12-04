@@ -1,8 +1,6 @@
 package com.tewrrss.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
