@@ -2,6 +2,10 @@ package com.tewrrss.dto;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="community")
 public class Community implements Serializable {
 	private static final long serialVersionUID = 88282L;
 
@@ -15,6 +19,7 @@ public class Community implements Serializable {
 		this.setDescription(description);
 	}
 
+	@XmlElement
 	public String getName() {
 		return name;
 	}
@@ -26,6 +31,7 @@ public class Community implements Serializable {
 		this.name = name;
 	}
 
+	@XmlElement
 	public String getDescription() {
 		return description;
 	}

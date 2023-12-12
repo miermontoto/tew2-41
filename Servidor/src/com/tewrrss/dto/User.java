@@ -2,8 +2,12 @@ package com.tewrrss.dto;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.tewrrss.util.Role;
 
+@XmlRootElement(name="user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 56556L;
 
@@ -33,6 +37,7 @@ public class User implements Serializable {
 		this(email, username, "", role);
 	}
 
+	@XmlElement
 	public int getRole() {
 		return role;
 	}
@@ -44,6 +49,7 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
+	@XmlElement
 	public String getEmail() {
 		return email;
 	}
@@ -52,6 +58,7 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
+	@XmlElement
 	public String getUsername() {
 		return username;
 	}
@@ -60,6 +67,7 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
+	@XmlElement
 	public String getPassword() {
 		return password;
 	}

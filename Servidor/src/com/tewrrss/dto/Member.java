@@ -1,5 +1,9 @@
 package com.tewrrss.dto;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="member")
 public class Member {
 	
 	private Community community;
@@ -12,6 +16,7 @@ public class Member {
 		this.user = user;
 	}
 
+	@XmlElement
 	public Community getCommunity() {
 		return community;
 	}
@@ -20,6 +25,7 @@ public class Member {
 		this.community = community;
 	}
 
+	@XmlElement
 	public User getUser() {
 		return user;
 	}
