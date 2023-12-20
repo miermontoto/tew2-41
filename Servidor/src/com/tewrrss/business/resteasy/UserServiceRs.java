@@ -40,7 +40,7 @@ public interface UserServiceRs extends UserService{
 	
 	@PUT
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	String add(UserToken user);
+	String add(User user);
 	
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
