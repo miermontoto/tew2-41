@@ -2,7 +2,7 @@ function Model() {
 	
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
 	this.register = function(user) {
-		return LoginServiceRs.register({ // Llamo a la función de registro de LoginServiceRs
+		return UserServiceRs.add({ // Llamo a la función de registro de LoginServiceRs
 			$entity : user,
 			$contentType : "application/json"});
 	}
