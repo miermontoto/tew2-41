@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Página de Login</title>
     <!-- Enlaces a los archivos CSS de Bootstrap -->
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	rel="stylesheet"></head>
 <body>
 
     <!-- Cuerpo del inicio de sesión-->
@@ -14,7 +15,8 @@
             <section class="col-md-6">
                 <article>
                     <h2>Inicio de sesión de la red social de TEW</h2>
-                    <form>
+                    
+                    <form id="loginForm">
                         <div class="mb-3">
                             <label for="inputEmail" class="form-label">Correo electrónico</label>
                             <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
@@ -23,14 +25,21 @@
                             <label for="inputPassword" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" id="inputPassword">
                         </div>
+                        <div id="mensajeError" style="display: none;">Inicio de sesión incorrecto. Por favor, inténtalo de nuevo.</div>
                         <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                     </form>
+                    
                 </article>
             </section>
         </div>
     </main>
 
     <!-- Scripts de Bootstrap -->
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
+  	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="/gestioneitorCliv6_0/javascript/functions_login.js"></script>
 </body>
 </html>

@@ -13,29 +13,39 @@
 		<h1 class="display-4">Red social de TEW</h1>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<ul class="navbar-nav mr-auto">
+			
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="alumnosDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Alumnos </a>
+					aria-expanded="false"> Iniciar sesión / registro </a>
 					<div class="dropdown-menu" aria-labelledby="alumnosDropdown">
 						<a class="dropdown-item" href="login.html" target="formulario">Login</a>
-						<a class="dropdown-item" href="listado.html" target="formulario">Listado</a>
+						<a class="dropdown-item" href="register.html" target="formulario">Registro</a>
 					</div></li>
+					
+					<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="alumnosDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Servicios </a>
+					<div class="dropdown-menu" aria-labelledby="alumnosDropdown">
+						<a class="dropdown-item" href="listado.html" target="formulario">Listado</a>
+						<a class="dropdown-item" href="newcommunity.html" target="formulario">Crear una comunidad</a>
+					</div></li>
+					
+					
 			</ul>
 		</nav>
 	</header>
 
 	<main class="container">
-
 	<div class="row">
+		<div class="col-md-10">
+			<!-- Modificado: Cambiado a col-md-10 -->
+			<iframe name="formulario" width="100%" height="100%"></iframe>
+		</div>
 
-		<div class="col">
-			<iframe name="formulario" width="100%" height="100%"> </iframe>
-		</div> <!-- FIN de COL -->
-
-
-
-		<div class="col">
+		<div class="col-md-2">
+			<!-- Modificado: Cambiado a col-md-2 -->
 			<aside class="card">
 				<div class="card-body">
 					<h2 class="card-title">Proyecto TEWRRSS</h2>
@@ -49,9 +59,9 @@
 					<p class="card-text">En esta página únicamente se utiliza HTML5</p>
 				</div>
 			</aside>
-		</div> <!--  FIN de COL-4 -->
-		
-	</div> 
+		</div>
+
+	</div>
 	</main>
 
 	<footer class="footer mt-auto py-3 bg-light">
