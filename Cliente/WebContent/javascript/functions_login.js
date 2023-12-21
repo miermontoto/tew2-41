@@ -18,7 +18,7 @@ function View() {
 	
 	this.loadUserFromForm = function() {
 		var user = {
-				email : $("#inputEmail").val(),
+				email : $("#inputEmail").val(), // Email del usuario
 				username : $("#inputEmail").val(), // Establezco mismo email y username, para mantener compatibilidad con sistema de users.
 				password : $("#inputPassword").val()
 		};
