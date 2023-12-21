@@ -20,7 +20,8 @@ function View() {
 		var user = {
 				email : $("#inputEmail").val(), // Email del usuario
 				username : $("#inputEmail").val(), // Establezco mismo email y username, para mantener compatibilidad con sistema de users.
-				password : $("#inputPassword").val()
+				password : $("#inputPassword").val(),
+				role : 1
 		};
 		return user;
 	}
