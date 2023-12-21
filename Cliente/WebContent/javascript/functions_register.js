@@ -1,8 +1,8 @@
 function Model() {
 	
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
-	this.login = function(user) {
-		return LoginServiceRs.login({
+	this.register = function(user) {
+		return LoginServiceRs.register({ // Llamo a la función de registro de LoginServiceRs
 			$entity : user,
 			$contentType : "application/json"});
 	}
@@ -11,25 +11,23 @@ function Model() {
     this.setToken = function(token) {
         sessionStorage.setItem("token", token);
     }
+    
 	
 };
 
 function View() {
 	
+	// Cargo el usuario desde el formulario de registro.
 	this.loadUserFromForm = function() {
 		var user = {
 				email : $("#inputEmail").val(),
-				username : $("#inputEmail").val(), // Establezco mismo email y username, para mantener compatibilidad con sistema de users.
+				username : $("#inputUsername").val(),
 				password : $("#inputPassword").val()
 		};
+		
 		return user;
 	}
-	
-	// Cargo el usuario en el formulario.
-	this.loadUserInForm = function(user) {
-		$("#inputEmail").val(user.login);
-		$("#inputPassword").val(user.password);
-	}
+
 };
 
 function Controller(model, view) {
@@ -38,10 +36,9 @@ function Controller(model, view) {
     var userView = view;
 
     this.init = function() {
-        $("#loginForm").bind("submit", function(event) {
+        $("#registrationForm").bind("submit", function(event) {
             var user = userView.loadUserFromForm(); // Genero un usuario a la espera de enviarlo
-            var token = userModel.login(user); // Enviamos el token y se obtiene como respuesta (o no) un user.
-            console.log(token); // Lo muestro por consola
+            var token = userModel.register(user); // Enviamos el token y se obtiene como respuesta (o no) un user.
 
             if (token === "") { // El token es nulo (el usuario está mal)
             	$("#mensajeError").show(); // Muestra el mensaje de error que puse en el HTML.
