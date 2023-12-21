@@ -6,11 +6,11 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Cristian Gonz
 **Esta aplicación debe permitir:**
 
 1. **A cualquier usuario:**
-   - [X] a. Registrarse. (Parte cliente. Queda revisar implementación Rs cliente)
-   - [X] b. Iniciar sesión. (Lo mismo que lo anterior. Vistas y funciones JS realizadas)
+   - [x] a. Registrarse. (Parte cliente. Queda revisar implementación Rs cliente)
+   - [x] b. Iniciar sesión. (Lo mismo que lo anterior. Vistas y funciones JS realizadas)
 
 2. **A los usuarios autenticados:**
-   - [X] a. Crear una comunidad. (Vista realizada)
+   - [x] a. Crear una comunidad. (Vista realizada)
    - [ ] b. Unirse a una comunidad.
    - [ ] c. Listar las comunidades a las que pertenece.
    - [ ] d. Consultar los mensajes publicados en las comunidades a las que pertenece.
@@ -21,4 +21,4 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Cristian Gonz
 
 3. **A los administradores:**
    - [ ] a. Reiniciar la base de datos a los valores por defecto. (Implementar función de reinicio remota. Después, llamada desde local)
-   - [X] b. Importar usuarios desde un fichero externo. (Hecho)
+   - [x] b. Importar usuarios desde un fichero externo. (Hecho)
