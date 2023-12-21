@@ -52,12 +52,16 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 		return null;
 	}
 
-	/** Añade el usuario dado
+	/** Añade el usuario dado y devuelve el token
 	 * */
 	@Override
 	public String add(User user) {
 		// Usado en el registro, aun no hay token
-		return add(user);
+		GestorSesion gestor= GestorSesion.getInstance();
+		com.tewrrss.business.UserService service = new impl.tewrrss.business.UserServiceImpl();
+		String succes= service.add(user);
+
+		return succes.equals("success") ?  gestor.registrarLogin(user.getEmail()) : succes;
 	}
 
 	
