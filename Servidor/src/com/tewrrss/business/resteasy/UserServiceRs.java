@@ -20,6 +20,7 @@ import com.tewrrss.dto.CommunityToken;
 import com.tewrrss.dto.User;
 import com.tewrrss.dto.UserToken;
 
+@Path("/UserServiceRs")
 public interface UserServiceRs extends UserService{
 
 	@GET

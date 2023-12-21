@@ -17,6 +17,7 @@ import com.tewrrss.dto.CommunityToken;
 import com.tewrrss.dto.UserComToken;
 import com.tewrrss.dto.UserToken;
 
+@Path("/CommunityServiceRs")
 public interface CommunityServiceRs {
 
 	@GET
