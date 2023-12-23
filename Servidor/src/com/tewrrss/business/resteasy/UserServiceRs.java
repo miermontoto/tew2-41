@@ -31,8 +31,9 @@ public interface UserServiceRs extends UserService{
 	// paramentro indicado en la URL, utilizado el m�todo con @PathParam
 	@Path("{id}")
 	// formato en el que los datos se retornan en el m�todo
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	Optional<User> findByEmail(@PathParam("id") String email, String token) throws EntityNotFoundException, NotAuthorizedException;;
+	User findByEmail(@PathParam("id") String email, String token) throws EntityNotFoundException, NotAuthorizedException;;
 	
 	
 	@DELETE
