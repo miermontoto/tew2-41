@@ -65,7 +65,7 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 	@Override
 	public String remove(CommunityToken comunidad) {
 		// Solo puede borrarla un administrador
-		if (userImpl.findByEmail(GestorSesion.getInstance().checkToken(comunidad.getToken())).get().getRole() == 1) {
+		if (userImpl.findByEmail(GestorSesion.getInstance().checkToken(comunidad.getToken())).get().getRole() == 0) {
 
 			return remove(ClassCreation.CreateCommunity(comunidad));
 		}
@@ -77,7 +77,7 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 	@Override
 	public boolean ableToJoin(UserComToken UCK) {
 		// Solo para el propio usuario 
-		if (GestorSesion.getInstance().checkToken(UCK.getToken()).equals(UCK.getUser().getEmail())) {
+		if (GestorSesion.getInstance().checkToken(UCK.getToken()) != null) {
 			return ableToJoin(UCK.getCommunity(), UCK.getUser());
 		}
 		return false;
@@ -86,10 +86,11 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 	/** Devuelve una comunidad con ese nombre si existe
 	 * */
 	@Override
-	public Optional<Community> findByName(String name, String token) {
+	public Community findByName(String name, String token) {
 		// Cualquier usuario puede 
 		if (GestorSesion.getInstance().checkToken(token) != null) {
-			return findByName(name);
+			Optional<Community> com = findByName(name);
+			return com.isPresent() ? com.get() : null;
 		}
 		return null;
 	}
@@ -106,4 +107,6 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 		return null;
 	}
 
+
+	
 }

@@ -16,6 +16,14 @@ public class Post implements Serializable {
 
 	public Post() { }
 
+	public Post(String content, String creationDate, String userEmail, String communityName) {
+		this.setContent(content);
+		this.setCreationDate(creationDate);
+		this.setUserEmail(userEmail);
+		this.setCommunityName(communityName);
+
+	}
+	
 	public Post(String content, String creationDate, String userEmail, String communityName, String userName) {
 		this.setContent(content);
 		this.setCreationDate(creationDate);

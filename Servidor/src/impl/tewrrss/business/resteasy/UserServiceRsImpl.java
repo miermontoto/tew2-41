@@ -86,7 +86,4 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 		return null;
 	}
 
-
-
-
 }

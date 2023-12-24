@@ -24,31 +24,34 @@ import com.tewrrss.dto.UserToken;
 public interface UserServiceRs extends UserService{
 
 	@GET
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	List<User> listAll(String token);
 	
 	@GET
-	// paramentro indicado en la URL, utilizado el m�todo con @PathParam
-	@Path("{id}")
+	@Path("/findByEmail/{id}")
 	// formato en el que los datos se retornan en el m�todo
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	User findByEmail(@PathParam("id") String email, String token) throws EntityNotFoundException, NotAuthorizedException;;
-	
-	
+
 	@DELETE
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	String remove(UserToken user);
 	
 	@PUT
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	String add(User user);
 	
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	String update(UserToken user) throws EntityNotFoundException;
 	
 	@GET
+	@Path("/getUsersInCommunity")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})	
 	List<User> getUsersInCommunity(CommunityToken community);
 
