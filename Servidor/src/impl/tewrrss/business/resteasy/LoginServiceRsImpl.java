@@ -14,5 +14,16 @@ public class LoginServiceRsImpl implements LoginServiceRs{
 			//Si el usuario existe
 			return GestorSesion.getInstance().registrarLogin(user.getEmail()); // Retorna un token, para devolverlo
 		return "";
-	} 
+	}
+	
+	@Override
+	public String logon(String token) {
+
+		if (GestorSesion.getInstance().checkToken(token) != null) 
+			//Si el usuario existe
+			return GestorSesion.getInstance().closeLogin(token); // Retorna un token, para devolverlo
+		return "error";
+	}
+		
+	
 }
