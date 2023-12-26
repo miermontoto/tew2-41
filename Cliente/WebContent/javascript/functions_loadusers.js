@@ -18,7 +18,7 @@ document.getElementById("loadUsersButton").addEventListener("click", function() 
 					role: redsocial[i].rol,
 					username: redsocial[i].nombre
 				});
-				LoginServiceRs.register({
+				UserServiceRs.add({
 					$entity: usuario,
 					$contentType: "application/json"
 				});

@@ -59,6 +59,7 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 		}
 		return null;
 	}
+	
 
 	/** Elimina una comunidad 
 	 * */
