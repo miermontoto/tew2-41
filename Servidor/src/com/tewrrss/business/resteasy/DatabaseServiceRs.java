@@ -8,12 +8,12 @@ import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.dto.PostToken;
 
-@Path("/DBServiceRs")
+@Path("/DatabaseServiceRs")
 public interface DatabaseServiceRs {
 
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({ MediaType.TEXT_PLAIN })
+	@Produces({ MediaType.APPLICATION_JSON})
 	boolean reset (String token);
 
 }

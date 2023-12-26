@@ -1,6 +1,7 @@
 function Model() {
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
 	this.reset = function(token) {
+
 		return DatabaseServiceRs.reset({
 			$entity : token,
 			$contentType : "application/json"
