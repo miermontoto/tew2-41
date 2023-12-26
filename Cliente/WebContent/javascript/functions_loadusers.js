@@ -1,6 +1,6 @@
 document.getElementById("loadUsersButton").addEventListener("click", function() {
 	$.ajax({
-		url: "http://localhost/Servidor/redsocial.json", // Cambiar esta URL por la que corresponde de nuestro proyecto
+		url: "http://localhost:8080/Entrega1/redsocial.json", // Cambiar esta URL por la que corresponde de nuestro proyecto
 		type: "GET",
 		dataType: "json",
 		
@@ -14,7 +14,7 @@ document.getElementById("loadUsersButton").addEventListener("click", function() 
 			for (var i in redsocial) {
 				var usuario = JSON.stringify({
 					email: redsocial[i].email,
-					passwd: redsocial[i].passwd,
+					password: redsocial[i].passwd,
 					role: redsocial[i].rol,
 					username: redsocial[i].nombre
 				});
