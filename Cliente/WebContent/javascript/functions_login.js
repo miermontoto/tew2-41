@@ -38,15 +38,21 @@ function Controller(model, view) {
 
     this.init = function() {
         $("#loginForm").bind("submit", function(event) {
+        	
+        	event.preventDefault(); // Prevengo el evento por defecto
+        	
             var user = userView.loadUserFromForm(); // Genero un usuario a la espera de enviarlo
             var token = userModel.login(user); // Enviamos el token y se obtiene como respuesta (o no) un user.
             console.log(token); // Lo muestro por consola
-
+            
             if (token === "") { // El token es nulo (el usuario está mal)
             	$("#mensajeError").show(); // Muestra el mensaje de error que puse en el HTML.
             } else {
                 userModel.setToken(token);
+                $("#mensajeError").hide(); // Oculto el error
+                $("#mensajeExito").show(); // Muestro el éxito.
             }
+            
             
         });
     }
