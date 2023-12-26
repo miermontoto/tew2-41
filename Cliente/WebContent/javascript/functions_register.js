@@ -22,7 +22,8 @@ function View() {
 		var user = {
 				email : $("#inputEmail").val(),
 				username : $("#inputUsername").val(),
-				password : $("#inputPassword").val()
+				password : $("#inputPassword").val(),
+				role : 1
 		};
 		
 		return user;

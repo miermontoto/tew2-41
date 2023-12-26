@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>Entrega1</display-name>
 
-	<!-- Filtros para el login, en caso de no estar logueado, redirige -->
+	<!-- Filtro CORS, para añadir la cabecera CORS -->
 
     <filter>
 	    <filter-name>CORS Filter</filter-name>

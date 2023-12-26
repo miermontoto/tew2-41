@@ -9,7 +9,8 @@ public class LoginServiceRsImpl implements LoginServiceRs{
 
 	@Override
 	public String login(User user) {
-
+		System.out.println("La contraseña es " + user.getPassword());
+		
 		if (Factories.services.createLoginService().verify(user.getEmail(), user.getPassword()) != null)
 			//Si el usuario existe
 			return GestorSesion.getInstance().registrarLogin(user.getEmail()); // Retorna un token, para devolverlo
