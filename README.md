@@ -1,13 +1,13 @@
 # 2324-tew2-41-
-Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Cristian González
+Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian González
 
 ### Opciones de gestión
 
 **Esta aplicación debe permitir:**
 
 1. **A cualquier usuario:**
-   - [x] a. Registrarse. (Parte cliente. Queda revisar implementación RsServidor)
-   - [x] b. Iniciar sesión. (Lo mismo que lo anterior. Parte cliente, completada al 100%. Se ha comprobado llegada de datos al servidor)
+   - [x] a. Registrarse.
+   - [x] b. Iniciar sesión.
 
 2. **A los usuarios autenticados:**
    - [x] a. Crear una comunidad. (Vista y modelo realizados. Comprobar implementación servidor)
