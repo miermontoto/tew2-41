@@ -30,7 +30,7 @@ function Controller(model, view) {
     this.init = function() {
     
     	    $('#resetButton').on('click', function() {
-    	        token = view.getToken();
+    	        token = model.getToken();
     	        model.reset(token); // Reseteo la BBDD con el viejo token.
     	    });
    

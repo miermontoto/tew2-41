@@ -20,5 +20,5 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Cristian Gonz
    - [ ] h. Cerrar sesión. (Realizar función remota para borrar token)
 
 3. **A los administradores:**
-   - [ ] a. Reiniciar la base de datos a los valores por defecto. (Implementar función de reinicio remota. Después, llamada desde local)
+   - [x] a. Reiniciar la base de datos a los valores por defecto. (Implementar función de reinicio remota. Después, llamada desde local)
    - [x] b. Importar usuarios desde un fichero externo. (Hecho)
