@@ -3,16 +3,15 @@ document.getElementById("loadUsersButton").addEventListener("click", function() 
 		url: "http://localhost:8080/Entrega1/redsocial.json", // Cambiar esta URL por la que corresponde de nuestro proyecto
 		type: "GET",
 		dataType: "json",
-		
+
 		success: function(redsocial) {
-			tbRedSocial = localStorage.getItem("tbRedSocial"); // Corregí el nombre del método getItem
+			let tbRedSocial = localStorage.getItem("tbRedSocial"); // Corregí el nombre del método getItem
 			tbRedSocial = JSON.parse(tbRedSocial);
-			if (tbRedSocial == null) 
-				tbRedSocial = [];
+			if (tbRedSocial == null) tbRedSocial = [];
 			alert("Recibida respuesta con éxito!");
 
-			for (var i in redsocial) {
-				var usuario = JSON.stringify({
+			for (let i in redsocial) {
+				let usuario = JSON.stringify({
 					email: redsocial[i].email,
 					password: redsocial[i].passwd,
 					role: redsocial[i].rol,
@@ -24,7 +23,5 @@ document.getElementById("loadUsersButton").addEventListener("click", function() 
 				});
 			}
 		} // Cierre de la función de éxito (success)
-	
 	}); // Cierre de $.ajax
-	
 }); // Cierre del método addEventListener
