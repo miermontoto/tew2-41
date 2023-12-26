@@ -6,15 +6,13 @@ import java.util.UUID;
 
 public class GestorSesion {
 
-	private Map<String, String> logins = new HashMap<String, String>();
-
+	private Map<String, String> logins = new HashMap<>();
 	private static GestorSesion instance;
-	
+
 	private GestorSesion() {}
-	
+
 	public static GestorSesion getInstance() {
-		if (instance == null)
-			instance = new GestorSesion();
+		if (instance == null) instance = new GestorSesion();
 		return instance;
 	}
 
@@ -23,15 +21,12 @@ public class GestorSesion {
 		logins.put(token, email);
 		return token;
 	}
-	
+
 	public String closeLogin(String token) {
-		return (logins.remove(token) != null) ? "succes" : "error";
+		return (logins.remove(token) != null) ? "success" : "error";
 	}
-	
-	/**
-	 * Retorna el email del usuario en caso de existir null en caso contrario*/
+
 	public String checkToken(String token) {
-		
 		return logins.getOrDefault(token, null);
 	}
 
