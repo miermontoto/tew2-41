@@ -6,11 +6,11 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Cristian Gonz
 **Esta aplicación debe permitir:**
 
 1. **A cualquier usuario:**
-   - [x] a. Registrarse. (Parte cliente. Queda revisar implementación Rs cliente)
-   - [x] b. Iniciar sesión. (Lo mismo que lo anterior. Vistas y funciones JS realizadas)
+   - [x] a. Registrarse. (Parte cliente. Queda revisar implementación RsServidor)
+   - [x] b. Iniciar sesión. (Lo mismo que lo anterior. Parte cliente, completada al 100%. Se ha comprobado llegada de datos al servidor)
 
 2. **A los usuarios autenticados:**
-   - [x] a. Crear una comunidad. (Vista realizada)
+   - [x] a. Crear una comunidad. (Vista y modelo realizados. Comprobar implementación servidor)
    - [ ] b. Unirse a una comunidad.
    - [ ] c. Listar las comunidades a las que pertenece.
    - [ ] d. Consultar los mensajes publicados en las comunidades a las que pertenece.
