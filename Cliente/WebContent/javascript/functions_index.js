@@ -2,6 +2,7 @@ function Model() {
 	
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
 	this.reset = function(token) {
+		
 		return DatabaseServiceRs.reset({
 			$entity : token,
 			$contentType : "application/json"});
@@ -31,6 +32,7 @@ function Controller(model, view) {
     
     	    $('#resetButton').on('click', function() {
     	        token = model.getToken();
+    	        console.log(token);
     	        model.reset(token); // Reseteo la BBDD con el viejo token.
     	    });
    

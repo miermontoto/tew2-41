@@ -18,8 +18,10 @@ function View() {
 	
 	this.loadUserFromForm = function() {
 		var user = {
-				username : $("#inputEmail").val(), // Establezco mismo email y username, para mantener compatibilidad con sistema de users.
-				password : $("#inputPassword").val()
+				email : $("#inputEmail").val(), // Establezco mismo email y username, para mantener compatibilidad con sistema de users.
+				username: "",
+				password : $("#inputPassword").val(),
+				role: 0
 		};
 		return user;
 	}
@@ -45,7 +47,7 @@ function Controller(model, view) {
             if (token === "") { // El token es nulo (el usuario está mal)
             	$("#mensajeError").show(); // Muestra el mensaje de error que puse en el HTML.
             } else {
-                userModel.setToken(token);
+            	userModel.setToken(token);
             }
             
         });
