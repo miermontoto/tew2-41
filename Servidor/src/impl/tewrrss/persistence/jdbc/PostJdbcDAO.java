@@ -76,7 +76,7 @@ public class PostJdbcDAO extends JdbcDAO implements PostDAO {
 	public List<Post> getPostsByUserInCommunity(User user, Community community) {
 		List<Post> posts = new ArrayList<>();
 
-		String query = "SELECT * FROM post WHERE user_email = ?, community_name = ?";
+		String query = "SELECT * FROM post WHERE user_email = ? AND community_name = ?";
 
 		try {
 			PreparedStatement ps = getDatabase().getConnection().prepareStatement(query);

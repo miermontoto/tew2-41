@@ -15,31 +15,41 @@ import impl.tewrrss.business.PostServiceImpl;
 
 public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs{
 
-	
+	/** Crea un nuevo post
+	 */
 	@Override
 	public String add(PostToken post) {
-		if (GestorSesion.getInstance().checkToken(post.getToken()) != null) {
+		//Impedimos que alguien cree un post en nombre de otro
+		if (GestorSesion.getInstance().checkToken(post.getToken()).equals(post.getUserEmail())) {
 			return add(ClassCreation.createPost(post));
 		}
 		return null;
 	}
 
+	/** Borra un post del usuario 
+	 * */
 	@Override
 	public String remove(PostToken post) {
-		if (GestorSesion.getInstance().checkToken(post.getToken()) != null) {
+		//Impedimos que alguien borre el post de otro
+		if (GestorSesion.getInstance().checkToken(post.getToken()).equals(post.getUserEmail()) ) {
 			return remove(ClassCreation.createPost(post)) ;
 		}
 		return null;
 	}
 
+	/** Obtiene los post del usuario dado 
+	 * */
 	@Override
 	public List<Post> getPostsByUser(UserToken user) {
-		if (GestorSesion.getInstance().checkToken(user.getToken()) != null) {
+		//
+		if (GestorSesion.getInstance().checkToken(user.getToken()).equals(user.getEmail())) {
 			return getPostsByUser(ClassCreation.CreateUser(user)) ;
 		}
 		return null;
 	}
 
+	/** Obtiene los post de la comunidad dada
+	 * */
 	@Override
 	public List<Post> getPostsInCommunity(CommunityToken community) {
 		if (GestorSesion.getInstance().checkToken(community.getToken()) != null) {
@@ -48,22 +58,30 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs{
 		return null;
 	}
 
+	/**  Obtiene los 5 ultimos Post de las comunidades a las que pertenece el usuario
+	 * */
 	@Override
 	public List<Post> getNewPosts(UserToken user) {
-		if (GestorSesion.getInstance().checkToken(user.getToken()) != null) {
+		// Solo se puede usar para el usuario actual
+		if (GestorSesion.getInstance().checkToken(user.getToken()).equals(user.getEmail())) {
 			return getNewPosts(ClassCreation.CreateUser(user)) ;
 		}
 		return null;
 	}
 
+	/**  Obtiene los post del usuario dado en la comunidad dada
+	 * */
 	@Override
 	public List<Post> getPostsByUserInCommunity(UserComToken UCK) {
-		if (GestorSesion.getInstance().checkToken(UCK.getToken()) != null) {
+		// Solo se puede usar para el usuario actual
+		if (GestorSesion.getInstance().checkToken(UCK.getToken()).equals(UCK.getUser().getEmail())) {
 			return getPostsByUserInCommunity(UCK.getUser(), UCK.getCommunity());
 		}
 		return null;
 	}
 
+	/** Devuelve cierto si el usuario es dueño del post o admin (No usar en rest, verifica con email) 
+	 * */
 	@Override
 	public boolean ableToRemove(PostUserToken PstUsrTk) {
 		if (GestorSesion.getInstance().checkToken(PstUsrTk.getToken()) != null) {

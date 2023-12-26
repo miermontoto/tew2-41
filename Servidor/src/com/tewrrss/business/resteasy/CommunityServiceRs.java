@@ -1,7 +1,5 @@
 package com.tewrrss.business.resteasy;
 import java.util.List;
-import java.util.Optional;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -17,13 +15,16 @@ import com.tewrrss.dto.CommunityToken;
 import com.tewrrss.dto.UserComToken;
 import com.tewrrss.dto.UserToken;
 
+@Path("/CommunityServiceRs")
 public interface CommunityServiceRs {
 
 	@GET
+	@Path(value = "/listAll")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	List<Community> listAll();
 
 	@GET
+	@Path(value = "/listJoined")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})	
 	List<Community> listJoined(UserToken user);
 	
@@ -32,6 +33,7 @@ public interface CommunityServiceRs {
 	String join(UserComToken UCK);
 	
 	@POST
+	@Path(value = "/listJoined")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})	
 	String leave(UserComToken UCK);
 	
@@ -44,17 +46,19 @@ public interface CommunityServiceRs {
 	String remove(CommunityToken comunidad);
 	
 	@GET
+	@Path(value = "/ableToJoin")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	boolean ableToJoin(UserComToken UCK);
 	
 	@GET
-	@Path(value = "{userName}")
+	@Path(value = "/findByName/{userName}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	Optional<Community> findByName(@PathParam(value = "userName") String name, String token);
+	Community findByName(@PathParam(value = "userName") String name, String token);
 	
 	@GET
-	@Path(value = "{search}")
+	@Path(value = "/search/{search}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	List<Community> search(@PathParam(value = "search") String search, String Token);
 	
+
 }

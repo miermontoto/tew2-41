@@ -23,7 +23,15 @@ public class GestorSesion {
 		logins.put(token, email);
 		return token;
 	}
+	
+	public String closeLogin(String token) {
+		return (logins.remove(token) != null) ? "succes" : "error";
+	}
+	
+	/**
+	 * Retorna el email del usuario en caso de existir null en caso contrario*/
 	public String checkToken(String token) {
+		
 		return logins.getOrDefault(token, null);
 	}
 
