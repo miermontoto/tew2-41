@@ -28,4 +28,9 @@ public class ServicesFactoryImpl implements ServicesFactory {
 	public PostService createPostService() {
 		return new PostServiceImpl();
 	}
+
+	@Override
+	public MemberService createMemberService() {
+		return new MemberServiceImpl();
+	}
 }

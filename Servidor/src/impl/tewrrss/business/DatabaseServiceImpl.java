@@ -21,6 +21,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 		PostDAO postDAO = Factories.persistence.getPostDAO();
 		UserDAO userDAO = Factories.persistence.getUserDAO();
 		CommunityDAO communityDAO = Factories.persistence.getCommunityDAO();
+		MemberDAO memberDAO = Factories.persistence.getMemberDAO();
 
 		// Drop all values
 		postDAO.dropAll();
@@ -44,11 +45,12 @@ public class DatabaseServiceImpl implements DatabaseService {
 		sampleCommunities.forEach(c -> sampleMemberships.add(new Member(c, sampleUsers.get(0)))); // add admin to all communities
 		for (int i = 1; i <= 10; i++) {
 			sampleUsers.add(new User(String.format("user%d@email.com", i), // add sample users
-				String.format("user%d", i), String.format("user%d", i)));
+				String.format("user%d", i), String.format("user%d", i))
+			);
 		}
 
 		// generate random memberships
-		sampleUsers.stream().filter(u -> u.getRole() != Role.ADMIN).forEach(u -> 
+		sampleUsers.stream().filter(u -> u.getRole() != Role.ADMIN).forEach(u ->
 			sampleCommunities.stream()
 				.filter(c -> Math.random() < 0.33)
 				.forEach(c -> sampleMemberships.add(new Member(c, u)))
@@ -58,7 +60,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 		sampleCommunities.forEach(communityDAO::add);
 		sampleUsers.forEach(userDAO::add);
 		for(Member m : sampleMemberships) {
-			communityDAO.join(m.getCommunity(), m.getUser());
+			memberDAO.join(m.getCommunity(), m.getUser());
 
 			if(m.getUser().getRole() == Role.ADMIN) continue; // don't generate posts for admin
 

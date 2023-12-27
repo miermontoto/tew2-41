@@ -2,7 +2,6 @@ package impl.tewrrss.business.resteasy;
 
 import com.tewrrss.business.resteasy.LoginServiceRs;
 import com.tewrrss.dto.User;
-import com.tewrrss.infrastructure.Factories;
 import com.tewrrss.infrastructure.GestorSesion;
 
 public class LoginServiceRsImpl implements LoginServiceRs {
@@ -15,7 +14,7 @@ public class LoginServiceRsImpl implements LoginServiceRs {
 	}
 
 	@Override
-	public String logon(String token) {
+	public String logout(String token) {
 		if (gestor.checkToken(token) != null) return "error";
 		return gestor.closeLogin(token);
 	}

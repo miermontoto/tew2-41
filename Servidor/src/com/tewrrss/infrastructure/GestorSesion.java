@@ -23,7 +23,7 @@ public class GestorSesion {
 	}
 
 	public String closeLogin(String token) {
-		return (logins.remove(token) != null) ? "success" : "error";
+		return logins.remove(token) != null ? "success" : "error";
 	}
 
 	public String checkToken(String token) {

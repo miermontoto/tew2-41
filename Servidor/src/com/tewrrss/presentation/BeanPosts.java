@@ -1,10 +1,9 @@
-		package com.tewrrss.presentation;
+package com.tewrrss.presentation;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import com.tewrrss.business.PostService;
@@ -12,16 +11,14 @@ import com.tewrrss.dto.Community;
 import com.tewrrss.dto.Post;
 import com.tewrrss.dto.User;
 import com.tewrrss.infrastructure.Factories;
-import com.tewrrss.util.Role;
-
 
 @ManagedBean(name = "posts")
 @SessionScoped
 public class BeanPosts {
-    private String content;
-    private BeanInfo loginInfo;
-    private PostService service;
-    private Community currentCommunity;
+	private String content;
+	private BeanInfo loginInfo;
+	private PostService service;
+	private Community currentCommunity;
 
 	public BeanPosts() {
 		service = Factories.services.createPostService();
@@ -62,7 +59,7 @@ public class BeanPosts {
         }
 
 		return "error";
-    }
+	}
 
 	public List<Post> getNewPosts() {
 		return service.getNewPosts(loginInfo.getSessionUser());
@@ -72,8 +69,8 @@ public class BeanPosts {
 		return service.getPostsByUser(loginInfo.getSessionUser());
 	}
 
-    public List<Post> getPostsInCommunity() {
-        return service.getPostsInCommunity(currentCommunity);
-    }
+	public List<Post> getPostsInCommunity() {
+		return service.getPostsInCommunity(currentCommunity);
+	}
 
 }

@@ -5,29 +5,28 @@ import javax.xml.bind.annotation.XmlElement;
 public class UserComToken {
 
 	private User user;
-    private Community community;
-    private String token;
-    
+	private Community community;
+	private String token;
 
-    @XmlElement
-    public User getUser() {
-        return user;
-    }
+	@XmlElement
+	public User getUser() {
+		return user;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-    
-    @XmlElement
-    public Community getCommunity() {
-        return community;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public void setCommunity(Community community) {
-        this.community = community;
-    }
+	@XmlElement
+	public Community getCommunity() {
+		return community;
+	}
 
-    @XmlElement
+	public void setCommunity(Community community) {
+		this.community = community;
+	}
+
+	@XmlElement
 	public String getToken() {
 		return token;
 	}
@@ -35,7 +34,5 @@ public class UserComToken {
 	public void setToken(String token) {
 		this.token = token;
 	}
-    
-    
-    
+
 }

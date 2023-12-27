@@ -1,6 +1,4 @@
-package impl.tewrrss.business.communities;
-
-import java.util.List;
+package impl.tewrrss.business.members;
 
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.User;

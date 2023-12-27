@@ -65,7 +65,7 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 
 	@Override
 	public boolean ableToRemove(PostUserToken PstUsrTk) {
-		if (GestorSesion.getInstance().checkToken(PstUsrTk.getToken()) == null) return false;
+		if (gestor.checkToken(PstUsrTk.getToken()) == null) return false;
 		return ableToRemove(PstUsrTk.getPost(), PstUsrTk.getUser());
 	}
 

@@ -1,4 +1,4 @@
-package impl.tewrrss.business.users;
+package impl.tewrrss.business.members;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import com.tewrrss.infrastructure.Factories;
 public class GetUsersInCommunity {
 
 	public List<User> getUsersInCommunity(Community community) {
-		return Factories.persistence.getUserDAO().getUsersInCommunity(community);
+		return Factories.persistence.getMemberDAO().getUsersInCommunity(community);
 	}
 
 }

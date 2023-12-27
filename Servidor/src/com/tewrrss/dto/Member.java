@@ -3,14 +3,14 @@ package com.tewrrss.dto;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="member")
+@XmlRootElement(name = "member")
 public class Member {
-	
+
 	private Community community;
 	private User user;
-	
+
 	public Member() { }
-	
+
 	public Member(Community community, User user) {
 		this.community = community;
 		this.user = user;

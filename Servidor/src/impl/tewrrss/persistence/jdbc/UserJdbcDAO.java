@@ -7,16 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.tewrrss.dto.Community;
 import com.tewrrss.dto.User;
 import com.tewrrss.persistence.UserDAO;
-
 
 public class UserJdbcDAO extends JdbcDAO implements UserDAO {
 
 	private static List<User> allUsers = null;
 	private static boolean dirtyAllUsers = true;
 
+	@Override
 	public List<User> listAll() {
 		if (allUsers != null && !dirtyAllUsers) {
 			return allUsers;
@@ -28,7 +27,7 @@ public class UserJdbcDAO extends JdbcDAO implements UserDAO {
 		if (rs == null) return users;
 
 		try {
-			while(rs.next()) {
+			while (rs.next()) {
 				User user = new User();
 				user.setEmail(rs.getString("email"));
 				user.setPassword(rs.getString("password"));
@@ -43,6 +42,7 @@ public class UserJdbcDAO extends JdbcDAO implements UserDAO {
 		return users;
 	}
 
+	@Override
 	public Optional<User> findByEmail(String email) {
 		Optional<User> user = Optional.empty();
 
@@ -62,6 +62,7 @@ public class UserJdbcDAO extends JdbcDAO implements UserDAO {
 		return user;
 	}
 
+	@Override
 	public boolean add(User user) {
 		boolean added = false;
 
@@ -77,34 +78,6 @@ public class UserJdbcDAO extends JdbcDAO implements UserDAO {
 
 		dirtyAllUsers &= added;
 		return added;
-	}
-
-	@Override
-	public List<User> getUsersInCommunity(Community community) {
-		List<User> users = new ArrayList<>();
-
-		String query = "SELECT u.email, u.username " +
-			"FROM member as m " +
-			"INNER JOIN user as u ON m.user_email = u.email " +
-			"WHERE m.community_name = ?";
-
-		try {
-			PreparedStatement ps = getDatabase().getConnection().prepareStatement(query);
-			ps.setString(1, community.getName());
-
-			ResultSet rs = ps.executeQuery();
-			if (rs == null) return users;
-
-			while(rs.next()) {
-				User user = new User();
-				user.setEmail(rs.getString("email"));
-				user.setUsername(rs.getString("username"));
-
-				users.add(user);
-			}
-		} catch (SQLException e) {getDatabase().handleException(e);}
-
-		return users;
 	}
 
 	@Override

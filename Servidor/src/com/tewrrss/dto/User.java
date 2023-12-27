@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.tewrrss.util.Role;
 
-@XmlRootElement(name="user")
+@XmlRootElement(name = "user")
 public class User implements Serializable {
 	private static final long serialVersionUID = 56556L;
 

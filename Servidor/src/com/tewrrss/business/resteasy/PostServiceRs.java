@@ -1,4 +1,5 @@
 package com.tewrrss.business.resteasy;
+
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -17,41 +18,41 @@ import com.tewrrss.dto.PostUserToken;
 import com.tewrrss.dto.UserComToken;
 import com.tewrrss.dto.UserToken;
 
-@Path("/PostServiceRs")
-public interface PostServiceRs extends PostService{
+@Path("/posts")
+public interface PostServiceRs extends PostService {
 
 	@PUT
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	String add(PostToken post);
 
 	@DELETE
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	String remove(PostToken post);
 
 	@GET
 	@Path("/getPostsByUser")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getPostsByUser(UserToken user);
 
 	@GET
 	@Path("/getPostsByUserInCommunity")
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getPostsByUserInCommunity(UserComToken UCK);
 
 	@GET
 	@Path("/getPostsInCommunity")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getPostsInCommunity(CommunityToken community);
 
 	@GET
 	@Path("/getNewPosts")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getNewPosts(UserToken user);
 
 	@GET
 	@Path("/ableToRemove")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	boolean ableToRemove(PostUserToken PstUsrTk);
 
 }

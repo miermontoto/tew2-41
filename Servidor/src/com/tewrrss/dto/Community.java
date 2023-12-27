@@ -5,14 +5,16 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="community")
+@XmlRootElement(name = "community")
 public class Community implements Serializable {
+
 	private static final long serialVersionUID = 88282L;
 
 	private String name;
 	private String description;
 
-	public Community() { }
+	public Community() {
+	}
 
 	public Community(String name, String description) {
 		this.setName(name);
@@ -42,4 +44,5 @@ public class Community implements Serializable {
 
 		this.description = description;
 	}
+
 }

@@ -7,41 +7,16 @@ import com.tewrrss.business.resteasy.CommunityServiceRs;
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.CommunityToken;
 import com.tewrrss.dto.User;
-import com.tewrrss.dto.UserComToken;
-import com.tewrrss.dto.UserToken;
 import com.tewrrss.infrastructure.GestorSesion;
 import com.tewrrss.util.Role;
 
 import impl.tewrrss.business.CommunityServiceImpl;
 import impl.tewrrss.business.UserServiceImpl;
 
-
-public class CommunityServiceRsImpl extends CommunityServiceImpl implements CommunityServiceRs{
+public class CommunityServiceRsImpl extends CommunityServiceImpl implements CommunityServiceRs {
 
 	private UserServiceImpl userImpl = new UserServiceImpl();
 	private GestorSesion gestor = GestorSesion.getInstance();
-
-	@Override
-	public List<Community> listJoined(UserToken user) {
-		String emailUser = gestor.checkToken(user.getToken());
-		if (emailUser == null) return null;
-
-		if (!emailUser.equals(user.getEmail()) && userImpl.findByEmail(emailUser).get().getRole() != Role.ADMIN) return null;
-
-		return listJoined(ClassCreation.createUser(user));
-	}
-
-	@Override
-	public String join(UserComToken UCK) {
-		if (gestor.checkToken(UCK.getToken()) == null) return null;
-		return join(UCK.getCommunity(),  UCK.getUser());
-	}
-
-	@Override
-	public String leave(UserComToken UCK) {
-		if (gestor.checkToken(UCK.getToken()) == null) return null;
-		return leave(UCK.getCommunity(), UCK.getUser());
-	}
 
 	@Override
 	public String create(CommunityToken comunidad) {
@@ -63,13 +38,6 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 		if (user.get().getRole() != Role.ADMIN) return null; // Solo un administrador puede borrar una comunidad
 
 		return remove(ClassCreation.createCommunity(comunidad));
-	}
-
-	@Override
-	public boolean ableToJoin(UserComToken UCK) {
-		if (gestor.checkToken(UCK.getToken()) == null) return false;
-
-		return ableToJoin(UCK.getCommunity(), UCK.getUser());
 	}
 
 	@Override

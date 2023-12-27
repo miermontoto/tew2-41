@@ -8,10 +8,10 @@ import javax.ws.rs.NotAuthorizedException;
 
 import com.tewrrss.business.UserService;
 import com.tewrrss.business.resteasy.UserServiceRs;
-import com.tewrrss.dto.CommunityToken;
 import com.tewrrss.dto.User;
 import com.tewrrss.dto.UserToken;
 import com.tewrrss.infrastructure.GestorSesion;
+import com.tewrrss.util.Role;
 
 import impl.tewrrss.business.UserServiceImpl;
 
@@ -34,11 +34,13 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 	@Override
 	public User findByEmail(String email, String token) throws EntityNotFoundException, NotAuthorizedException {
 		// Solo para administradores
-		Optional<User> user = findByEmail(gestor.checkToken(token));
-		if (!user.isPresent() || user.get().getRole() != Role.ADMIN) return null;
+		String checkToken = gestor.checkToken(token);
+		if (checkToken == null) return null;
+
+		Optional<User> currentToken = findByEmail(checkToken);
+		if (!currentToken.isPresent() || currentToken.get().getRole() != Role.ADMIN) return null;
 
 		Optional<User> user = findByEmail(email);
-
 		return user.isPresent() ? user.get() : null;
 	}
 
@@ -46,10 +48,13 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 	public String remove(UserToken user) {
 		// Solo para el propio usuario o un administrador
 		String emailReal = gestor.checkToken(user.getToken());
-		if (emailReal.equals(user.getEmail()) || (findByEmail(emailReal).get().getRole() == 1)) {
-			return remove(ClassCreation.createUser(user));
+		if (emailReal == null) return null;
+
+		if (!emailReal.equals(user.getEmail()) && findByEmail(emailReal).get().getRole() != Role.ADMIN) {
+			return null;
 		}
-		return null;
+
+		return remove(ClassCreation.createUser(user));
 	}
 
 	@Override
@@ -58,21 +63,14 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 		UserService service = new UserServiceImpl();
 		String success = service.add(user);
 
-		return success.equals("success") ?  gestor.registrarLogin(user.getEmail()) : success;
+		return success.equals("success") ? gestor.registrarLogin(user.getEmail()) : success;
 	}
-
 
 	@Override
 	public String update(UserToken user) throws EntityNotFoundException {
 		// Solo el usuario puede modificar su cuenta
 		if (!gestor.checkToken(user.getToken()).equals(user.getEmail())) return null;
 		return update(ClassCreation.createUser(user));
-	}
-
-	@Override
-	public List<User> getUsersInCommunity(CommunityToken community) {
-		if (gestor.checkToken(community.getToken()) == null) return null;
-		return getUsersInCommunity(ClassCreation.createCommunity(community));
 	}
 
 }
