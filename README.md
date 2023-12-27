@@ -6,8 +6,12 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
 **Esta aplicación debe permitir:**
 
 1. **A cualquier usuario:**
-   - [x] a. Registrarse.
-   - [x] b. Iniciar sesión.
+   - [ ] a. Registrarse.
+     - [x] Registro básico
+     - [ ] Inicio de sesión automático en cliente
+   - [ ] b. Iniciar sesión.
+     - [x] Token en navegador
+     - [ ] Reflejo del token en el cliente
 
 2. **A los usuarios autenticados:**
    - [x] a. Crear una comunidad. (Vista y modelo realizados. Comprobar implementación servidor)
