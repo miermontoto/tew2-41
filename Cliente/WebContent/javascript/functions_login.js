@@ -3,7 +3,8 @@ function Model() {
 	this.login = function(user) {
 		return LoginServiceRs.login({
 			$entity : user,
-			$contentType : "application/json"});
+			$contentType : "application/json"
+		});
 	}
 
 	// Función para guardar el token en el almacenamiento local.
@@ -14,12 +15,13 @@ function Model() {
 
 function View() {
 	this.loadUserFromForm = function() {
-		var user = {
-				email : $("#inputEmail").val(), // Establezco mismo email y username, para mantener compatibilidad con sistema de users.
-				username: "",
-				password : $("#inputPassword").val(),
-				role: 0
+		let user = {
+			email : $("#inputEmail").val(), // Establezco mismo email y username, para mantener compatibilidad con sistema de users.
+			username: "",
+			password : $("#inputPassword").val(),
+			role: 0
 		};
+
 		return user;
 	}
 
@@ -41,7 +43,7 @@ function Controller(model, view) {
 
             let user = userView.loadUserFromForm(); // Genero un usuario a la espera de enviarlo
             let token = userModel.login(user); // Enviamos el token y se obtiene como respuesta (o no) un user.
-            console.log(token); // Lo muestro por consola
+			console.log(token);
 
             if (token === "") { // El token es nulo (el usuario está mal)
             	$("#mensajeError").show(); // Muestra el mensaje de error que puse en el HTML.

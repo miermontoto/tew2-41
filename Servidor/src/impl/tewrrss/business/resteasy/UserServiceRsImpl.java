@@ -34,10 +34,12 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 	@Override
 	public User findByEmail(String email, String token) throws EntityNotFoundException, NotAuthorizedException {
 		// Solo para administradores
-		Optional<User> users = findByEmail(gestor.checkToken(token));
-		if (!users.isPresent() || users.get().getRole() != Role.ADMIN) return null;
+		Optional<User> user = findByEmail(gestor.checkToken(token));
+		if (!user.isPresent() || user.get().getRole() != Role.ADMIN) return null;
 
-		return findByEmail(email).isPresent() ? findByEmail(email).get() : null;
+		Optional<User> user = findByEmail(email);
+
+		return user.isPresent() ? user.get() : null;
 	}
 
 	@Override

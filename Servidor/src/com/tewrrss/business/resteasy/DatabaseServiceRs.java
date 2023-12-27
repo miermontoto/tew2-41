@@ -13,7 +13,7 @@ public interface DatabaseServiceRs {
 
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({ MediaType.APPLICATION_JSON})
-	boolean reset (String token);
+	@Produces({MediaType.APPLICATION_JSON})
+	boolean reset(String token);
 
 }
