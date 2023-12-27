@@ -1,6 +1,6 @@
 document.getElementById("loadUsersButton").addEventListener("click", function() {
 	$.ajax({
-		url: "http://localhost:8080/Entrega1/redsocial.json", // Cambiar esta URL por la que corresponde de nuestro proyecto
+		url: "http://localhost:8080/Servidor/redsocial.json", // Cambiar esta URL por la que corresponde de nuestro proyecto
 		type: "GET",
 		dataType: "json",
 
