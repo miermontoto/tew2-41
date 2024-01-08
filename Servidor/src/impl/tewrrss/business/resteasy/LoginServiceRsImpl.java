@@ -7,6 +7,7 @@ import com.tewrrss.infrastructure.GestorSesion;
 
 public class LoginServiceRsImpl implements LoginServiceRs{
 
+	// Metodo para el login de usuarios.
 	@Override
 	public String login(User user) {
 		System.out.println("La contraseña es " + user.getPassword());
