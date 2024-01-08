@@ -2,6 +2,7 @@ package impl.tewrrss.business.resteasy;
 
 import com.tewrrss.business.resteasy.LoginServiceRs;
 import com.tewrrss.dto.User;
+import com.tewrrss.infrastructure.Factories;
 import com.tewrrss.infrastructure.GestorSesion;
 
 public class LoginServiceRsImpl implements LoginServiceRs {

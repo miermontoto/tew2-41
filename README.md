@@ -1,4 +1,4 @@
-# 2324-tew2-41-
+# 2324-tew2-41
 Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian González
 
 ### Opciones de gestión
