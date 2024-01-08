@@ -5,23 +5,23 @@ document.getElementById("loadUsersButton").addEventListener("click", function() 
 		dataType: "json",
 
 		success: function(redsocial) {
-			let tbRedSocial = localStorage.getItem("tbRedSocial"); // Corregí el nombre del método getItem
-			tbRedSocial = JSON.parse(tbRedSocial);
-			if (tbRedSocial == null) tbRedSocial = [];
-			alert("Recibida respuesta con éxito!");
+			let listaUsuarios = redsocial.usuarios;
 
-			for (let i in redsocial) {
-				let usuario = JSON.stringify({
-					email: redsocial[i].email,
-					password: redsocial[i].passwd,
-					role: redsocial[i].rol,
-					username: redsocial[i].nombre
-				});
+			listaUsuarios.forEach(function(usuario) {
+			  	let user = {
+					email: usuario.email,
+					password: usuario.passwd,
+					role: 1,
+					username: usuario.nombre
+				};
+
+
+				// Envío al servidor lo requerido
 				UserServiceRs.add({
-					$entity: usuario,
+					$entity: user,
 					$contentType: "application/json"
 				});
-			}
+			});
 		} // Cierre de la función de éxito (success)
 	}); // Cierre de $.ajax
 }); // Cierre del método addEventListener

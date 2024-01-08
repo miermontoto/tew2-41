@@ -8,9 +8,11 @@ public class LoginServiceRsImpl implements LoginServiceRs {
 
 	private GestorSesion gestor = GestorSesion.getInstance();
 
+	// Metodo para el login de usuarios.
 	@Override
 	public String login(User user) {
-		return gestor.registrarLogin(user.getEmail()); // Retorna un token, para devolverlo
+		if (Factories.services.createLoginService().verify(user.getEmail(), user.getPassword()) == null) return "";
+		return GestorSesion.getInstance().registrarLogin(user.getEmail()); // Retorna un token, para devolverlo
 	}
 
 	@Override
