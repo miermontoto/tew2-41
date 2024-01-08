@@ -3,7 +3,8 @@ function Model() {
 	this.createCommunity = function(community) {
 		return CommunityServiceRs.create({
 			$entity : community,
-			$contentType : "application/json"});
+			$contentType : "application/json"
+		});
 	}
 };
 
@@ -24,8 +25,12 @@ function Controller(model, view) {
     // Inicialización del modelo y la vista.
     this.init = function() {
         $("#createCommunityForm").bind("submit", function(event) {
-            let community = view.loadFormData();
-            let response = model.createCommunity(user);
+            let response = model.createCommunity(view.loadFormData());
+
+			response.success(function(data, status, jqXHR) {
+				alert("Community created successfully");
+				window.location.href = "index.html";
+			});
         });
     }
 }

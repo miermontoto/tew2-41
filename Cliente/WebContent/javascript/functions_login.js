@@ -15,42 +15,36 @@ function Model() {
 
 function View() {
 	this.loadUserFromForm = function() {
-		let user = {
-			email : $("#inputEmail").val(), // Establezco mismo email y username, para mantener compatibilidad con sistema de users.
-			username: "",
+		return {
+			email: $("#inputEmail").val(),
+			username: "tobeloggedin",
 			password : $("#inputPassword").val(),
-			role: 0
+			role: 1 // Role.USER = 1
 		};
-
-		return user;
-	}
-
-	// Cargo el usuario en el formulario.
-	this.loadUserInForm = function(user) {
-		$("#inputEmail").val(user.login);
-		$("#inputPassword").val(user.password);
 	}
 };
 
 function Controller(model, view) {
-    // Inicialización del modelo y la vista.
-    let userModel = model;
-    let userView = view;
-
     this.init = function() {
         $("#loginForm").bind("submit", function(event) {
         	event.preventDefault();
 
-            let user = userView.loadUserFromForm(); // Genero un usuario a la espera de enviarlo
-            let token = userModel.login(user); // Enviamos el token y se obtiene como respuesta (o no) un user.
-            console.log(token); // Lo muestro por consola
+            let ucm = model.login(view.loadUserFromForm()); // Enviamos el token y se obtiene como respuesta (o no) un user.
+			let token = ucm.token;
+			let user = ucm.user;
+
+			$("#mensajeError").hide();
+			$("#mensajeExito").hide();
 
             if (token === "") { // El token es nulo (el usuario está mal)
-            	$("#mensajeError").show(); // Muestra el mensaje de error que puse en el HTML.
-            } else {
-            	userModel.setToken(token);
-            	$("#mensajeExito").show(); // Muestra el mensaje de éxito
+            	$("#mensajeError").show();
+				return;
             }
+
+			model.setToken(token);
+			$("#mensajeExito").show();
+			$("#alumnosDropdown").text(user.username);
+			$("#iframe").attr("src", "home.html");
         });
     }
 }

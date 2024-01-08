@@ -14,35 +14,63 @@
 <body>
 	<header class="jumbotron">
 		<h1 class="display-4">Red social de TEW</h1>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="alumnosDropdown" role="button" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Iniciar sesión / registro</a>
-					<div class="dropdown-menu" aria-labelledby="alumnosDropdown">
-						<a class="dropdown-item" href="login.html" target="formulario">Login</a>
-						<a class="dropdown-item" href="register.html" target="formulario">Registro</a>
-					</div>
-				</li>
+		<div class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="alumnosDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Comunidades</a>
+						<div class="dropdown-menu" aria-labelledby="alumnosDropdown">
+							<a class="dropdown-item" href="newcommunity.html" target="formulario">Crear una comunidad</a>
+							<a class="dropdown-item" href="listcommunities.html" target="formulario">Listado de comunidades</a>
+							<a class="dropdown-item" href="mycommunities.html" target="formulario">Mis comunidades</a>
+						</div>
+					</li>
 
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="alumnosDropdown" role="button"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Servicios </a>
-					<div class="dropdown-menu" aria-labelledby="alumnosDropdown">
-						<a class="dropdown-item" href="listado.html" target="formulario">Listado</a>
-						<a class="dropdown-item" href="newcommunity.html" target="formulario">Crear una comunidad</a>
-						<a class="dropdown-item" href="loadusers.html" target="formulario">Cargar usuarios desde JSON en servidor</a>
-						<button class="dropdown-item btn btn-danger" id="resetButton">Resetear BBDD</button>
-					</div>
-				</li>
-			</ul>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="alumnosDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Publicaciones</a>
+						<div class="dropdown-menu" aria-labelledby="alumnosDropdown">
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="alumnosDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración</a>
+						<div class="dropdown-menu" aria-labelledby="alumnosDropdown">
+							<a class="dropdown-item" href="loadusers.html" target="formulario">Cargar usuarios desde JSON en servidor</a>
+							<button class="dropdown-item btn btn-danger" id="resetButton">Resetear BBDD</button>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div class="mx-auto order-0">
+				<a class="navbar-brand mx-auto" href="home.html" target="formulario">TEWrrss</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+
+			<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="alumnosDropdown" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Sesión</a>
+						<div class="dropdown-menu" aria-labelledby="alumnosDropdown">
+							<a class="dropdown-item" href="login.html" target="formulario">Iniciar sesión</a>
+							<a class="dropdown-item" href="register.html" target="formulario">Registrarse</a>
+						</div>
+					</li>
+				</ul>
+			</div>
 		</nav>
 	</header>
 
 	<main class="container">
-		<div class="row h-100">
+		<div class="row">
 			<div class="col-md-8">
-				<iframe name="formulario" width="100%" height="100%" title="views" src="login.html"></iframe>
+				<iframe name="formulario" width="100%" height="100%" title="views" src="login.html" id="iframe" class="h-100"></iframe>
 			</div>
 
 			<div class="col-md-4">
@@ -67,7 +95,7 @@
 
 	<footer class="footer mt-auto py-3 bg-light">
 		<nav class="navbar navbar-light bg-light">
-			<a class="nav-link" href="/">Inicio</a>
+			<a class="nav-link" href="home.html" target="formulario">Inicio</a>
 			<a class="nav-link" href="https://mier.info">Contacto</a>
 		</nav>
 	</footer>

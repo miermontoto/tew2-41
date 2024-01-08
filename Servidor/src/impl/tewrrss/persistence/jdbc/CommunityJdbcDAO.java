@@ -77,7 +77,7 @@ public class CommunityJdbcDAO extends JdbcDAO implements CommunityDAO {
 
 	@Override
 	public List<Community> getCommunities() {
-		if(allCommunities != null && !dirtyAllCommunities) return allCommunities;
+		if (allCommunities != null && !dirtyAllCommunities) return allCommunities;
 
 		List<Community> communities = new ArrayList<>();
 
