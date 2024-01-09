@@ -11,48 +11,40 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.business.PostService;
-import com.tewrrss.dto.CommunityToken;
+import com.tewrrss.dto.Community;
 import com.tewrrss.dto.Post;
-import com.tewrrss.dto.PostToken;
-import com.tewrrss.dto.PostUserToken;
-import com.tewrrss.dto.UserComToken;
-import com.tewrrss.dto.UserToken;
+import com.tewrrss.dto.User;
 
 @Path("/posts")
 public interface PostServiceRs extends PostService {
 
 	@PUT
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String add(PostToken post);
+	String add(String token, Post post);
 
 	@DELETE
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String remove(PostToken post);
+	String remove(String token, Post post);
 
 	@GET
 	@Path("/getPostsByUser")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	List<Post> getPostsByUser(UserToken user);
+	List<Post> getPostsByUser(String token, User targetUser);
 
 	@GET
 	@Path("/getPostsByUserInCommunity")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	List<Post> getPostsByUserInCommunity(UserComToken UCK);
+	List<Post> getPostsByUserInCommunity(User user, Community com);
 
 	@GET
 	@Path("/getPostsInCommunity")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	List<Post> getPostsInCommunity(CommunityToken community);
+	List<Post> getPostsInCommunity(Community com);
 
 	@GET
 	@Path("/getNewPosts")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	List<Post> getNewPosts(UserToken user);
-
-	@GET
-	@Path("/ableToRemove")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	boolean ableToRemove(PostUserToken PstUsrTk);
+	@Produces({ MediaType.TEXT_PLAIN })
+	List<Post> getNewPosts(String token);
 
 }

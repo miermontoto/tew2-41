@@ -1,12 +1,14 @@
 package com.tewrrss.infrastructure;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 import java.util.UUID;
 
+import com.tewrrss.dto.User;
+
 public class GestorSesion {
 
-	private Map<String, String> logins = new HashMap<>();
+	private Map<String, User> logins = new TreeMap<>();
 	private static GestorSesion instance;
 
 	private GestorSesion() {}
@@ -16,17 +18,17 @@ public class GestorSesion {
 		return instance;
 	}
 
-	public String registrarLogin(String email) {
+	public String register(User u) {
 		String token = UUID.randomUUID().toString();
-		logins.put(token, email);
+		logins.put(token, u);
 		return token;
 	}
 
-	public String closeLogin(String token) {
-		return logins.remove(token) != null ? "success" : "error";
+	public String expire(String token) {
+		return logins.remove(token) != null ? "success" : "invalid";
 	}
 
-	public String checkToken(String token) {
+	public User getUser(String token) {
 		return logins.getOrDefault(token, null);
 	}
 

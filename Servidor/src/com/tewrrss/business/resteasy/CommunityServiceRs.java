@@ -12,7 +12,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.dto.Community;
-import com.tewrrss.dto.CommunityToken;
 
 @Path("/communities")
 public interface CommunityServiceRs {
@@ -24,11 +23,11 @@ public interface CommunityServiceRs {
 
 	@PUT
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String create(CommunityToken comunidad);
+	String create(String token, Community com);
 
 	@DELETE
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String remove(CommunityToken comunidad);
+	String remove(String token, Community com);
 
 	@GET
 	@Path(value = "/findByName/{userName}")

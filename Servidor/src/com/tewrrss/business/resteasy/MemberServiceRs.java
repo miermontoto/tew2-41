@@ -10,36 +10,29 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.dto.Community;
-import com.tewrrss.dto.CommunityToken;
-import com.tewrrss.dto.User;
-import com.tewrrss.dto.UserComToken;
-import com.tewrrss.dto.UserToken;
 
 @Path("/members")
 public interface MemberServiceRs {
 
 	@GET
 	@Path(value = "/listJoined")
+	@Consumes({ MediaType.TEXT_PLAIN })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	List<Community> listJoined(UserToken user);
+	List<Community> listJoined(String token);
 
 	@POST
+	@Path(value = "/join")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String join(UserComToken UCK);
+	String join(String token, Community com);
 
 	@POST
 	@Path(value = "/listJoined")
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String leave(UserComToken UCK);
-
-	@GET
-	@Path("/getUsersInCommunity")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	List<User> getUsersInCommunity(CommunityToken community);
+	@Consumes({ MediaType.TEXT_PLAIN })
+	String leave(String token, Community com);
 
 	@GET
 	@Path(value = "/ableToJoin")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	boolean ableToJoin(UserComToken UCK);
+	boolean ableToJoin(String token, Community com);
 
 }
