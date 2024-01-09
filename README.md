@@ -6,12 +6,13 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
 **Esta aplicación debe permitir:**
 
 1. **A cualquier usuario:**
-   - [ ] a. Registrarse.
+   - [x] a. Registrarse.
      - [x] Registro básico
-     - [ ] Inicio de sesión automático en cliente
+     - [x] Inicio de sesión automático en cliente
    - [ ] b. Iniciar sesión.
      - [x] Token en navegador
-     - [ ] Reflejo del token en el cliente
+     - [ ] Navegación a HOME tras inicio correcto
+     - [ ] Límite de intentos de inicio de sesión
 
 2. **A los usuarios autenticados:**
    - [x] a. Crear una comunidad. (Vista y modelo realizados. Comprobar implementación servidor)
@@ -21,7 +22,7 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
    - [ ] e. Listar últimos mensajes de las comunidades a las que pertenece.
    - [ ] f. Realizar una publicación en una comunidad a la que pertenece.
    - [ ] g. Borrado de publicaciones realizadas.
-   - [x] h. Cerrar sesión. (Realizar función remota para borrar token)
+   - [ ] h. Cerrar sesión.
 
 3. **A los administradores:**
    - [x] a. Reiniciar la base de datos a los valores por defecto. (Implementar función de reinicio remota. Después, llamada desde local)

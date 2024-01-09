@@ -26,11 +26,14 @@ function Controller(model, view) {
     this.init = function() {
         $("#createCommunityForm").bind("submit", function(event) {
             let response = model.createCommunity(view.loadFormData());
-
-			response.success(function(data, status, jqXHR) {
+			console.log(response);
+			if (response === "success") {
+				$("#mensajeError").hide();
 				alert("Community created successfully");
-				window.location.href = "index.html";
-			});
+				$("#iframe").attr("src", "home.html");
+			} else {
+				$("#mensajeError").show();
+			}
         });
     }
 }

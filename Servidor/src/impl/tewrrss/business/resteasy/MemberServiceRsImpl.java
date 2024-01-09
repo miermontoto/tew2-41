@@ -5,6 +5,7 @@ import java.util.List;
 import com.tewrrss.business.resteasy.MemberServiceRs;
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.User;
+import com.tewrrss.dto.resteasy.Token;
 import com.tewrrss.infrastructure.GestorSesion;
 
 import impl.tewrrss.business.MemberServiceImpl;
@@ -15,6 +16,7 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 
 	@Override
 	public List<Community> listJoined(String token) {
+		System.out.println(token);
 		User user = gestor.getUser(token);
 		if (user == null) return null;
 
@@ -25,7 +27,7 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 	public String join(String token, Community com) {
 		User user = gestor.getUser(token);
 		if (user == null) return null;
-		
+
 		return join(com, user);
 	}
 
@@ -33,9 +35,9 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 	public String leave(String token, Community com) {
 		User user = gestor.getUser(token);
 		if (user == null) return null;
-		
+
 		// TODO: comprobar si está unido a la comunidad o no.
-		
+
 		return leave(com, user);
 	}
 

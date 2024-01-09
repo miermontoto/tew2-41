@@ -30,8 +30,8 @@ function Controller(model, view) {
         	event.preventDefault();
 
             let ucm = model.login(view.loadUserFromForm()); // Enviamos el token y se obtiene como respuesta (o no) un user.
-			let token = ucm.token;
-			let user = ucm.user;
+			let user = ucm[0];
+			let token = ucm[1];
 
 			$("#mensajeError").hide();
 			$("#mensajeExito").hide();

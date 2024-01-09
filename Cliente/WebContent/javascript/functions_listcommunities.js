@@ -5,7 +5,7 @@ function Model() {
 
 	this.listJoined = function() {
 		return MemberServiceRs.listJoined({
-			user: localStorage.getItem("token")
+			token: localStorage.getItem("token")
 		});
 	}
 };

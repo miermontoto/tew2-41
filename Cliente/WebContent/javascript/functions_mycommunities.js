@@ -1,7 +1,7 @@
 function Model() {
 	this.list = function() {
 		return MemberServiceRs.listJoined({
-			user: localStorage.getItem("token")
+			$entity: sessionStorage.getItem("token")
 		});
 	}
 };
@@ -9,7 +9,7 @@ function Model() {
 function View() {
 	this.loadTable = function(data) {
 		data.forEach(function(community) {
-			let row = "<tr><td>" + community.name + "</td><td>" + community.description + "</td></tr>";
+			let row = "<tr><td>" + community.name + "</td><td>" + community.description + "</td><td><button type='button' class='btn btn-primary' onclick='window.location.href=\"community.html?id=" + community.id + "\"'>Ver</button><button type='button' class='btn btn-danger' onclick='leaveCommunity(" + community.id + ")'>Dejar</button></td></tr>";
 			$("#tableBody").append(row);
 		});
 	}
@@ -17,9 +17,7 @@ function View() {
 
 function Controller(model, view) {
     this.init = function() {
-		let list = model.list();
-		console.log(list);
-		view.loadTable(list);
+		view.loadTable(model.list());
     }
 }
 
