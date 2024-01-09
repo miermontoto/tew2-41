@@ -11,6 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.dto.Community;
+import com.tewrrss.dto.resteasy.CommunityRequestData;
+import com.tewrrss.dto.resteasy.MemberRequestData;
 
 @Path("/members")
 public interface MemberServiceRs {
@@ -18,21 +20,21 @@ public interface MemberServiceRs {
 	@GET
 	@Path("/listJoined")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	List<Community> listJoined(String token);
+	List<Community> listJoined(CommunityRequestData data);
 
 	@POST
 	@Path(value = "/join")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String join(String token, Community com);
+	String join(CommunityRequestData data);
 
 	@POST
 	@Path(value = "/leave")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String leave(String token, Community com);
+	String leave(CommunityRequestData data);
 
 	@GET
 	@Path(value = "/ableToJoin")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	boolean ableToJoin(String token, Community com);
+	boolean ableToJoin(CommunityRequestData data);
 
 }

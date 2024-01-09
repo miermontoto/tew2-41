@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.dto.Community;
+import com.tewrrss.dto.resteasy.CommunityRequestData;
 
 @Path("/communities")
 public interface CommunityServiceRs {
@@ -23,20 +24,10 @@ public interface CommunityServiceRs {
 
 	@PUT
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String create(String token, Community com);
+	String create(CommunityRequestData data);
 
 	@DELETE
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String remove(String token, Community com);
-
-	@GET
-	@Path(value = "/findByName/{userName}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	Community findByName(@PathParam(value = "userName") String name, String token);
-
-	@GET
-	@Path(value = "/search/{search}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	List<Community> search(@PathParam(value = "search") String search, String Token);
+	String remove(CommunityRequestData data);
 
 }

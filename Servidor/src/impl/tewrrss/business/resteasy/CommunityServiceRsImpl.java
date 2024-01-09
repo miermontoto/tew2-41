@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.tewrrss.business.resteasy.CommunityServiceRs;
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.User;
+import com.tewrrss.dto.resteasy.CommunityRequestData;
 import com.tewrrss.infrastructure.GestorSesion;
 import com.tewrrss.util.Role;
 
@@ -16,32 +17,19 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 	private GestorSesion gestor = GestorSesion.getInstance();
 
 	@Override
-	public String create(String token, Community com) {
-		User user = gestor.getUser(token);
+	public String create(CommunityRequestData data) {
+		User user = gestor.getUser(data.getToken());
 		if (user == null) return "error";
 
-		return create(com);
+		return create(data);
 	}
 
 	@Override
-	public String remove(String token, Community com) {
-		User user = gestor.getUser(token);
-		if (user.getRole() != Role.ADMIN) return "error"; 
+	public String remove(CommunityRequestData data) {
+		User user = gestor.getUser(data.getToken());
+		if (user.getRole() != Role.ADMIN) return "error";
 
-		return remove(com);
+		return remove(data);
 	}
 
-	@Override
-	public Community findByName(String name, String token) {
-		if (gestor.getUser(token) == null) return null;
-
-		Optional<Community> com = findByName(name);
-		return com.isPresent() ? com.get() : null;
-	}
-
-	@Override
-	public List<Community> search(String search, String Token) {
-		if (gestor.getUser(Token) == null) return null;
-		return search(search);
-	}
 }

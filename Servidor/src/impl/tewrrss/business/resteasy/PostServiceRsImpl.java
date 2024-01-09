@@ -6,6 +6,7 @@ import com.tewrrss.business.resteasy.PostServiceRs;
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.Post;
 import com.tewrrss.dto.User;
+import com.tewrrss.dto.resteasy.*;
 import com.tewrrss.infrastructure.GestorSesion;
 import com.tewrrss.util.Role;
 
@@ -16,48 +17,48 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 	private GestorSesion gestor = GestorSesion.getInstance();
 
 	@Override
-	public String add(String token, Post post) {
-		User user = gestor.getUser(token);
+	public String add(PostRequestData data) {
+		User user = gestor.getUser(data.getToken());
 		if (user == null) return null;
-		if (!post.getUserEmail().equals(user.getEmail())) return null;
+		if (!data.getUserEmail().equals(user.getEmail())) return null;
 		
-		return add(post);
+		return add(data);
 	}
 
 	@Override
-	public String remove(String token, Post post) {
-		User user = gestor.getUser(token);
+	public String remove(PostRequestData data) {
+		User user = gestor.getUser(data.getToken());
 		if (user == null) return null;
-		if (!post.getUserEmail().equals(user.getEmail()) && user.getRole() != Role.ADMIN) return null;
+		if (!data.getUserEmail().equals(user.getEmail()) && user.getRole() != Role.ADMIN) return null;
 		
-		return remove(post);
+		return remove(data);
 	}
 
 	@Override
-	public List<Post> getPostsByUser(String token, User targetUser) {
-		User loggedUser = gestor.getUser(token);
+	public List<Post> getPostsByUser(UserRequestData data) {
+		User loggedUser = gestor.getUser(data.getToken());
 		if (loggedUser == null) return null;
 
 		// comprobar la igualdad de emails es una manera fiable de comparar usuarios
-		if (!loggedUser.getEmail().equals(targetUser.getEmail()) && loggedUser.getRole() != Role.ADMIN) return null;
+		if (!loggedUser.getEmail().equals(data.getEmail()) && loggedUser.getRole() != Role.ADMIN) return null;
 		
-		return getPostsByUser(targetUser);
+		return getPostsByUser(data);
 	}
 
 	@Override
-	public List<Post> getPostsInCommunity(Community com) {
-		return getPostsInCommunity(com);
+	public List<Post> getPostsInCommunity(CommunityRequestData data) {
+		return getPostsInCommunity(data);
 	}
 
 	@Override
-	public List<Post> getNewPosts(String token) {
-		User user = gestor.getUser(token);
+	public List<Post> getNewPosts(UserRequestData data) {
+		User user = gestor.getUser(data.getToken());
 		return getNewPosts(user);
 	}
 
 	@Override
-	public List<Post> getPostsByUserInCommunity(User user, Community com) {
-		return getPostsByUserInCommunity(user, com);
+	public List<Post> getPostsByUserInCommunity(MemberRequestData data) {
+		return getPostsByUserInCommunity(data.getUser(), data.getCommunity());
 	}
 
 }

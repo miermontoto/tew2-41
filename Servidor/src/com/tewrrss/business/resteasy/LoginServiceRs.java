@@ -20,8 +20,7 @@ public interface LoginServiceRs {
 	Object[] login(User user);
 
 	@DELETE
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String logout(String user);
+	String logout(String token);
 
 }

@@ -1,7 +1,8 @@
 function Model() {
 	this.list = function() {
 		return MemberServiceRs.listJoined({
-			$entity: sessionStorage.getItem("token")
+			$entity: {token: sessionStorage.getItem("token")},
+			$contentType: "application/json"
 		});
 	}
 };
