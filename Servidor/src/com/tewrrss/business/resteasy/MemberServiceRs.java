@@ -19,7 +19,6 @@ public interface MemberServiceRs {
 
 	@GET
 	@Path("/listJoined/{token}")
-	
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Community> listJoined(@PathParam ("token") String token);
 
