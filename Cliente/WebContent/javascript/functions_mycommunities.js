@@ -1,9 +1,7 @@
 function Model() {
 	this.list = function() {
-		return MemberServiceRs.listJoined({
-			$entity: {token: sessionStorage.getItem("token")},
-			$contentType: "application/json"
-		});
+		salida = sessionStorage.getItem("token")
+		return MemberServiceRs.listJoined({token : sessionStorage.getItem("token")});
 	}
 };
 

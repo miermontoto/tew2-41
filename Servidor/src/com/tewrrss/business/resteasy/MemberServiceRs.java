@@ -18,10 +18,10 @@ import com.tewrrss.dto.resteasy.MemberRequestData;
 public interface MemberServiceRs {
 
 	@GET
-	@Path("/listJoined")
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Path("/listJoined/{token}")
+	
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	List<Community> listJoined(CommunityRequestData data);
+	List<Community> listJoined(@PathParam ("token") String token);
 
 	@POST
 	@Path(value = "/join")

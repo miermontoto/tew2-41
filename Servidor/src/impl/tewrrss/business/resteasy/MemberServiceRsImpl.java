@@ -15,9 +15,9 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 	private GestorSesion gestor = GestorSesion.getInstance();
 
 	@Override
-	public List<Community> listJoined(CommunityRequestData data) {
-		System.out.println(data.getToken());
-		User user = gestor.getUser(data.getToken());
+	public List<Community> listJoined(String token) {
+		System.out.println("mi token es..."+ token);
+		User user = gestor.getUser(token);
 		if (user == null) return null;
 
 		return listJoined(user);
@@ -28,7 +28,8 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 		User user = gestor.getUser(data.getToken());
 		if (user == null) return null;
 
-		return join(data, user);
+		return join(new Community("hola", "adios"), user);
+	
 	}
 
 	@Override
@@ -38,7 +39,7 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 
 		// TODO: comprobar si está unido a la comunidad o no.
 
-		return leave(data, user);
+		return leave(new Community(data.getDescription(), data.getName()), user);
 	}
 
 	@Override
@@ -46,7 +47,7 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 		User user = gestor.getUser(data.getToken());
 		if (user == null) return false;
 
-		return ableToJoin(data, user);
+		return ableToJoin(new Community(data.getDescription(), data.getName()), user);
 	}
 
 }
