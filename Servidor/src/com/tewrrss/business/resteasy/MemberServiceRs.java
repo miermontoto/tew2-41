@@ -19,6 +19,7 @@ public interface MemberServiceRs {
 
 	@GET
 	@Path("/listJoined")
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Community> listJoined(CommunityRequestData data);
 
