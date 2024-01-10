@@ -44,7 +44,7 @@ function Controller(model, view) {
 			model.setToken(token);
 			$("#mensajeExito").show();
 			$("#alumnosDropdown").text(user.username);
-			$("#iframe").attr("src", "home.html");
+			$("#iframe").load("home.html");
         });
     }
 }
