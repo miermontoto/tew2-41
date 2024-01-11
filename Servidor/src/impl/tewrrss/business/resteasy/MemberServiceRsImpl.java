@@ -16,7 +16,6 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 
 	@Override
 	public List<Community> listJoined(String token) {
-		System.out.println("mi token es..."+ token);
 		User user = gestor.getUser(token);
 		if (user == null) return null;
 
@@ -28,8 +27,7 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 		User user = gestor.getUser(data.getToken());
 		if (user == null) return null;
 
-		return join(new Community("hola", "adios"), user);
-	
+		return join(data, user);
 	}
 
 	@Override

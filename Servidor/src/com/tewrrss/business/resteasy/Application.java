@@ -16,6 +16,7 @@ public class Application extends javax.ws.rs.core.Application {
 	private Set<Class<?>> classes = new HashSet<>();
 
 	public Application() {
+		// qué sentido tiene que se añadan impl desde una clase en el package com?
 		classes.add(LoginServiceRsImpl.class);
 		classes.add(UserServiceRsImpl.class);
 		classes.add(CommunityServiceRsImpl.class);
