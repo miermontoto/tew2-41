@@ -11,6 +11,10 @@ function Model() {
     this.setToken = function(token) {
         sessionStorage.setItem("token", token);
     }
+
+	this.getToken = function() {
+		return sessionStorage.getItem("token");
+	}
 }
 
 function View() {
@@ -22,31 +26,61 @@ function View() {
 			role: 1 // Role.USER = 1
 		};
 	}
+
+	this.clearMessages = function() {
+		$("#mensajeError").hide();
+		$("#mensajeExito").hide();
+		$("#mensajeAlready").hide();
+	}
+
+	this.successMessage = function() {
+		$("#mensajeExito").show();
+	}
+
+	this.errorMessage = function() {
+		$("#mensajeError").show();
+	}
+
+	this.alreadyMessage = function() {
+		$("#mensajeAlready").show();
+	}
+
+	this.enableButton = function() {
+		$("#loginButton").prop("disabled", false);
+	}
+
+	this.disableButton = function() {
+		$("#loginButton").prop("disabled", true);
+	}
 };
 
 function Controller(model, view) {
     this.init = function() {
-        $("#loginForm").bind("submit", function(event) {
+		this.buttonSubmit();
+		this.checkToken();
+    }
+
+	this.checkToken = function() {
+		if (model.getToken() !== null) view.alreadyMessage();
+	}
+
+	this.buttonSubmit = function() {
+		$("#loginForm").bind("submit", function(event) {
         	event.preventDefault();
 
-            let ucm = model.login(view.loadUserFromForm()); // Enviamos el token y se obtiene como respuesta (o no) un user.
-			let user = ucm[0];
-			let token = ucm[1];
+            let token = model.login(view.loadUserFromForm()); // Enviamos el token y se obtiene como respuesta (o no) un user.
 
-			$("#mensajeError").hide();
-			$("#mensajeExito").hide();
+			view.clearMessages();
 
             if (token === "") { // El token es nulo (el usuario está mal)
-            	$("#mensajeError").show();
+            	view.errorMessage();
 				return;
             }
 
+			view.successMessage();
 			model.setToken(token);
-			$("#mensajeExito").show();
-			$("#alumnosDropdown").text(user.username);
-			$("#iframe").load("home.html");
         });
-    }
+	}
 }
 
 // Se ejecuta al cargarse la página. Inicializa el modelo, vista, y finalmente, el controlador.

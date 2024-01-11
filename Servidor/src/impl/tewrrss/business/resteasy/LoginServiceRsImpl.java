@@ -5,24 +5,27 @@ import com.tewrrss.dto.User;
 import com.tewrrss.infrastructure.Factories;
 import com.tewrrss.infrastructure.GestorSesion;
 
-import javafx.util.Pair;
-
 public class LoginServiceRsImpl implements LoginServiceRs {
 
 	private GestorSesion gestor = GestorSesion.getInstance();
 
 	// Metodo para el login de usuarios.
 	@Override
-	public Object[] login(User user) {
+	public String login(User user) {
 		User u = Factories.services.createLoginService().verify(user.getEmail(), user.getPassword());
-		if (u == null) return null;
-		return new Object[] { u, gestor.register(u) };
+		if (u == null) return "nullUser";
+		return gestor.register(u);
 	}
 
 	@Override
 	public String logout(String token) {
-		if (gestor.getUser(token) != null) return "error";
+		if (gestor.getUser(token) != null) return "alreadyLoggedOut";
 		return gestor.expire(token);
+	}
+
+	@Override
+	public User myUser(String token) {
+		return gestor.getUser(token);
 	}
 
 }

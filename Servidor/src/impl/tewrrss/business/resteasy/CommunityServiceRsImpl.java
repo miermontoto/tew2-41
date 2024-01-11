@@ -19,7 +19,7 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 	@Override
 	public String create(CommunityRequestData data) {
 		User user = gestor.getUser(data.getToken());
-		if (user == null) return "error";
+		if (user == null) return "invalidToken";
 
 		return create(data);
 	}
@@ -27,7 +27,8 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 	@Override
 	public String remove(CommunityRequestData data) {
 		User user = gestor.getUser(data.getToken());
-		if (user.getRole() != Role.ADMIN) return "error";
+		if (user == null) return "invalidToken";
+		if (user.getRole() != Role.ADMIN) return "userNotAdmin";
 
 		return remove(data);
 	}

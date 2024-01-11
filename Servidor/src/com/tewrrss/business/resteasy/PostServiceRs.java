@@ -27,6 +27,7 @@ public interface PostServiceRs extends PostService {
 
 	@GET
 	@Path("/getPostsByUser")
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getPostsByUser(UserRequestData data);
 

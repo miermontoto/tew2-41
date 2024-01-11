@@ -37,15 +37,7 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 
 		// TODO: comprobar si está unido a la comunidad o no.
 
-		return leave(new Community(data.getDescription(), data.getName()), user);
-	}
-
-	@Override
-	public boolean ableToJoin(CommunityRequestData data) {
-		User user = gestor.getUser(data.getToken());
-		if (user == null) return false;
-
-		return ableToJoin(new Community(data.getDescription(), data.getName()), user);
+		return leave(data, user);
 	}
 
 }

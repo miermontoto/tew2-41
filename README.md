@@ -15,15 +15,27 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
      - [ ] Límite de intentos de inicio de sesión
 
 2. **A los usuarios autenticados:**
-   - [x] a. Crear una comunidad. (Vista y modelo realizados. Comprobar implementación servidor)
-   - [ ] b. Unirse a una comunidad.
-   - [ ] c. Listar las comunidades a las que pertenece.
-   - [ ] d. Consultar los mensajes publicados en las comunidades a las que pertenece.
+   - [x] a. Crear una comunidad
+     - [ ] Creación básica
+     - [ ] Error al crear comunidad con nombre existente
+     - [ ] Unirse automáticamente a la comunidad creada
+   - [ ] b. Unirse a una comunidad / Listado de comunidades
+     - [x] Listado básico
+     - [x] Fitro por nombre
+     - [x] Botón de unirse
+   - [ ] c. Listar mis comunidades
+     - [x] Listado básico
+     - [ ] Botón "Ver contenido"
+     - [x] Botón "Salir de comunidad"
+     - [ ] Botón "Crear publicación"
+   - [ ] d. Listado de publicaciones de una comunidad
    - [ ] e. Listar últimos mensajes de las comunidades a las que pertenece.
-   - [ ] f. Realizar una publicación en una comunidad a la que pertenece.
+   - [ ] f. [Realizar una publicación en una comunidad a la que pertenece.](Cliente/WebContent/javascript/template.js)
    - [ ] g. Borrado de publicaciones realizadas.
+     - [ ] Listado de publicaciones propias
+     - [ ] Botón de borrado
    - [ ] h. Cerrar sesión.
 
 3. **A los administradores:**
-   - [x] a. Reiniciar la base de datos a los valores por defecto. (Implementar función de reinicio remota. Después, llamada desde local)
-   - [x] b. Importar usuarios desde un fichero externo. (Hecho)
+   - [x] a. Reiniciar la base de datos a los valores por defecto.
+   - [x] b. Importar usuarios desde un fichero externo.

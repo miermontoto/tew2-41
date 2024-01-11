@@ -1,8 +1,19 @@
 function Model() {
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
-	this.createCommunity = function(community) {
+	this.createCommunity = function(mixedData) {
 		return CommunityServiceRs.create({
-			$entity : community,
+			$entity : mixedData,
+			$contentType : "application/json"
+		});
+	}
+
+	this.getToken = function() {
+		return sessionStorage.getItem("token");
+	}
+
+	this.join = function(mixedData) {
+		return MemberServiceRs.join({
+			$entity: mixedData,
 			$contentType : "application/json"
 		});
 	}
@@ -19,15 +30,12 @@ function View() {
 };
 
 function Controller(model, view) {
-	let myModel = model;
-	let myView = view;
-
-    // Inicialización del modelo y la vista.
     this.init = function() {
         $("#createCommunityForm").bind("submit", function(event) {
-            let response = model.createCommunity(view.loadFormData());
-			console.log(response);
-			if (response === "success") {
+			let data = view.loadFormData();
+			data.token = model.getToken();
+			console.log(data)
+			if (model.createCommunity(data) === "success") {
 				$("#mensajeError").hide();
 				alert("Community created successfully");
 				$("#iframe").attr("src", "home.html");

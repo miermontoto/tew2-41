@@ -22,10 +22,6 @@ function View() {
 };
 
 function Controller(model, view) {
-    // Inicialización del modelo y la vista.
-    let userModel = model;
-    let userView = view;
-
     this.init = function() {
 		$('#resetButton').on('click', function() {
 			let token = model.getToken();

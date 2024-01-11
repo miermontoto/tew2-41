@@ -7,11 +7,7 @@ function View() {
 };
 
 function Controller(model, view) {
-	let myModel = model;
-	let myView = view;
-
-    // Inicialización del modelo y la vista.
-    this.init = function() {
+	this.init = function() {
 
     }
 }

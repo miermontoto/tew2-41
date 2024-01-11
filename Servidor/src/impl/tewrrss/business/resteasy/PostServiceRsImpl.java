@@ -21,7 +21,7 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 		User user = gestor.getUser(data.getToken());
 		if (user == null) return null;
 		if (!data.getUserEmail().equals(user.getEmail())) return null;
-		
+
 		return add(data);
 	}
 
@@ -30,7 +30,7 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 		User user = gestor.getUser(data.getToken());
 		if (user == null) return null;
 		if (!data.getUserEmail().equals(user.getEmail()) && user.getRole() != Role.ADMIN) return null;
-		
+
 		return remove(data);
 	}
 
@@ -41,7 +41,7 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 
 		// comprobar la igualdad de emails es una manera fiable de comparar usuarios
 		if (!loggedUser.getEmail().equals(data.getEmail()) && loggedUser.getRole() != Role.ADMIN) return null;
-		
+
 		return getPostsByUser(data);
 	}
 

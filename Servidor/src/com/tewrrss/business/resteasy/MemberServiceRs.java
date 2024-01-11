@@ -32,9 +32,4 @@ public interface MemberServiceRs {
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	String leave(CommunityRequestData data);
 
-	@GET
-	@Path(value = "/ableToJoin")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	boolean ableToJoin(CommunityRequestData data);
-
 }
