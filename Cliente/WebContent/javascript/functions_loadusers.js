@@ -1,4 +1,4 @@
-document.getElementById("loadUsersButton").addEventListener("click", function() {
+$("loadUsersButton").on("click", function() {
 	$.ajax({
 		url: "http://localhost:8080/Servidor/redsocial.json", // Cambiar esta URL por la que corresponde de nuestro proyecto
 		type: "GET",
@@ -41,15 +41,18 @@ document.getElementById("loadUsersButton").addEventListener("click", function() 
 	}); // Cierre de $.ajax
 }); // Cierre del método addEventListener
 
-function showMessages(operation){
+function showMessages(operation) {
+    // Obtengo las referencias a los elementos usando jQuery
+    var opInfoSuccess = $("#opInfoSuccess");
+    var opInfoFailure = $("#opInfoFailure");
 
-	var opInfoSuccess = document.getElementById("opInfoSuccess"); // Muestro al usuario el anuncio
-	var opInfoFailure = document.getElementById("opInfoFailure");
-	if(operation === "success"){
-		opInfoSuccess.style.display = "block";
-		opInfoSuccess.innerHTML = "Operación realizada con éxito";
-	} else {
-		opInfoFailure.style.display = "block";
-		opInfoFailure.innerHTML = "Ha ocurrido un problema";
-	}
+    if (operation === "success") {
+        // Muestro el anuncio de éxito al usuario
+        opInfoSuccess.css("display", "block");
+        opInfoSuccess.html("Operación realizada con éxito");
+    } else {
+        // Muestro el anuncio de fallo al usuario
+        opInfoFailure.css("display", "block");
+        opInfoFailure.html("Ha ocurrido un problema");
+    }
 }
