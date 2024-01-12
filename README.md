@@ -31,6 +31,7 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
      - [ ] Listado básico
      - [ ] Realizar una publicación
    - [x] e. Listar últimos mensajes de las comunidades a las que pertenece.
+     - [ ] Enlazar a comunidades
    - [x] g. Listado de publicaciones propias
      - [x] Listado básico
      - [x] Botón de borrado
