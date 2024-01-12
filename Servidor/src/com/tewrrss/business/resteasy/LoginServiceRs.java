@@ -19,7 +19,7 @@ public interface LoginServiceRs {
 	@Produces({ MediaType.TEXT_PLAIN })
 	String login(User user);
 
-	@DELETE
+	@POST
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	String logout(String token);
 
