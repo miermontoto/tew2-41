@@ -11,7 +11,6 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
      - [x] Inicio de sesión automático en cliente
    - [ ] b. Iniciar sesión.
      - [x] Token en navegador
-     - [ ] Navegación a HOME tras inicio correcto
      - [ ] Límite de intentos de inicio de sesión
 
 2. **A los usuarios autenticados:**
@@ -31,7 +30,7 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
    - [ ] d. Listado de publicaciones de una comunidad
      - [ ] Listado básico
      - [ ] Realizar una publicación
-   - [ ] e. Listar últimos mensajes de las comunidades a las que pertenece.
+   - [x] e. Listar últimos mensajes de las comunidades a las que pertenece.
    - [x] g. Listado de publicaciones propias
      - [x] Listado básico
      - [x] Botón de borrado
