@@ -1,10 +1,6 @@
 package impl.tewrrss.business.resteasy;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.tewrrss.business.resteasy.CommunityServiceRs;
-import com.tewrrss.dto.Community;
 import com.tewrrss.dto.User;
 import com.tewrrss.dto.resteasy.CommunityRequestData;
 import com.tewrrss.infrastructure.GestorSesion;
@@ -21,7 +17,7 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 		User user = gestor.getUser(data.getToken());
 		if (user == null) return "invalidToken";
 
-		return create(data);
+		return super.create(data);
 	}
 
 	@Override
@@ -30,7 +26,7 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 		if (user == null) return "invalidToken";
 		if (user.getRole() != Role.ADMIN) return "userNotAdmin";
 
-		return remove(data);
+		return super.remove(data);
 	}
 
 }
