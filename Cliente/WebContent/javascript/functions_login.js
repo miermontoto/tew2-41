@@ -1,7 +1,6 @@
 function Model() {
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
 	this.login = function(user) {
-		console.log(user);
 		return LoginServiceRs.login({
 			$entity : user,
 			$contentType : "application/json"

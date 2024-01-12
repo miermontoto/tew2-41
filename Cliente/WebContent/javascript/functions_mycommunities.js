@@ -46,10 +46,8 @@ function Controller(model, view) {
 					token: token
 				});
 
-				console.log(result)
-
 				if (result === "success") {
-					$(this).parent().html("<span class='badge badge-failure'>Abandonado</span>");
+					$(this).parent().html("<span class='badge badge-danger'>Abandonado</span>");
 				}
 			})
 		})
