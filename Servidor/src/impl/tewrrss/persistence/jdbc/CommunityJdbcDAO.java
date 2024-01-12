@@ -16,7 +16,7 @@ public class CommunityJdbcDAO extends JdbcDAO implements CommunityDAO {
 	boolean dirtyAllCommunities = false;
 
 	@Override
-	public boolean add(Community community) {
+	public String add(Community community) {
 		boolean added = false;
 		String query = "INSERT INTO community VALUES (?, ?)";
 
@@ -26,10 +26,13 @@ public class CommunityJdbcDAO extends JdbcDAO implements CommunityDAO {
 			ps.setString(2, community.getDescription());
 
 			added = ps.executeUpdate() == 1;
-		} catch (SQLException e) {getDatabase().handleException(e);}
+		} catch (SQLException e) {
+			if (e.getErrorCode() == -104) return "already_exists";
+			getDatabase().handleException(e);
+		}
 
 		dirtyAllCommunities &= added;
-		return added;
+		return added ? "success" : "error";
 	}
 
 	@Override

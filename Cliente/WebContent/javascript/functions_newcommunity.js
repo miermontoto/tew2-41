@@ -34,14 +34,22 @@ function Controller(model, view) {
         $("#createCommunityForm").bind("submit", function(event) {
 			let data = view.loadFormData();
 			data.token = model.getToken();
-			console.log(data)
-			if (model.createCommunity(data) === "success") {
-				$("#mensajeError").hide();
-				alert("Community created successfully");
-				$("#iframe").attr("src", "home.html");
-			} else {
-				$("#mensajeError").show();
+
+			let result = model.createCommunity(data);
+			switch (result) {
+				case "success":
+					break;
+				case "already_exists":
+					alert("Ya existe una comunidad con ese nombre");
+					return;
+				default:
+					alert("Error desconocido");
+					return;
 			}
+
+			result = model.join(data);
+			if (result == "success") alert("Comunidad creada y unido a ella");
+			else alert("Comunidad creada, error al unirse a ella");
         });
     }
 }

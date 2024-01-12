@@ -16,9 +16,9 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
 
 2. **A los usuarios autenticados:**
    - [x] a. Crear una comunidad
-     - [ ] Creación básica
+     - [x] Creación básica
      - [ ] Error al crear comunidad con nombre existente
-     - [ ] Unirse automáticamente a la comunidad creada
+     - [x] Unirse automáticamente a la comunidad creada
    - [x] b. Unirse a una comunidad / Listado de comunidades
      - [x] Listado básico
      - [x] Fitro por nombre
