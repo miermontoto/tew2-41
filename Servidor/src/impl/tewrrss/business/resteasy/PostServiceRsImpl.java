@@ -22,7 +22,7 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 		if (user == null) return null;
 		if (!data.getUserEmail().equals(user.getEmail())) return null;
 
-		return add(data);
+		return super.add(data);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 		if (user == null) return null;
 		if (!data.getUserEmail().equals(user.getEmail()) && user.getRole() != Role.ADMIN) return null;
 
-		return remove(data);
+		return super.remove(data);
 	}
 
 	@Override
@@ -42,23 +42,23 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 		// comprobar la igualdad de emails es una manera fiable de comparar usuarios
 		if (!loggedUser.getEmail().equals(data.getEmail()) && loggedUser.getRole() != Role.ADMIN) return null;
 
-		return getPostsByUser(data);
+		return super.getPostsByUser(data);
 	}
 
 	@Override
 	public List<Post> getPostsInCommunity(CommunityRequestData data) {
-		return getPostsInCommunity(data);
+		return super.getPostsInCommunity(data);
 	}
 
 	@Override
 	public List<Post> getNewPosts(UserRequestData data) {
 		User user = gestor.getUser(data.getToken());
-		return getNewPosts(user);
+		return super.getNewPosts(user);
 	}
 
 	@Override
 	public List<Post> getPostsByUserInCommunity(MemberRequestData data) {
-		return getPostsByUserInCommunity(data.getUser(), data.getCommunity());
+		return super.getPostsByUserInCommunity(data.getUser(), data.getCommunity());
 	}
 
 }
