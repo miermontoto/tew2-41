@@ -54,7 +54,7 @@ function Controller(model, view) {
 				});
 
 				if (result === "success") {
-					$(this).parent().html("<span class='badge badge-failure'>Eliminado</span>");
+					$(this).parent().html("<span class='badge badge-danger'>Eliminado</span>");
 				}
 			})
 		})
