@@ -40,12 +40,11 @@ function Controller(model, view) {
 		});
 
 		$('#cerrarSesionButton').on('click', function(){
+			alert("Sesión cerrada. Gracias por usar la red social de TEW");
 			let token = model.getToken();
 			model.logout(token); // Deslogueo "server side"
 			model.removeToken(); // Borro el token de forma local
-
-
-		})
+		});
     }
 }
 
