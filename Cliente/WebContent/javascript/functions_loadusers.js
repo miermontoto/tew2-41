@@ -9,10 +9,15 @@ $("#loadUsersButton").on("click", function() {
 			alert("Usuarios cargados");
 			let contador = 0; // Contador para mirar los que llevamos subidos
 			listaUsuarios.forEach(function(usuario) {
+
+				var patchedRole = 1 // Por defecto el rol es 1 (usuario)
+				if(usuario.rol === "admin")
+					patchedRole = 0; // Si es admin, el rol es 0
+
 			  	let user = {
 					email: usuario.email,
 					password: usuario.passwd,
-					role: 1,
+					role: patchedRole,
 					username: usuario.nombre
 				};
 
