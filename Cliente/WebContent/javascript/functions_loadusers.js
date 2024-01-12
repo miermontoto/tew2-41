@@ -14,30 +14,26 @@ $("loadUsersButton").on("click", function() {
 					role: 1,
 					username: usuario.nombre
 				};
-			  	
+
 			  	contador = contador + 1; // Incremento el contador
-			  	
+
 				// Envío al servidor lo requerido
 				UserServiceRs.add({
 					$entity: user,
 					$contentType: "application/json"
 				});
 			});
-			
-			if(contador === listaUsuarios.length){
+
+			if (contador === listaUsuarios.length) {
 				 // Se ha cargado con éxito
 				showMessages("success"); // Llamo a la función que se encargará de mostrar que ha habido éxito, además de ocultar carga.
 			} else {
 				showMessages("error");
 			}
-		}, // Cierre de la función de éxito (success)
-
-		error: function() {
+		}, error: function() {
 			// Ha ocurrido un error durante la solicitud AJAX
 			mostrarMensajes("error"); // Muestro el mensaje de error
 		}
-		
-		
 	}); // Cierre de $.ajax
 }); // Cierre del método addEventListener
 
