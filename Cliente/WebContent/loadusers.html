@@ -10,7 +10,7 @@
 </script><!--  Cambiada versión de jQuery -->
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="http://localhost:8080/Entrega1/rest-jsapi"></script>
+	<script type="text/javascript" src="http://localhost:8080/Servidor/rest-jsapi"></script>
 </head>
 <body>
     <main class="container mt-4">
@@ -19,8 +19,9 @@
                 <article>
                     <h2>Carga de usuarios</h2>
                     <button id="loadUsersButton" class="btn btn-primary">Cargar usuarios desde el JSON del servidor</button>
-                    <p id="usuarioActual"></p>
-                    <div class="alert alert-warning" role="alert" id="opInfo" style="display: none"></div>
+                    <br>
+                    <div class="alert alert-success" role="alert" id="opInfoSuccess" style="display: none"></div>
+                    <div class="alert alert-danger" role="alert" id="opInfoFailure" style="display: none"></div>
                 </article>
             </section>
         </div>
