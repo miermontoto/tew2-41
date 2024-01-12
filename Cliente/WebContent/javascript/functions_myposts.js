@@ -21,7 +21,7 @@ function Model() {
 function View() {
 	this.loadTable = function(data) {
 		data.forEach(function(post) {
-			let row = "<tr><td>" + post.communityName + "</td><td>" + post.date + "</td><td>" + post.content +
+			let row = "<tr><td>" + post.communityName + "</td><td>" + post.creationDate + "</td><td>" + post.content +
 				"</td><td>" +
 				"<button type='button' class='btn btn-danger erase'><i class='bi bi-eraser-fill'></i> Eliminar</button> " +
 				"</td></tr>";
@@ -34,6 +34,7 @@ function Controller(model, view) {
     this.init = function() {
 		let user = model.getUser();
 		user.token = sessionStorage.getItem("token");
+
 		view.loadTable(model.list(user));
 
 		$("#tableBody").find("button.erase").each(function() {
@@ -45,8 +46,10 @@ function Controller(model, view) {
 
 				let result = model.remove({
 					communityName: community,
-					date: date,
+					creationDate: date,
 					content: content,
+					userEmail: user.email,
+					userName: user.name,
 					token: user.token
 				});
 
