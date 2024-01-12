@@ -19,7 +19,7 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
      - [ ] Creación básica
      - [ ] Error al crear comunidad con nombre existente
      - [ ] Unirse automáticamente a la comunidad creada
-   - [ ] b. Unirse a una comunidad / Listado de comunidades
+   - [x] b. Unirse a una comunidad / Listado de comunidades
      - [x] Listado básico
      - [x] Fitro por nombre
      - [x] Botón de unirse
@@ -29,10 +29,11 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
      - [x] Botón "Salir de comunidad"
      - [ ] Botón "Crear publicación"
    - [ ] d. Listado de publicaciones de una comunidad
+     - [ ] Listado básico
+     - [ ] Realizar una publicación
    - [ ] e. Listar últimos mensajes de las comunidades a las que pertenece.
-   - [ ] f. [Realizar una publicación en una comunidad a la que pertenece.](Cliente/WebContent/javascript/template.js)
-   - [ ] g. Borrado de publicaciones realizadas.
-     - [ ] Listado de publicaciones propias
+   - [ ] g. Listado de publicaciones propias
+     - [ ] Listado básico
      - [ ] Botón de borrado
    - [ ] h. Cerrar sesión.
 
