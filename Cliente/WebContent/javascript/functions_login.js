@@ -1,6 +1,7 @@
 function Model() {
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
 	this.login = function(user) {
+		console.log(user);
 		return LoginServiceRs.login({
 			$entity : user,
 			$contentType : "application/json"
@@ -56,23 +57,21 @@ function View() {
 
 function Controller(model, view) {
     this.init = function() {
-		this.buttonSubmit();
-		this.checkToken();
-    }
-
-	this.checkToken = function() {
 		if (model.getToken() !== null) view.alreadyMessage();
-	}
-
-	this.buttonSubmit = function() {
 		$("#loginForm").bind("submit", function(event) {
         	event.preventDefault();
 
-            let token = model.login(view.loadUserFromForm()); // Enviamos el token y se obtiene como respuesta (o no) un user.
+			let token;
+			try {
+            	token = model.login(view.loadUserFromForm()); // Enviamos el token y se obtiene como respuesta (o no) un user.
+			} catch (error) {
+				view.errorMessage();
+				return;
+			}
 
 			view.clearMessages();
 
-            if (token === "") { // El token es nulo (el usuario está mal)
+            if (token == null || token == "") {
             	view.errorMessage();
 				return;
             }
@@ -80,7 +79,7 @@ function Controller(model, view) {
 			view.successMessage();
 			model.setToken(token);
         });
-	}
+    }
 }
 
 // Se ejecuta al cargarse la página. Inicializa el modelo, vista, y finalmente, el controlador.
