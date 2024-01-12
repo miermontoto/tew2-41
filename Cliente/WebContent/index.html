@@ -1,90 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta charset="utf-8">
-<title>Tecnologias Web</title>
-<!-- Agregar la referencia a los archivos CSS de Bootstrap -->
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	rel="stylesheet">
+	<meta charset="utf-8">
+	<title>Tecnologias Web</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://localhost:8080/Servidor/rest-jsapi"></script>
+	<script src="/Cliente/javascript/functions_index.js"></script>
 </head>
 <body>
 	<header class="jumbotron">
 		<h1 class="display-4">Red social de TEW</h1>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<ul class="navbar-nav mr-auto">
-			
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="alumnosDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Iniciar sesión / registro </a>
-					<div class="dropdown-menu" aria-labelledby="alumnosDropdown">
-						<a class="dropdown-item" href="login.html" target="formulario">Login</a>
-						<a class="dropdown-item" href="register.html" target="formulario">Registro</a>
-					</div></li>
-					
-					<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="alumnosDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Servicios </a>
-					<div class="dropdown-menu" aria-labelledby="alumnosDropdown">
-						<a class="dropdown-item" href="listado.html" target="formulario">Listado</a>
-						<a class="dropdown-item" href="newcommunity.html" target="formulario">Crear una comunidad</a>
-						<a class="dropdown-item" href="loadusers.html" target="formulario">Cargar usuarios desde JSON en servidor</a>
-						<button class="dropdown-item btn btn-danger" id="resetButton">Resetear BBDD</button>
-					</div></li>
-					
-					
-			</ul>
+		<div class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="comunidadesDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="bi bi-people-fill"></i> Comunidades</a>
+						<div class="dropdown-menu" aria-labelledby="comunidadesDropdown">
+							<a class="dropdown-item" href="newcommunity.html" target="formulario">Crear una comunidad</a>
+							<a class="dropdown-item" href="listcommunities.html" target="formulario">Listado de comunidades</a>
+							<a class="dropdown-item" href="mycommunities.html" target="formulario">Mis comunidades</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="postsDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-postcard-fill"></i> Publicaciones</a>
+						<div class="dropdown-menu" aria-labelledby="postsDropdown">
+							<a class="dropdown-item" href="newpost.html" target="formulario">Crear una publicación</a>
+							<a class="dropdown-item" href="listposts.html" target="formulario">Listado de publicaciones</a>
+							<a class="dropdown-item" href="myposts.html" target="formulario">Mis publicaciones</a>
+						</div>
+					</li>
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-gpu-card"></i> Administración</a>
+						<div class="dropdown-menu" aria-labelledby="adminDropdown">
+							<a class="dropdown-item" href="loadusers.html" target="formulario">Cargar usuarios desde JSON en servidor</a>
+							<button class="dropdown-item btn btn-danger" id="resetButton">Resetear BBDD</button>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div class="mx-auto order-0">
+				<a class="navbar-brand mx-auto" href="home.html" target="formulario">TEWrrss</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+
+			<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="sessionDropdown" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-badge"></i> Sesión</a>
+						<div class="dropdown-menu" aria-labelledby="sessionDropdown">
+							<a class="dropdown-item" href="login.html" target="formulario">Iniciar sesión</a>
+							<a class="dropdown-item" href="register.html" target="formulario">Registrarse</a>
+						</div>
+					</li>
+				</ul>
+			</div>
 		</nav>
 	</header>
 
-	<main class="container">
-	<div class="row">
-		<div class="col-md-10">
-			<!-- Modificado: Cambiado a col-md-10 -->
-			<iframe name="formulario" width="100%" height="100%"></iframe>
-		</div>
+	<main class="container w-100 h-100">
+		<div class="row">
+			<div class="col-md-8">
+				<iframe name="formulario" width="100%" height="100%" title="views" src="login.html" id="iframe"></iframe>
+			</div>
 
-		<div class="col-md-2">
-			<!-- Modificado: Cambiado a col-md-2 -->
-			<aside class="card">
-				<div class="card-body">
-					<h2 class="card-title">Proyecto TEWRRSS</h2>
-					<p class="card-text">En este proyecto se hace la red social de TEW, y se incorpora Bootstrap
-						con las siguientes características:</p>
-					<ol>
-						<li>Uso de estilos básicos de Bootstrap</li>
-						<li>Menú con transiciones simples con opciones y subopciones</li>
-						<li>Uso de iframes</li>
-					</ol>
-					<p class="card-text">En esta página únicamente se utiliza HTML5</p>
-				</div>
-			</aside>
+			<div class="col-md-4">
+				<aside class="card">
+					<div class="card-body">
+						<h2 class="card-title">Proyecto TEWRRSS</h2>
+						<p class="card-text">
+							En este proyecto se hace la red social de TEW, y se incorpora Bootstrap
+							con las siguientes características:
+						</p>
+						<ol>
+							<li>Uso de estilos básicos de Bootstrap</li>
+							<li>Menú con transiciones simples con opciones y subopciones</li>
+							<li>Uso de iframes</li>
+						</ol>
+						<p class="card-text">En esta página únicamente se utiliza HTML5</p>
+					</div>
+				</aside>
+			</div>
 		</div>
-
-	</div>
 	</main>
 
 	<footer class="footer mt-auto py-3 bg-light">
 		<nav class="navbar navbar-light bg-light">
-			<ul class="navbar-nav mx-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-			</ul>
+			<a class="nav-link" href="home.html" target="formulario">Inicio</a>
+			<a class="nav-link" href="https://mier.info">Contacto</a>
 		</nav>
 	</footer>
-
-	<!-- Agregar la referencia a los archivos JS de Bootstrap (jQuery y Popper.js) -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-		
-		<script type="text/javascript"
-		src="http://localhost:8080/Entrega1/rest-jsapi"></script>
-	<script src="/gestioneitorCliv6_0/javascript/functions_index.js"></script>
-	
-	
 </body>
 </html>

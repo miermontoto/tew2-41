@@ -1,11 +1,9 @@
 package impl.tewrrss.business;
 
-
 import java.util.List;
 import java.util.Optional;
 
 import com.tewrrss.business.UserService;
-import com.tewrrss.dto.Community;
 import com.tewrrss.dto.User;
 
 import impl.tewrrss.business.users.*;
@@ -35,11 +33,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String update(User user) {
 		return new Update().update(user);
-	}
-
-	@Override
-	public List<User> getUsersInCommunity(Community community) {
-		return new GetUsersInCommunity().getUsersInCommunity(community);
 	}
 
 }

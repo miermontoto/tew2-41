@@ -1,69 +1,91 @@
 function Model() {
-	
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
 	this.login = function(user) {
+		console.log(user);
 		return LoginServiceRs.login({
 			$entity : user,
-			$contentType : "application/json"});
+			$contentType : "application/json"
+		});
 	}
-	
-	 // Función para guardar el token en el almacenamiento local.
+
+	// Función para guardar el token en el almacenamiento local.
     this.setToken = function(token) {
         sessionStorage.setItem("token", token);
     }
-	
-};
+
+	this.getToken = function() {
+		return sessionStorage.getItem("token");
+	}
+}
 
 function View() {
-	
 	this.loadUserFromForm = function() {
-		var user = {
-				email : $("#inputEmail").val(), // Establezco mismo email y username, para mantener compatibilidad con sistema de users.
-				username: "",
-				password : $("#inputPassword").val(),
-				role: 0
+		return {
+			email: $("#inputEmail").val(),
+			username: "tobeloggedin",
+			password : $("#inputPassword").val(),
+			role: 1 // Role.USER = 1
 		};
-		return user;
 	}
-	
-	// Cargo el usuario en el formulario.
-	this.loadUserInForm = function(user) {
-		$("#inputEmail").val(user.login);
-		$("#inputPassword").val(user.password);
+
+	this.clearMessages = function() {
+		$("#mensajeError").hide();
+		$("#mensajeExito").hide();
+		$("#mensajeAlready").hide();
+	}
+
+	this.successMessage = function() {
+		$("#mensajeExito").show();
+	}
+
+	this.errorMessage = function() {
+		$("#mensajeError").show();
+	}
+
+	this.alreadyMessage = function() {
+		$("#mensajeAlready").show();
+	}
+
+	this.enableButton = function() {
+		$("#loginButton").prop("disabled", false);
+	}
+
+	this.disableButton = function() {
+		$("#loginButton").prop("disabled", true);
 	}
 };
 
 function Controller(model, view) {
-    // Inicialización del modelo y la vista.
-    var userModel = model;
-    var userView = view;
-
     this.init = function() {
-        $("#loginForm").bind("submit", function(event) {
+		if (model.getToken() !== null) view.alreadyMessage();
+		$("#loginForm").bind("submit", function(event) {
         	event.preventDefault();
 
-            var user = userView.loadUserFromForm(); // Genero un usuario a la espera de enviarlo
-            var token = userModel.login(user); // Enviamos el token y se obtiene como respuesta (o no) un user.
-            console.log(token); // Lo muestro por consola
+			let token;
+			try {
+            	token = model.login(view.loadUserFromForm()); // Enviamos el token y se obtiene como respuesta (o no) un user.
+			} catch (error) {
+				view.errorMessage();
+				return;
+			}
 
-            if (token === "") { // El token es nulo (el usuario está mal)
-            	$("#mensajeError").show(); // Muestra el mensaje de error que puse en el HTML.
-            } else {
-            	userModel.setToken(token);
-            	$("#mensajeExito").show(); // Muestra el mensaje de éxito
+			view.clearMessages();
+
+            if (token == null || token == "") {
+            	view.errorMessage();
+				return;
             }
-            
+
+			view.successMessage();
+			model.setToken(token);
         });
     }
-
-   
 }
-
 
 // Se ejecuta al cargarse la página. Inicializa el modelo, vista, y finalmente, el controlador.
 $(function() {
-	var model = new Model();
-	var view = new View();
-	var control = new Controller(model, view);
+	let model = new Model();
+	let view = new View();
+	let control = new Controller(model, view);
 	control.init();
 });

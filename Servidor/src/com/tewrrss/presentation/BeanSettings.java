@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.*;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
@@ -20,7 +19,7 @@ public class BeanSettings implements Serializable {
 	private Locale locale = new Locale("es");
 
 	public Locale getLocale() {
-		return(locale);
+		return locale;
 	}
 
 	public void setSpanish(ActionEvent event) {
@@ -39,7 +38,7 @@ public class BeanSettings implements Serializable {
 		locale = ENGLISH;
 		try {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-		} catch (Exception ex){
+		} catch (Exception ex) {
 			FacesContext jsfCtx = FacesContext.getCurrentInstance();
 			ResourceBundle bundle = jsfCtx.getApplication().getResourceBundle(jsfCtx, "msgs");
 			FacesMessage msgs = new FacesMessage(FacesMessage.SEVERITY_WARN, bundle.getString("error_locale"), null);

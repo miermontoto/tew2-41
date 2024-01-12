@@ -3,53 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Crear Nueva Comunidad</title>
-    <!-- Enlaces a los archivos CSS de Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://localhost:8080/Servidor/rest-jsapi"></script>
+    <script src="/Cliente/javascript/functions_newcommunity.js"></script>
 </head>
 <body>
-
-<!-- Cuerpo para crear una nueva comunidad -->
-<main class="container mt-4">
-    <div class="row">
-        <section class="col-md-6">
-            <article>
-                <h2>Crear nueva comunidad</h2>
-                <form id="createCommunityForm">
-                    <div class="mb-3">
-                        <label for="inputCommunityName" class="form-label">Nombre de la comunidad</label>
-                        <input type="text" class="form-control" id="inputCommunityName" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputCommunityDescription" class="form-label">Descripción de la comunidad</label>
-                        <textarea class="form-control" id="inputCommunityDescription" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Crear comunidad</button>
-                </form>
-            </article>
-        </section>
-    </div>
-</main>
-
-<!-- Scripts de Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script type="text/javascript"
-	src="http://localhost:8080/Entrega1/rest-jsapi"></script>
-<script src="/gestioneitorCliv6_0/javascript/functions_newcommunity.js"></script>
-
-<script>
-    document.getElementById("createCommunityForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Evito que se envíe el formulario automáticamente
-
-        var communityName = document.getElementById("inputCommunityName").value;
-        var communityDescription = document.getElementById("inputCommunityDescription").value;
-
-        // Tenemos que mirar cómo podemos gestionar esto, pero mi idea es enviarlo al servidor y que allí se gestione
-        // y se nos devuelva si / no
-    });
-</script>
-
+    <main class="container mt-4">
+        <div class="row">
+            <section class="col-md-6">
+                <article>
+                    <h2>Crear nueva comunidad</h2>
+                    <div id="mensajeError" style="display: none; color:red">Ha ocurrido un error al crear la comunidad.</div>
+                    <form id="createCommunityForm">
+                        <div class="mb-3">
+                            <label for="inputCommunityName" class="form-label">Nombre de la comunidad</label>
+                            <input type="text" class="form-control" id="inputCommunityName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputCommunityDescription" class="form-label">Descripción de la comunidad</label>
+                            <textarea class="form-control" id="inputCommunityDescription" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Crear comunidad</button>
+                    </form>
+                </article>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

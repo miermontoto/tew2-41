@@ -15,9 +15,12 @@ public class Role {
 		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
 
 		switch (role) {
-			case ADMIN: return bundle.getString("role_admin");
-			case USER: return bundle.getString("role_user");
-			default: return bundle.getString("role_unknown");
+		case ADMIN:
+			return bundle.getString("role_admin");
+		case USER:
+			return bundle.getString("role_user");
+		default:
+			return bundle.getString("role_unknown");
 		}
 	}
 }

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 /**
  * Clase que gestiona las conexiones con la base de datos.
- * La base de datos se getsiona a través de SGBD Hypersonic, que se
+ * La base de datos se getsiona a travï¿½s de SGBD Hypersonic, que se
  * carga con un script de datos inicial "localDB.script".
  */
 public class Database {

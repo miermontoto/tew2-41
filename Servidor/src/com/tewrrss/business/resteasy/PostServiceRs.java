@@ -1,4 +1,5 @@
 package com.tewrrss.business.resteasy;
+
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -10,50 +11,40 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.business.PostService;
-import com.tewrrss.dto.CommunityToken;
 import com.tewrrss.dto.Post;
-import com.tewrrss.dto.PostToken;
-import com.tewrrss.dto.PostUserToken;
-import com.tewrrss.dto.UserComToken;
-import com.tewrrss.dto.UserToken;
+import com.tewrrss.dto.resteasy.*;
 
-@Path("/PostServiceRs")
-public interface PostServiceRs extends PostService{
+@Path("/posts")
+public interface PostServiceRs extends PostService {
 
 	@PUT
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	String add(PostToken post);
-	
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	String add(PostRequestData data);
+
 	@DELETE
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	String remove(PostToken post);
-	
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	String remove(PostRequestData data);
+
 	@GET
 	@Path("/getPostsByUser")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})	
-	List<Post> getPostsByUser(UserToken user);
-	
-	
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	List<Post> getPostsByUser(UserRequestData data);
+
 	@GET
 	@Path("/getPostsByUserInCommunity")
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	List<Post> getPostsByUserInCommunity(UserComToken UCK);
-	
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	List<Post> getPostsByUserInCommunity(MemberRequestData data);
+
 	@GET
 	@Path("/getPostsInCommunity")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	List<Post> getPostsInCommunity(CommunityToken community);
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	List<Post> getPostsInCommunity(CommunityRequestData data);
 
 	@GET
 	@Path("/getNewPosts")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})	
-	List<Post> getNewPosts(UserToken user);
-	
-
-	@GET
-	@Path("/ableToRemove")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	boolean ableToRemove(PostUserToken PstUsrTk);
+	@Produces({ MediaType.TEXT_PLAIN })
+	List<Post> getNewPosts(UserRequestData data);
 
 }

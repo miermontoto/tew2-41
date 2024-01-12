@@ -13,7 +13,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hsqldb.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-5.3.jar"/>
+	<classpathentry kind="lib" path="T:/uo/y4t1/Web/PL/2324-tew2-41/Servidor/WebContent/WEB-INF/lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="T:/uo/y4t1/Web/PL/2324-tew2-41/Servidor/WebContent/WEB-INF/lib/primefaces-5.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

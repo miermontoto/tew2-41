@@ -1,24 +1,22 @@
 package impl.tewrrss.business.resteasy;
 
-import com.tewrrss.dto.Community;
-import com.tewrrss.dto.CommunityToken;
-import com.tewrrss.dto.Post;
-import com.tewrrss.dto.PostToken;
-import com.tewrrss.dto.User;
-import com.tewrrss.dto.UserToken;
+import com.tewrrss.dto.*;
+import com.tewrrss.dto.resteasy.*;
 
 public class ClassCreation {
-	public static Post createPost(PostToken post) {
+
+	private ClassCreation() {}
+
+	public static Post createPost(PostRequestData post) {
 		return new Post(post.getContent(), post.getCreationDate(), post.getUserEmail(), post.getCommunityName(), post.getUserName());
 	}
-	
-	public static User CreateUser(UserToken user) {
+
+	public static User createUser(UserRequestData user) {
 		return new User(user.getEmail(), user.getUsername(), user.getPassword(), user.getRole());
 	}
-	
-	public static Community CreateCommunity(CommunityToken com) {
+
+	public static Community createCommunity(CommunityRequestData com) {
 		return new Community(com.getName(), com.getDescription());
 	}
 
-	
 }

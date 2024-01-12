@@ -7,10 +7,12 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.*;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import com.tewrrss.business.CommunityService;
+import com.tewrrss.business.MemberService;
 import com.tewrrss.business.UserService;
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.User;
@@ -23,6 +25,7 @@ public class BeanUsers implements Serializable {
 
 	private UserService userService;
 	private CommunityService communityService;
+	private MemberService memberService;
 
 	private String userEmail;
 	private String communityName;
@@ -30,6 +33,7 @@ public class BeanUsers implements Serializable {
 	public BeanUsers() {
 		userService = Factories.services.createUserService();
 		communityService = Factories.services.createCommunityService();
+		memberService = Factories.services.createMemberService();
 	}
 
 	public String getUserEmail() {
@@ -56,16 +60,19 @@ public class BeanUsers implements Serializable {
 		ResourceBundle bundle = jsfCtx.getApplication().getResourceBundle(jsfCtx, "msgs");
 
 		if (!user.isPresent() || !community.isPresent()) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, bundle.getString("members_add_error_null"), null));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, bundle.getString("members_add_error_null"), null));
 			return "error";
 		}
 
-		String result = communityService.join(community.get(), user.get());
+		String result = memberService.join(community.get(), user.get());
 		if (result.equals("unable")) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, bundle.getString("members_add_error_unable"), null));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, bundle.getString("members_add_error_unable"), null));
 			return "unable";
 		}
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, bundle.getString("members_add_ok"), null));
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, bundle.getString("members_add_ok"), null));
 		return result;
 	}
 

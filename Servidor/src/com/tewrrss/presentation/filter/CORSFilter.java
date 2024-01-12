@@ -11,14 +11,16 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CORSFilter implements Filter{
+public class CORSFilter implements Filter {
 
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response,
-		FilterChain chain) throws IOException, ServletException {
+	public void destroy() { }
+
+	@Override
+	public void init(FilterConfig arg0) throws ServletException { }
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		res.addHeader("Access-Control-Allow-Origin", "*");
@@ -28,9 +30,5 @@ public class CORSFilter implements Filter{
 		res.addHeader("Access-Control-Max-Age", "1209600");
 		// Forward the request down the filter chain.
 		chain.doFilter(req, res);
-	}
-	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 }

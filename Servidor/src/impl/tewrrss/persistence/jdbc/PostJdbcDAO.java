@@ -11,7 +11,6 @@ import com.tewrrss.dto.Post;
 import com.tewrrss.dto.User;
 import com.tewrrss.persistence.PostDAO;
 
-
 public class PostJdbcDAO extends JdbcDAO implements PostDAO {
 
 	@Override

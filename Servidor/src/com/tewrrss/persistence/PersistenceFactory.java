@@ -5,5 +5,6 @@ public interface PersistenceFactory {
 	UserDAO getUserDAO();
 	CommunityDAO getCommunityDAO();
 	PostDAO getPostDAO();
+	MemberDAO getMemberDAO();
 
 }

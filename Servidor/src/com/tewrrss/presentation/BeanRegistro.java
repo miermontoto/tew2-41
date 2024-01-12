@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 import com.tewrrss.business.LoginService;
 import com.tewrrss.dto.User;
 import com.tewrrss.infrastructure.Factories;
-import com.tewrrss.util.Role;
 
 @ManagedBean(name = "registro")
 @SessionScoped
@@ -71,19 +70,22 @@ public class BeanRegistro implements Serializable {
 		LoginService service;
 
 		if (!rgpd) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe aceptar la política de privacidad", "Debe aceptar la política de privacidad."));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+				"Debe aceptar la política de privacidad", "Debe aceptar la política de privacidad."));
 			return "";
 		}
 
 		if (!contrasena.equals(confirmarContrasena)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Las contrase�as no coinciden", "Las contrase�as no coinciden."));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"Las contrase�as no coinciden", "Las contrase�as no coinciden."));
 			return "";
 		}
 
 		service = Factories.services.createLoginService();
 
 		if (service.emailExists(email)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "El correo electr�nico ya est� en uso", "El correo electr�nico ya est� en uso."));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					"El correo electr�nico ya est� en uso", "El correo electr�nico ya est� en uso."));
 			return "";
 		}
 

@@ -20,4 +20,9 @@ public class SimplePersistenceFactory implements PersistenceFactory {
 		return new PostJdbcDAO();
 	}
 
+	@Override
+	public MemberDAO getMemberDAO() {
+		return new MemberJdbcDAO();
+	}
+
 }

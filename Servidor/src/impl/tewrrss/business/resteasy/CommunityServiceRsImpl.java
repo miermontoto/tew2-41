@@ -5,109 +5,32 @@ import java.util.Optional;
 
 import com.tewrrss.business.resteasy.CommunityServiceRs;
 import com.tewrrss.dto.Community;
-import com.tewrrss.dto.CommunityToken;
-import com.tewrrss.dto.UserComToken;
-import com.tewrrss.dto.UserToken;
+import com.tewrrss.dto.User;
+import com.tewrrss.dto.resteasy.CommunityRequestData;
 import com.tewrrss.infrastructure.GestorSesion;
+import com.tewrrss.util.Role;
 
 import impl.tewrrss.business.CommunityServiceImpl;
-import impl.tewrrss.business.UserServiceImpl;
 
+public class CommunityServiceRsImpl extends CommunityServiceImpl implements CommunityServiceRs {
 
-public class CommunityServiceRsImpl extends CommunityServiceImpl implements CommunityServiceRs{
-
-	private UserServiceImpl userImpl = new UserServiceImpl();
-	
-	/** Devuelve las comunidades a las que se unio un usuario dado 
-	 * */
-	
-	@Override
-	public List<Community> listJoined(UserToken user) {
-		// Solo para el propio usuario y los administradores
-		String emailUser= GestorSesion.getInstance().checkToken(user.getToken());
-		if (emailUser.equals(user.getEmail()) || (userImpl.findByEmail(emailUser).get().getRole() == 1)) {
-			return listJoined(ClassCreation.CreateUser(user));
-		}
-		return null;
-		}
+	private GestorSesion gestor = GestorSesion.getInstance();
 
 	@Override
-	public String join(UserComToken UCK) {
-		// Solo para el propio usuario y los administradores
-		if (GestorSesion.getInstance().checkToken(UCK.getToken()) != null) {
-			return join(UCK.getCommunity(),  UCK.getUser());
-		}
-		return null;
-		}
+	public String create(CommunityRequestData data) {
+		User user = gestor.getUser(data.getToken());
+		if (user == null) return "invalidToken";
 
-	@Override
-	public String leave(UserComToken UCK) {
-		// Solo para el propio usuario y los administradores
-		if (GestorSesion.getInstance().checkToken(UCK.getToken()) != null) {
-			return leave(UCK.getCommunity(), UCK.getUser());
-		}
-		return null;
-		}
-
-	/** Crea una nueva comunidad 
-	 * */ 
-	@Override
-	public String create(CommunityToken comunidad) {
-		// Cualquier usuario registrado puede crearla
-		if (GestorSesion.getInstance().checkToken(comunidad.getToken()) != null) {
-			return create(ClassCreation.CreateCommunity(comunidad));
-		}
-		return null;
-	}
-	
-
-	/** Elimina una comunidad 
-	 * */
-	@Override
-	public String remove(CommunityToken comunidad) {
-		// Solo puede borrarla un administrador
-		if (userImpl.findByEmail(GestorSesion.getInstance().checkToken(comunidad.getToken())).get().getRole() == 0) {
-
-			return remove(ClassCreation.CreateCommunity(comunidad));
-		}
-		return null;
+		return create(data);
 	}
 
-	/** Devuelve si el usuario puede unirse a la comunidad (Si no esta ya unido) 
-	 * */
 	@Override
-	public boolean ableToJoin(UserComToken UCK) {
-		// Solo para el propio usuario 
-		if (GestorSesion.getInstance().checkToken(UCK.getToken()) != null) {
-			return ableToJoin(UCK.getCommunity(), UCK.getUser());
-		}
-		return false;
+	public String remove(CommunityRequestData data) {
+		User user = gestor.getUser(data.getToken());
+		if (user == null) return "invalidToken";
+		if (user.getRole() != Role.ADMIN) return "userNotAdmin";
+
+		return remove(data);
 	}
 
-	/** Devuelve una comunidad con ese nombre si existe
-	 * */
-	@Override
-	public Community findByName(String name, String token) {
-		// Cualquier usuario puede 
-		if (GestorSesion.getInstance().checkToken(token) != null) {
-			Optional<Community> com = findByName(name);
-			return com.isPresent() ? com.get() : null;
-		}
-		return null;
-	}
-
-	/**  Devuelve las counidades que contengan la cadena dada
-	 * */
-	@Override
-	public List<Community> search(String search, String Token) {
-		// Cualquier usuario puede buscar
-		if (GestorSesion.getInstance().checkToken(Token) != null) {
-			return search(search);
-		}
-
-		return null;
-	}
-
-
-	
 }

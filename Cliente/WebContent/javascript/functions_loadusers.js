@@ -1,53 +1,56 @@
-document.getElementById("loadUsersButton").addEventListener("click", function() {
+$("#loadUsersButton").on("click", function() {
 	$.ajax({
-		url: "http://localhost:8080/Entrega1/redsocial.json", // Cambiar esta URL por la que corresponde de nuestro proyecto
+		url: "http://localhost:8080/Servidor/redsocial.json", // Cambiar esta URL por la que corresponde de nuestro proyecto
 		type: "GET",
 		dataType: "json",
-		
-		success: function(redsocial) {
-			tbRedSocial = localStorage.getItem("tbRedSocial"); 
-			if (tbRedSocial == null) 
-				tbRedSocial = [];
-			
-			console.log(redsocial);
-			alert("Recibida respuesta con éxito!");
-			
-			var listaUsuarios = redsocial.usuarios;
 
-			// Itero por la lista de usuarios.
+		success: function(redsocial) {
+			let listaUsuarios = redsocial.usuarios;
+			console.log(listaUsuarios); // Muestro lista de usuarios.
+			alert("Usuarios cargados");
+			let contador = 0; // Contador para mirar los que llevamos subidos
 			listaUsuarios.forEach(function(usuario) {
-			  console.log(usuario.nombre);
-			  
-			  var usuario = {
-						email: usuario.email,
-						password: usuario.passwd,
-						role: 1,
-						username: usuario.nombre
-					};
-					
-				
-					// Envío al servidor lo requerido
-					UserServiceRs.add({
-						$entity: usuario,
-						$contentType: "application/json"
-					});
-					
-					
+			  	let user = {
+					email: usuario.email,
+					password: usuario.passwd,
+					role: 1,
+					username: usuario.nombre
+				};
+
+			  	contador = contador + 1; // Incremento el contador
+
+				// Envío al servidor lo requerido
+				UserServiceRs.add({
+					$entity: user,
+					$contentType: "application/json"
+				});
 			});
 
-			for (var i in redsocial) {
-				
-			/*	var usuario = JSON.stringify({
-					email: redsocial[i].email,
-					password: redsocial[i].passwd,
-					role: redsocial[i].rol,
-					username: redsocial[i].nombre
-				});*/
-				
-				
+			if (contador === listaUsuarios.length) {
+				 // Se ha cargado con éxito la lista de usuarios.
+				showMessages("success"); // Llamo a la función que se encargará de mostrar que ha habido éxito, además de ocultar carga.
+			} else {
+				showMessages("error");
 			}
-		} // Cierre de la función de éxito (success)
-	
+		}, error: function() {
+			// Ha ocurrido un error durante la solicitud AJAX
+			showMessages("error"); // Muestro el mensaje de error
+		}
 	}); // Cierre de $.ajax
-	
 }); // Cierre del método addEventListener
+
+function showMessages(operation) {
+    // Obtengo las referencias a los elementos usando jQuery
+    var opInfoSuccess = $("#opInfoSuccess");
+    var opInfoFailure = $("#opInfoFailure");
+
+    if (operation === "success") {
+        // Muestro el anuncio de éxito al usuario
+        opInfoSuccess.css("display", "block");
+        opInfoSuccess.html("Operación realizada con éxito");
+    } else {
+        // Muestro el anuncio de fallo al usuario
+        opInfoFailure.css("display", "block");
+        opInfoFailure.html("Ha ocurrido un problema");
+    }
+}

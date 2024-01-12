@@ -21,12 +21,10 @@ public class PostServiceImpl implements PostService {
 		return new Remove().remove(post);
 	}
 
-
 	@Override
-	public List<Post> getPostsByUser(User user){
+	public List<Post> getPostsByUser(User user) {
 		return new GetPostsByUser().getPostsByUser(user);
 	}
-
 
 	@Override
 	public List<Post> getPostsInCommunity(Community community) {

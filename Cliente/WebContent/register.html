@@ -1,49 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
     <meta charset="UTF-8">
     <title>Registro en la red social TEW</title>
-    <!-- Enlaces a los archivos CSS de Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://localhost:8080/Servidor/rest-jsapi"></script>
+    <script src="/Cliente/javascript/functions_register.js"></script>
 </head>
-
 <body>
-
-<!-- Cuerpo del registro de usuarios -->
-<main class="container mt-4">
-    <div class="row">
-        <section class="col-md-6">
-            <article>
-                <h2>Registro en la red social de TEW</h2>
-                <form id="registrationForm">
-                    <div class="mb-3">
-                        <label for="inputUsername" class="form-label">Nombre de usuario</label>
-                        <input type="text" class="form-control" id="inputUsername" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputEmail" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputPassword" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="inputPassword" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Registrarse</button>
-                </form>
-            </article>
-        </section>
-    </div>
-</main>
-
-<!-- Scripts de Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script type="text/javascript"
-	src="http://localhost:8080/Entrega1/rest-jsapi"></script>
-	
-		<script src="/gestioneitorCliv6_0/javascript/functions_register.js"></script>
-	
-	
+    <main class="container mt-4">
+        <div class="row">
+            <section class="col-md-6">
+                <article>
+                    <h2>Registro en la red social de TEW</h2>
+                    <form id="registrationForm">
+                        <div class="mb-3">
+                            <label for="inputUsername" class="form-label">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="inputUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="inputPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                    </form>
+                </article>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

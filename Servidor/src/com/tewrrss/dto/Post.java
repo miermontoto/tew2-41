@@ -1,10 +1,11 @@
 package com.tewrrss.dto;
 
 import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="post")
+@XmlRootElement(name = "post")
 public class Post implements Serializable {
 	private static final long serialVersionUID = 99834L;
 
@@ -23,7 +24,7 @@ public class Post implements Serializable {
 		this.setCommunityName(communityName);
 
 	}
-	
+
 	public Post(String content, String creationDate, String userEmail, String communityName, String userName) {
 		this.setContent(content);
 		this.setCreationDate(creationDate);

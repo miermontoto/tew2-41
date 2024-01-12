@@ -1,14 +1,12 @@
 package com.tewrrss.presentation;
+
 import java.io.Serializable;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.*;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 
 import com.tewrrss.business.LoginService;
 import com.tewrrss.dto.User;

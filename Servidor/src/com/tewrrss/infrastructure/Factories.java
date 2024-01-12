@@ -1,10 +1,10 @@
 package com.tewrrss.infrastructure;
 
-import impl.tewrrss.business.ServicesFactoryImpl;
-import impl.tewrrss.persistence.SimplePersistenceFactory;
-
 import com.tewrrss.business.ServicesFactory;
 import com.tewrrss.persistence.PersistenceFactory;
+
+import impl.tewrrss.business.ServicesFactoryImpl;
+import impl.tewrrss.persistence.SimplePersistenceFactory;
 
 public class Factories {
 

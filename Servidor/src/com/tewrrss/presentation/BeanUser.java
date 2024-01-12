@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-import javax.faces.bean.*;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.Post;
@@ -28,7 +29,7 @@ public class BeanUser implements Serializable {
 	}
 
 	public String getCommunities() {
-		return Factories.services.createCommunityService().listJoined(user).stream().map(Community::getName)
+		return Factories.services.createMemberService().listJoined(user).stream().map(Community::getName)
 			.reduce((a, b) -> a + ", " + b).orElse("");
 	}
 

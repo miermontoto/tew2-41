@@ -7,5 +7,6 @@ public interface ServicesFactory {
 	CommunityService createCommunityService();
 	UserService createUserService();
 	PostService createPostService();
+	MemberService createMemberService();
 
 }
