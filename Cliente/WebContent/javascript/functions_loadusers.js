@@ -1,4 +1,4 @@
-$("loadUsersButton").on("click", function() {
+$("#loadUsersButton").on("click", function() {
 	$.ajax({
 		url: "http://localhost:8080/Servidor/redsocial.json", // Cambiar esta URL por la que corresponde de nuestro proyecto
 		type: "GET",
@@ -6,6 +6,8 @@ $("loadUsersButton").on("click", function() {
 
 		success: function(redsocial) {
 			let listaUsuarios = redsocial.usuarios;
+			console.log(listaUsuarios); // Muestro lista de usuarios.
+			alert("Usuarios cargados");
 			let contador = 0; // Contador para mirar los que llevamos subidos
 			listaUsuarios.forEach(function(usuario) {
 			  	let user = {
