@@ -17,7 +17,7 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
 2. **A los usuarios autenticados:**
    - [x] a. Crear una comunidad
      - [x] Creación básica
-     - [ ] Error al crear comunidad con nombre existente
+     - [x] Error al crear comunidad con nombre existente
      - [x] Unirse automáticamente a la comunidad creada
    - [x] b. Unirse a una comunidad / Listado de comunidades
      - [x] Listado básico
