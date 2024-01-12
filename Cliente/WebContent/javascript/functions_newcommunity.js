@@ -35,11 +35,16 @@ function Controller(model, view) {
 			let data = view.loadFormData();
 			data.token = model.getToken();
 
-			$("#mensajeError").hide();
 			let result = model.createCommunity(data);
-			if (result !== "success") {
-				$("#mensajeError").show();
-				return;
+			switch (result) {
+				case "success":
+					break;
+				case "already_exists":
+					alert("Ya existe una comunidad con ese nombre");
+					return;
+				default:
+					alert("Error desconocido");
+					return;
 			}
 
 			result = model.join(data);
