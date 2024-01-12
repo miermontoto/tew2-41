@@ -8,6 +8,13 @@ function Model() {
 		});
 	}
 
+	this.logout = function(token){
+		return LoginServiceRs.logout({
+			$entity : token,
+			$contentType : "application/json"
+		});
+	}
+
 	// Función para guardar el token en el almacenamiento local.
     this.setToken = function(token) {
 	}
@@ -15,6 +22,10 @@ function Model() {
     this.getToken = function(){
     	sessionStorage.getItem("token"); // Obtengo el token para enviar al servidor
     }
+
+	this.removeToken = function(){
+		sessionStorage.removeItem("token"); // Función de borrado de elementos de sessionStorage
+	}
 };
 
 function View() {
@@ -27,6 +38,14 @@ function Controller(model, view) {
 			let token = model.getToken();
 			model.reset(token); // Reseteo la BBDD con el viejo token.
 		});
+
+		$('#cerrarSesionButton').on('click', function(){
+			let token = model.getToken();
+			model.logout(token); // Deslogueo "server side"
+			model.removeToken(); // Borro el token de forma local
+
+
+		})
     }
 }
 
