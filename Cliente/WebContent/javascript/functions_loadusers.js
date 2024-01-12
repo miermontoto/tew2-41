@@ -25,7 +25,7 @@ $("loadUsersButton").on("click", function() {
 			});
 
 			if (contador === listaUsuarios.length) {
-				 // Se ha cargado con éxito
+				 // Se ha cargado con éxito la lista de usuarios.
 				showMessages("success"); // Llamo a la función que se encargará de mostrar que ha habido éxito, además de ocultar carga.
 			} else {
 				showMessages("error");
