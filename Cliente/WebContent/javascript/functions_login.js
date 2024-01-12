@@ -15,6 +15,10 @@ function Model() {
 	this.getToken = function() {
 		return sessionStorage.getItem("token");
 	}
+
+	this.myUser = function() {
+		return LoginServiceRs.myUser({token : sessionStorage.getItem("token")});
+	}
 }
 
 function View() {
@@ -52,11 +56,17 @@ function View() {
 	this.disableButton = function() {
 		$("#loginButton").prop("disabled", true);
 	}
+
+	this.ackLogin = function(user) {
+		window.parent.setUserData(user);
+		window.location.replace("home.html");
+	}
 };
 
 function Controller(model, view) {
     this.init = function() {
-		if (model.getToken() !== null) view.alreadyMessage();
+		if (model.getToken() !== null) view.ackLogin(model.myUser());
+
 		$("#loginForm").bind("submit", function(event) {
         	event.preventDefault();
 
@@ -75,8 +85,8 @@ function Controller(model, view) {
 				return;
             }
 
-			view.successMessage();
 			model.setToken(token);
+			view.ackLogin(model.myUser());
         });
     }
 }

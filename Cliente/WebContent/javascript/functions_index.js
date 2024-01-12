@@ -1,7 +1,6 @@
 function Model() {
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
 	this.reset = function(token) {
-
 		return DatabaseServiceRs.reset({
 			$entity : token,
 			$contentType : "application/json"
@@ -10,7 +9,7 @@ function Model() {
 
 	this.logout = function(token){
 		return LoginServiceRs.logout({
-			$entity : token,
+			$entity : sessionStorage.getItem("token"),
 			$contentType : "application/json"
 		});
 	}
@@ -39,10 +38,9 @@ function Controller(model, view) {
 			model.reset(token); // Reseteo la BBDD con el viejo token.
 		});
 
-		$('#cerrarSesionButton').on('click', function(){
+		$('#cerrarSesionButton').on('click', function() {
 			alert("Sesión cerrada. Gracias por usar la red social de TEW");
-			let token = model.getToken();
-			model.logout(token); // Deslogueo "server side"
+			model.logout(); // Deslogueo "server side"
 			model.removeToken(); // Borro el token de forma local
 		});
     }
@@ -55,3 +53,17 @@ $(function() {
 	let control = new Controller(model, view);
 	control.init();
 });
+
+this.setUserData = function(user) {
+	$("#usernameTarget").text(user.username);
+	$("#loginButton").hide();
+	$("#registerButton").hide();
+	$("#logoutButton").show();
+
+	if (user.role == 0) $("#admin").show();
+	$("#communities").show();
+	$("#posts").show();
+	$("#userTypeTarget").text(user.role == 0 ? "Administrador" : "Usuario");
+	$("#userTypeTarget").show();
+	$("#sessionSpacer").show();
+}
