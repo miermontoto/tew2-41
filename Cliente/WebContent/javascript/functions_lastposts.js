@@ -1,14 +1,31 @@
 function Model() {
+	this.list = function(mixedData) {
+		return PostServiceRs.getNewPosts({
+			$entity: mixedData,
+			$contentType : "application/json"
+		});
+	}
 
+	this.getUser = function() {
+		return LoginServiceRs.myUser({token : sessionStorage.getItem("token")});
+	}
 };
 
 function View() {
-
+	this.loadTable = function(data) {
+		data.forEach(function(post) {
+			let row = "<tr><td>" + post.content + "</td><td>" + post.communityName + "</td><td>" + post.userName + "</td><td>" + post.creationDate + "</td></tr>";
+			$("#tableBody").append(row);
+		});
+	}
 };
 
 function Controller(model, view) {
     this.init = function() {
+		let user = model.getUser();
+		user.token = sessionStorage.getItem("token");
 
+		view.loadTable(model.list(user));
     }
 }
 

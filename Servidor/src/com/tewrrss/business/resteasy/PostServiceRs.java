@@ -32,20 +32,22 @@ public interface PostServiceRs extends PostService {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getPostsByUser(UserRequestData data);
 
-	@GET
+	@POST
 	@Path("/getPostsByUserInCommunity")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getPostsByUserInCommunity(MemberRequestData data);
 
-	@GET
+	@POST
 	@Path("/getPostsInCommunity")
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getPostsInCommunity(CommunityRequestData data);
 
-	@GET
+	@POST
 	@Path("/getNewPosts")
-	@Produces({ MediaType.TEXT_PLAIN })
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getNewPosts(UserRequestData data);
 
 }
