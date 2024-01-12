@@ -32,7 +32,7 @@ $("loadUsersButton").on("click", function() {
 			}
 		}, error: function() {
 			// Ha ocurrido un error durante la solicitud AJAX
-			mostrarMensajes("error"); // Muestro el mensaje de error
+			showMessages("error"); // Muestro el mensaje de error
 		}
 	}); // Cierre de $.ajax
 }); // Cierre del método addEventListener
