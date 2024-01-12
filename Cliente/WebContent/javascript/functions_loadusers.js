@@ -30,7 +30,14 @@ document.getElementById("loadUsersButton").addEventListener("click", function() 
 			} else {
 				showMessages("error");
 			}
-		} // Cierre de la función de éxito (success)
+		}, // Cierre de la función de éxito (success)
+
+		error: function() {
+			// Ha ocurrido un error durante la solicitud AJAX
+			mostrarMensajes("error"); // Muestro el mensaje de error
+		}
+		
+		
 	}); // Cierre de $.ajax
 }); // Cierre del método addEventListener
 
