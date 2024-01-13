@@ -1,8 +1,8 @@
 function Model() {
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
-	this.reset = function(token) {
+	this.reset = function() {
 		return DatabaseServiceRs.reset({
-			$entity : token,
+			$entity : sessionStorage.getItem("token"),
 			$contentType : "application/json"
 		});
 	}
@@ -31,15 +31,14 @@ function Controller(model, view) {
 		}
 
 		$('#resetButton').on('click', function() {
-			let token = model.getToken();
-			model.reset(token); // Reseteo la BBDD con el viejo token.
+			model.reset();
+			window.location.href = "index.html";
 		});
 
 		$('#logoutButton').on('click', function() {
-			alert("Sesión cerrada. Gracias por usar la red social de TEW");
-			model.logout(); // Deslogueo "server side"
-			model.removeToken(); // Borro el token de forma local
-			window.location.href = "index.html"; // Redirijo a la página de inicio
+			model.logout();
+			model.removeToken();
+			window.location.href = "index.html";
 		});
     }
 }
