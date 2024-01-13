@@ -2,8 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro en la red social TEW</title>
+    <title>Registrarse</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -14,7 +15,7 @@
 <body>
     <main class="container mt-4">
         <article>
-            <h2>Registro en la red social de TEW</h2>
+            <h2>Registrarse</h2>
             <form id="registrationForm">
                 <div class="mb-3 form-group">
                     <label for="inputUsername" class="form-label">Nombre de usuario</label>
@@ -34,12 +35,12 @@
                         Acepto la política de privacidad
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary">Registrarse</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-door-open"></i> Registrarse</button>
             </form>
-            <div id="mensajeError" style="display: none; color:red">Ha ocurrido un error al registrarse. Por favor, inténtalo de nuevo.</div>
-            <div id="rgpdError" style="display: none; color:red">Debe aceptar la política de privacidad para registrarse.</div>
+            <div id="mensajeError" style="display: none; color:red"><i class="bi bi-exclamation-octagon"></i> Ha ocurrido un error al registrarse. Por favor, inténtalo de nuevo.</div>
+            <div id="rgpdError" style="display: none; color:red"><i class="bi bi-exclamation-octagon"></i> Debe aceptar la política de privacidad para registrarse.</div>
             <hr>
-            <a class="dropdown-item" href="login.html">¿Ya tiene cuenta? Inicie sesión</a>
+            <a class="dropdown-item" href="login.html">¿Ya tiene cuenta? Inicie sesión <i class="bi bi-arrow-right-circle-fill"></i></a>
         </article>
     </main>
 </body>
