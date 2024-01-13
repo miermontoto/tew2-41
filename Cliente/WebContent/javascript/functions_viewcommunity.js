@@ -41,6 +41,11 @@ function View() {
 			$('#dropdownMenuButtonCommunity').addClass('btn-warning');
 		}
 	}
+
+	this.setDropdown = function(name) {
+		$('#dropdownMenuButtonCommunity').text(name);
+		$('#dropdownMenuButtonCommunity').addClass('btn-success');
+	}
 };
 
 function Controller(model, view) {
@@ -57,8 +62,8 @@ function Controller(model, view) {
 				description: 'unknown description',
 				token: model.getToken()
 			}));
-			$('#dropdownMenuButtonCommunity').text(name);
-			$('#dropdownMenuButtonCommunity').addClass('btn-success');
+
+			view.setDropdown(name);
 		});
 
 		// consumir la comunidad guardada si existe
@@ -69,6 +74,8 @@ function Controller(model, view) {
 				description: 'unknown description',
 				token: model.getToken()
 			}));
+
+			view.setDropdown(community);
 		}
     }
 }

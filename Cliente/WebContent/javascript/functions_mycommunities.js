@@ -51,6 +51,16 @@ function Controller(model, view) {
 				}
 			})
 		})
+
+		$("#tableBody").find("button.watch").each(function() {
+			$(this).click(function() {
+				let target = $(this).parent().parent()
+				let name = target.find("td:nth-child(1)").text()
+
+				sessionStorage.setItem("community", name)
+				window.location.href = "viewcommunity.html"
+			})
+		})
     }
 }
 
