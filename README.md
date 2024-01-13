@@ -22,14 +22,14 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
      - [x] Listado básico
      - [x] Fitro por nombre
      - [x] Botón de unirse
-   - [ ] c. Listar mis comunidades
+   - [x] c. Listar mis comunidades
      - [x] Listado básico
      - [x] Botón "Ver contenido"
      - [x] Botón "Salir de comunidad"
-     - [ ] Botón "Crear publicación"
+     - [x] Botón "Crear publicación"
    - [x] d. Listado de publicaciones de una comunidad
      - [x] Listado básico
-     - [ ] Realizar una publicación
+     - [x] Realizar una publicación
    - [x] e. Listar últimos mensajes de las comunidades a las que pertenece.
      - [x] Enlazar a comunidades
    - [x] g. Listado de publicaciones propias
