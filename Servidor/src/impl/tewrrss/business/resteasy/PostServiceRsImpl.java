@@ -1,5 +1,6 @@
 package impl.tewrrss.business.resteasy;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.tewrrss.business.resteasy.PostServiceRs;
@@ -19,9 +20,10 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 	@Override
 	public String add(PostRequestData data) {
 		User user = gestor.getUser(data.getToken());
-		if (user == null) return null;
-		if (!data.getUserEmail().equals(user.getEmail())) return null;
+		if (user == null) return "invalidToken";
+		if (!data.getUserEmail().equals(user.getEmail())) return "unauthorized";
 
+		data.setCreationDate(LocalDateTime.now().toString().replace('T', ' '));
 		return super.add(data);
 	}
 
