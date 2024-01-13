@@ -35,6 +35,8 @@ function View() {
 		$("#mensajeError").hide();
 		$("#mensajeExito").hide();
 		$("#mensajeAlready").hide();
+		$("#mensajeInvalid").hide();
+		$("#mensajeBlocked").hide();
 	}
 
 	this.successMessage = function() {
@@ -45,16 +47,16 @@ function View() {
 		$("#mensajeError").show();
 	}
 
+	this.invalidMessage = function() {
+		$("#mensajeInvalid").show();
+	}
+
+	this.blockedMessage = function() {
+		$("#mensajeBlocked").show();
+	}
+
 	this.alreadyMessage = function() {
 		$("#mensajeAlready").show();
-	}
-
-	this.enableButton = function() {
-		$("#loginButton").prop("disabled", false);
-	}
-
-	this.disableButton = function() {
-		$("#loginButton").prop("disabled", true);
 	}
 
 	this.ackLogin = function(user) {
@@ -80,10 +82,20 @@ function Controller(model, view) {
 
 			view.clearMessages();
 
-            if (token == null || token == "") {
-            	view.errorMessage();
+            if (token == null || token == "" || token == "error") {
+				view.errorMessage();
 				return;
-            }
+			}
+
+			if (token == "invalidAuth") {
+				view.invalidMessage();
+				return;
+			}
+
+			if (token == "blocked") {
+				view.blockedMessage();
+				return;
+			}
 
 			model.setToken(token);
 			view.ackLogin(model.myUser());

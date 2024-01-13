@@ -11,7 +11,17 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public User verify(String email, String password) {
 		Optional<User> user = Factories.persistence.getUserDAO().findByEmail(email);
-		if (!user.isPresent() || !user.get().getPassword().equals(password)) return null;
+		if (!user.isPresent()) return null;
+		if (!user.get().getPassword().equals(password)) {
+			return new User() {
+				private static final long serialVersionUID = 89127123791279L;
+				@Override
+				public String getEmail() {
+					return "invalidAuth";
+				}
+			};
+		}
+
 		return user.get();
 	}
 

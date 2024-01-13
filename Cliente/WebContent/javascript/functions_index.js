@@ -11,10 +11,6 @@ function Model() {
 		return LoginServiceRs.logout({token : sessionStorage.getItem("token")});
 	}
 
-	// Función para guardar el token en el almacenamiento local.
-    this.setToken = function(token) {
-	}
-
     this.getToken = function(){
     	sessionStorage.getItem("token"); // Obtengo el token para enviar al servidor
     }
