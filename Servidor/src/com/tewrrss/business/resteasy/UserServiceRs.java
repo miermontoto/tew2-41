@@ -28,7 +28,7 @@ public interface UserServiceRs extends UserService {
 	@Override
 	@PUT
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.TEXT_PLAIN })
 	String add(User user);
 
 }

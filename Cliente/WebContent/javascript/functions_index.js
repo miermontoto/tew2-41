@@ -35,7 +35,7 @@ function Controller(model, view) {
 			alert("Sesión cerrada. Gracias por usar la red social de TEW");
 			model.logout(); // Deslogueo "server side"
 			model.removeToken(); // Borro el token de forma local
-			location.reload();
+			window.location.href = "index.html"; // Redirijo a la página de inicio
 		});
     }
 }

@@ -16,20 +16,30 @@
         <article>
             <h2>Registro en la red social de TEW</h2>
             <form id="registrationForm">
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="inputUsername" class="form-label">Nombre de usuario</label>
                     <input type="text" class="form-control" id="inputUsername" required>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="inputEmail" class="form-label">Correo electrónico</label>
                     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" required>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 form-group">
                     <label for="inputPassword" class="form-label">Contraseña</label>
                     <input type="password" class="form-control" id="inputPassword" required>
                 </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="rgpdCheck">
+                    <label class="form-check-label" for="rgpdCheck">
+                        Acepto la política de privacidad
+                    </label>
+                </div>
                 <button type="submit" class="btn btn-primary">Registrarse</button>
             </form>
+            <div id="mensajeError" style="display: none; color:red">Ha ocurrido un error al registrarse. Por favor, inténtalo de nuevo.</div>
+            <div id="rgpdError" style="display: none; color:red">Debe aceptar la política de privacidad para registrarse.</div>
+            <hr>
+            <a class="dropdown-item" href="login.html">¿Ya tiene cuenta? Inicie sesión</a>
         </article>
     </main>
 </body>

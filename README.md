@@ -9,9 +9,9 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
    - [x] a. Registrarse.
      - [x] Registro básico
      - [x] Inicio de sesión automático en cliente
-   - [ ] b. Iniciar sesión.
+   - [x] b. Iniciar sesión.
      - [x] Token en navegador
-     - [ ] Límite de intentos de inicio de sesión
+     - [x] Límite de intentos de inicio de sesión
 
 2. **A los usuarios autenticados:**
    - [x] a. Crear una comunidad

@@ -16,21 +16,24 @@
         <article>
             <h2>Inicio de sesión de la red social de TEW</h2>
             <form id="loginForm">
-                <div class="mb-3">
+                <div class="form-group">
                     <label for="inputEmail" class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="user@email.com">
                 </div>
-                <div class="mb-3">
+                <div class="form-group">
                     <label for="inputPassword" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="inputPassword">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
                 </div>
-                <div id="mensajeError" style="display: none; color:red">Ha ocurrido un error al iniciar sesión. Por favor, inténtalo de nuevo.</div>
-                <div id="mensajeExito" style="display: none; color:green">Inicio de sesión correcto. Ya puedes usar la red social.</div>
-                <div id="mensajeInvalid" style="display: none; color:red">El correo electrónico o la contraseña no son válidos.</div>
-                <div id="mensajeBlocked" style="display: none; color:red">Ha superado el número de intentos fallidos permitidos. Espere antes de volver a intentarlo.</div>
-                <div id="mensajeAlready" style="display: none; color:green">La sesión ya está iniciada.</div>
                 <button type="submit" class="btn btn-primary">Iniciar sesión</button>
             </form>
+            <hr>
+            <a class="dropdown-item" href="register.html">¿No tiene cuenta? Regístrese</a>
+            <br><br>
+            <div id="mensajeError" style="display: none; color:red">Ha ocurrido un error al iniciar sesión. Por favor, inténtalo de nuevo.</div>
+            <div id="mensajeExito" style="display: none; color:green">Inicio de sesión correcto. Ya puedes usar la red social.</div>
+            <div id="mensajeInvalid" style="display: none; color:red">El correo electrónico o la contraseña no son válidos.</div>
+            <div id="mensajeBlocked" style="display: none; color:red">Ha superado el número de intentos fallidos permitidos. Espere antes de volver a intentarlo.</div>
+            <div id="mensajeAlready" style="display: none; color:green">La sesión ya está iniciada.</div>
         </article>
     </main>
 </body>
