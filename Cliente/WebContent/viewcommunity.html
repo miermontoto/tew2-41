@@ -13,31 +13,28 @@
 </head>
 <body>
     <main class="container mt-4">
-        <div class="row">
-            <section class="col-md-6">
-                <article>
-                    <h2>Ver mensajes de la comunidad</h2>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonCommunity" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Seleccionar comunidad
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonCommunity" id="communities">
-                        </div>
-                    </div>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Contenido</th>
-                                <th scope="col">Autor</th>
-                                <th scope="col">Fecha</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                        </tbody>
-                    </table>
-                </article>
-            </section>
-        </div>
+        <article>
+            <h2>Ver mensajes de la comunidad</h2>
+            <div class="dropdown">
+                <button class="w-100 btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonCommunity" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Seleccionar comunidad
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonCommunity" id="communities">
+                </div>
+            </div>
+            <hr>
+            <table class="table table-striped w-100 mt-2">
+                <thead>
+                    <tr>
+                        <th scope="col">Contenido</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </article>
     </main>
 </body>
 </html>
