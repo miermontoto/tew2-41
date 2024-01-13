@@ -27,6 +27,10 @@ function View() {
 				"</td></tr>";
 			$("#tableBody").append(row);
 		});
+
+		if (data.length == 0) {
+			$("#tableBody").append("<tr><td colspan='4'>No has realizado ninguna publicación todavía.</td></tr>");
+		}
 	}
 };
 

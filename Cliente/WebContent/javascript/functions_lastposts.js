@@ -17,6 +17,10 @@ function View() {
 			let row = "<tr><td>" + post.content + "</td><td>" + post.communityName + "</td><td>" + post.userName + "</td><td>" + post.creationDate + "</td></tr>";
 			$("#tableBody").append(row);
 		});
+
+		if (data.length == 0) {
+			$("#tableBody").append("<tr><td colspan='4'>No hay posts recientes en tus comunidades.</td></tr>");
+		}
 	}
 };
 
