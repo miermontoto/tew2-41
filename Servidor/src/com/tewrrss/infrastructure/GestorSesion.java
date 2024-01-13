@@ -1,6 +1,8 @@
 package com.tewrrss.infrastructure;
 
 import java.util.TreeMap;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -9,8 +11,9 @@ import com.tewrrss.dto.User;
 public class GestorSesion {
 
 	private Map<String, User> logins = new TreeMap<>();
-	private static GestorSesion instance;
 
+	private static GestorSesion instance;
+	private Map<String, List<LocalDateTime>> invalidLogins = new TreeMap<>();
 	private GestorSesion() {}
 
 	public static GestorSesion getInstance() {
@@ -30,6 +33,10 @@ public class GestorSesion {
 
 	public User getUser(String token) {
 		return logins.getOrDefault(token, null);
+	}
+
+	public Map<String, List<LocalDateTime>> getInvalidLogins() {
+		return invalidLogins;
 	}
 
 }

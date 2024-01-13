@@ -15,13 +15,18 @@ function View() {
 	this.loadTable = function(data) {
 		data.forEach(function(post) {
 			let row = "<tr><td>" + post.content + "</td><td>" +
-			"<a href='#' class='gotoCommunity'>" + post.communityName + "</a></td><td>" +
-			post.userName + "</td><td>" + post.creationDate + "</td></tr>";
+				"<a href='#' class='gotoCommunity'>" + post.communityName + "</a></td><td>" +
+				post.userName + "</td><td>" + post.creationDate + "</td></tr>";
 			$("#tableBody").append(row);
 		});
 
 		if (data.length == 0) {
-			$("#tableBody").append("<tr><td colspan='4'>No hay posts recientes en tus comunidades.</td></tr>");
+			$("#tableBody").append("<tr><td colspan='4'>No hay posts recientes en tus comunidades. " +
+				"<button id='btnDiscover' type='button' class='btn btn-primary'>Descubre comunidades</button>" +
+				"</td></tr>");
+			$("#btnDiscover").click(function() {
+				window.location.href = "listcommunities.html";
+			});
 		}
 	}
 };
