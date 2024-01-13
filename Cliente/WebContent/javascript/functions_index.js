@@ -26,6 +26,10 @@ function View() {
 
 function Controller(model, view) {
     this.init = function() {
+		if (!model.getToken()) {
+			$('#iframe').attr('src', 'login.html');
+		}
+
 		$('#resetButton').on('click', function() {
 			let token = model.getToken();
 			model.reset(token); // Reseteo la BBDD con el viejo token.
