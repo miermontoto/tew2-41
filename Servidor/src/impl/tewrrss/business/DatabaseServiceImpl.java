@@ -71,7 +71,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 				.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
 			String content = random.ints(97, 123)
-				.limit(random.nextInt(100))
+				.limit(random.nextInt(50))
 				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
 				.toString();
 

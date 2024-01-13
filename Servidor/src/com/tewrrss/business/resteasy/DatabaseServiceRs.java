@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 public interface DatabaseServiceRs {
 
 	@POST
-	@Produces({ MediaType.APPLICATION_JSON })
-	boolean reset(String token);
+	@Produces({ MediaType.TEXT_PLAIN })
+	String reset(String token);
 
 }
