@@ -15,11 +15,16 @@
     <main class="container mt-4">
         <article>
             <h2>Ver mensajes de la comunidad</h2>
-            <div class="dropdown">
-                <button class="w-100 btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonCommunity" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Seleccionar comunidad
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonCommunity" id="communities">
+            <div class="row">
+                <div class="dropdown col-md-9">
+                    <button class="w-100 btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonCommunity" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Seleccionar comunidad
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonCommunity" id="communities">
+                    </div>
+                </div>
+                <div class="dropdown col-md-3">
+                    <button class="btn-primary w-100 btn disabled" id="postButton" type="button">Publicar</button>
                 </div>
             </div>
             <hr>

@@ -24,6 +24,7 @@ function Model() {
 function View() {
 	this.initDropdown = function(data) {
 		$('#communities').empty();
+		if (data.length != 0) $('#communities').append('<h6 class="dropdown-header">Tus comunidades</h6>');
 		data.forEach(function(com) {
 			$('#communities').append('<a class="dropdown-item" href="#">' + com.name + '</a>');
 		});
