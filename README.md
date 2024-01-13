@@ -38,5 +38,5 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
    - [x] h. Cerrar sesión.
 
 3. **A los administradores:**
-   - [ ] a. Reiniciar la base de datos a los valores por defecto.
+   - [x] a. Reiniciar la base de datos a los valores por defecto.
    - [x] b. Importar usuarios desde un fichero externo.
