@@ -24,19 +24,19 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
      - [x] Botón de unirse
    - [ ] c. Listar mis comunidades
      - [x] Listado básico
-     - [ ] Botón "Ver contenido"
+     - [x] Botón "Ver contenido"
      - [x] Botón "Salir de comunidad"
      - [ ] Botón "Crear publicación"
-   - [ ] d. Listado de publicaciones de una comunidad
-     - [ ] Listado básico
+   - [x] d. Listado de publicaciones de una comunidad
+     - [x] Listado básico
      - [ ] Realizar una publicación
    - [x] e. Listar últimos mensajes de las comunidades a las que pertenece.
-     - [ ] Enlazar a comunidades
+     - [x] Enlazar a comunidades
    - [x] g. Listado de publicaciones propias
      - [x] Listado básico
      - [x] Botón de borrado
    - [ ] h. Cerrar sesión.
 
 3. **A los administradores:**
-   - [x] a. Reiniciar la base de datos a los valores por defecto.
+   - [ ] a. Reiniciar la base de datos a los valores por defecto.
    - [x] b. Importar usuarios desde un fichero externo.
