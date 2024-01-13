@@ -9,7 +9,6 @@ public class LoginServiceRsImpl implements LoginServiceRs {
 
 	private GestorSesion gestor = GestorSesion.getInstance();
 
-	// Metodo para el login de usuarios.
 	@Override
 	public String login(User user) {
 		User u = Factories.services.createLoginService().verify(user.getEmail(), user.getPassword());

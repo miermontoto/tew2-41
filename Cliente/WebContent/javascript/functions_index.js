@@ -8,10 +8,7 @@ function Model() {
 	}
 
 	this.logout = function(token){
-		return LoginServiceRs.logout({
-			$entity : sessionStorage.getItem("token"),
-			$contentType : "application/json"
-		});
+		return LoginServiceRs.logout({token : sessionStorage.getItem("token")});
 	}
 
 	// Función para guardar el token en el almacenamiento local.
@@ -38,10 +35,11 @@ function Controller(model, view) {
 			model.reset(token); // Reseteo la BBDD con el viejo token.
 		});
 
-		$('#cerrarSesionButton').on('click', function() {
+		$('#logoutButton').on('click', function() {
 			alert("Sesión cerrada. Gracias por usar la red social de TEW");
 			model.logout(); // Deslogueo "server side"
 			model.removeToken(); // Borro el token de forma local
+			location.reload();
 		});
     }
 }

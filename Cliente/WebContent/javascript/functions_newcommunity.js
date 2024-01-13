@@ -42,6 +42,9 @@ function Controller(model, view) {
 				case "already_exists":
 					alert("Ya existe una comunidad con ese nombre");
 					return;
+				case "hasSpaces":
+					alert("El nombre de la comunidad no puede contener espacios");
+					return;
 				default:
 					alert("Error desconocido");
 					return;

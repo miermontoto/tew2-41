@@ -20,8 +20,9 @@ public interface LoginServiceRs {
 	String login(User user);
 
 	@POST
+	@Path("/logout/{token}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String logout(String token);
+	String logout(@PathParam("token") String token);
 
 	@GET
 	@Path("/myUser/{token}")

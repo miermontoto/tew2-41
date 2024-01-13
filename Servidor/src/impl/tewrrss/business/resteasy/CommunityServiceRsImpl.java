@@ -16,6 +16,7 @@ public class CommunityServiceRsImpl extends CommunityServiceImpl implements Comm
 	public String create(CommunityRequestData data) {
 		User user = gestor.getUser(data.getToken());
 		if (user == null) return "invalidToken";
+		if (data.getName().contains(" ")) return "hasSpaces";
 
 		return super.create(data);
 	}
