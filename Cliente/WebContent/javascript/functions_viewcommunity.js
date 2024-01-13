@@ -79,6 +79,14 @@ function Controller(model, view) {
 
 			view.setDropdown(community);
 		}
+
+		$('#postButton').click(function() {
+			if ($(this).hasClass('disabled')) return;
+
+			let community = $('#dropdownMenuButtonCommunity').text();
+			sessionStorage.setItem('community', community);
+			window.location.href = 'createpost.html';
+		});
     }
 }
 

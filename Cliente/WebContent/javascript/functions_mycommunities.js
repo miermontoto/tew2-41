@@ -61,6 +61,16 @@ function Controller(model, view) {
 				window.location.href = "viewcommunity.html"
 			})
 		})
+
+		$("#tableBody").find("button.post").each(function() {
+			$(this).click(function() {
+				let target = $(this).parent().parent()
+				let name = target.find("td:nth-child(1)").text()
+
+				sessionStorage.setItem("community", name)
+				window.location.href = "createpost.html"
+			});
+		});
     }
 }
 
