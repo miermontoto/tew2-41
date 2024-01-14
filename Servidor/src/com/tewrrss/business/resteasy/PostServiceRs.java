@@ -25,7 +25,7 @@ public interface PostServiceRs extends PostService {
 
 	@DELETE
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.TEXT_PLAIN })
 	String remove(PostRequestData data);
 
 	@POST

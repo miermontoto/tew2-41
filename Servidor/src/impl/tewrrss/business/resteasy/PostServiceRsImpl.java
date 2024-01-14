@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.tewrrss.business.resteasy.PostServiceRs;
-import com.tewrrss.dto.Community;
 import com.tewrrss.dto.Post;
 import com.tewrrss.dto.User;
 import com.tewrrss.dto.resteasy.*;
