@@ -3,6 +3,8 @@ package impl.tewrrss.persistence.jdbc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,13 +132,39 @@ public class PostJdbcDAO extends JdbcDAO implements PostDAO {
 	public boolean remove(Post post) {
 		boolean removed = false;
 
-		String query = "DELETE FROM post WHERE creation_date = ? AND user_email = ? AND community_name = ?";
+		String query = "DELETE FROM post WHERE creation_date >= ? AND creation_date < ? AND user_email = ? AND community_name = ?";
 
 		try {
+			
+	        // Parsear la fecha de entrada a un objeto LocalDateTime
+	        LocalDateTime creationDateTime = LocalDateTime.parse(post.getRawCreationDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+	        // Definir el rango de fechas (desde creationDateTime hasta creationDateTime + 1 segundo)
+	        LocalDateTime startRange = creationDateTime;
+	        LocalDateTime endRange = creationDateTime.plusSeconds(1);
+	        
+	        String TStart = String.format("%04d-%02d-%02d %02d:%02d:%02d",
+                    startRange.getYear(),
+                    startRange.getMonthValue(),
+                    startRange.getDayOfMonth(),
+                    startRange.getHour(),
+                    startRange.getMinute(),
+                    startRange.getSecond());
+	        
+	        String TEnd = String.format("%04d-%02d-%02d %02d:%02d:%02d",
+	        		endRange.getYear(),
+	        		endRange.getMonthValue(),
+	        		endRange.getDayOfMonth(),
+	        		endRange.getHour(),
+	        		endRange.getMinute(),
+	        		endRange.getSecond());
+	        
+	        
 			PreparedStatement ps = getDatabase().getConnection().prepareStatement(query);
-			ps.setString(1, post.getRawCreationDate());
-			ps.setString(2, post.getUserEmail());
-			ps.setString(3, post.getCommunityName());
+			ps.setString(1, TStart);
+			ps.setString(2, TEnd);
+			ps.setString(3, post.getUserEmail());
+			ps.setString(4, post.getCommunityName());
 
 			removed = ps.executeUpdate() == 1;
 		} catch (SQLException e) {getDatabase().handleException(e);}
