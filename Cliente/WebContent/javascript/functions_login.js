@@ -81,8 +81,8 @@ function Controller(model, view) {
 			}
 
 			view.clearMessages();
-
-            if (token == null || token == "" || token == "error") {
+			console.log(token);
+            if (token == null || token == "" || token == "error" || token === "nullUser") {
 				view.errorMessage();
 				return;
 			}
