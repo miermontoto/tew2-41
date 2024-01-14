@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.resteasy.CommunityRequestData;
-import com.tewrrss.dto.resteasy.MemberRequestData;
 
 @Path("/members")
 public interface MemberServiceRs {
