@@ -1,6 +1,6 @@
 function Model() {
 	this.getJoined = function() {
-		return MemberServiceRs.listJoined({token: sessionStorage.getItem('token')});
+		return MemberServiceRs.listMyJoined({token: sessionStorage.getItem('token')});
 	}
 
 	this.getPostsInCommunity = function(community) {
@@ -33,7 +33,7 @@ function View() {
 	this.loadTable = function(posts) {
 		$('#tableBody').empty();
 		posts.forEach(function(post) {
-			$('#tableBody').append('<tr><td>' + post.content + '</td><td>' + post.userName + '</td><td>' + post.creationDate + '</td></tr>');
+			$('#tableBody').append('<tr><td>' + post.content + '</td><td>' + "<a href='#' class='gotoProfile' email='" + post.userEmail + "'>" + post.userName + "</a></td><td>" + post.creationDate + '</td></tr>');
 		});
 
 		$('#dropdownMenuButtonCommunity').removeClass('btn-warning');
@@ -41,6 +41,14 @@ function View() {
 			$('#tableBody').append('<tr><td colspan="3">No hay posts en esta comunidad</td></tr>');
 			$('#dropdownMenuButtonCommunity').addClass('btn-warning');
 		}
+
+		$("#tableBody").find("a.gotoProfile").each(function() {
+			$(this).click(function() {
+				let email = $(this).attr("email");
+				sessionStorage.setItem("user", email);
+				window.location.href = "viewprofile.html";
+			});
+		});
 	}
 
 	this.loadError = function() {

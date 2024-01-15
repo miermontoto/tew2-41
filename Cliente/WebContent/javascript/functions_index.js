@@ -63,4 +63,10 @@ this.setUserData = function(user) {
 	$("#userTypeTarget").text(user.role == 0 ? "Rol: admin" : "Rol: usuario");
 	$("#userTypeTarget").show();
 	$("#sessionSpacer").show();
+	$("#viewProfile").show();
+
+	$("#viewProfile").on("click", function() {
+		sessionStorage.setItem("user", user.email);
+		$("#iframe").attr("src", "viewprofile.html");
+	});
 }
