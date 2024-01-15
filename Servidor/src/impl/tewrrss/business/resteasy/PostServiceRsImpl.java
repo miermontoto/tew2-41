@@ -30,6 +30,8 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 	public String remove(PostRequestData data) {
 		User user = gestor.getUser(data.getToken());
 		if (user == null) return null;
+
+		// comprobar la igualdad de emails es una manera fiable de comparar usuarios
 		if (!data.getUserEmail().equals(user.getEmail()) && user.getRole() != Role.ADMIN) return null;
 
 		return super.remove(data);
@@ -40,8 +42,7 @@ public class PostServiceRsImpl extends PostServiceImpl implements PostServiceRs 
 		User loggedUser = gestor.getUser(data.getToken());
 		if (loggedUser == null) return null;
 
-		// comprobar la igualdad de emails es una manera fiable de comparar usuarios
-		if (!loggedUser.getEmail().equals(data.getEmail()) && loggedUser.getRole() != Role.ADMIN) return null;
+		//if (!loggedUser.getEmail().equals(data.getEmail()) && loggedUser.getRole() != Role.ADMIN) return null;
 
 		return super.getPostsByUser(data);
 	}

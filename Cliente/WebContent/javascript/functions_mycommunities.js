@@ -1,6 +1,6 @@
 function Model() {
 	this.list = function() {
-		return MemberServiceRs.listJoined({token : sessionStorage.getItem("token")});
+		return MemberServiceRs.listMyJoined({token : sessionStorage.getItem("token")});
 	}
 
 	this.leave = function(mixedData) {

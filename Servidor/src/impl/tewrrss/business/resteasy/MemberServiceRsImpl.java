@@ -6,6 +6,7 @@ import com.tewrrss.business.resteasy.MemberServiceRs;
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.User;
 import com.tewrrss.dto.resteasy.CommunityRequestData;
+import com.tewrrss.dto.resteasy.UserRequestData;
 import com.tewrrss.infrastructure.GestorSesion;
 
 import impl.tewrrss.business.MemberServiceImpl;
@@ -15,11 +16,11 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 	private GestorSesion gestor = GestorSesion.getInstance();
 
 	@Override
-	public List<Community> listJoined(String token) {
+	public List<Community> listMyJoined(String token) {
 		User user = gestor.getUser(token);
 		if (user == null) return null;
 
-		return listJoined(user);
+		return super.listJoined(user);
 	}
 
 	@Override
@@ -27,7 +28,7 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 		User user = gestor.getUser(data.getToken());
 		if (user == null) return null;
 
-		return join(data, user);
+		return super.join(data, user);
 	}
 
 	@Override
@@ -35,9 +36,12 @@ public class MemberServiceRsImpl extends MemberServiceImpl implements MemberServ
 		User user = gestor.getUser(data.getToken());
 		if (user == null) return null;
 
-		// TODO: comprobar si está unido a la comunidad o no.
+		return super.leave(data, user);
+	}
 
-		return leave(data, user);
+	@Override
+	public List<Community> listJoined(UserRequestData data) {
+		return super.listJoined(data);
 	}
 
 }

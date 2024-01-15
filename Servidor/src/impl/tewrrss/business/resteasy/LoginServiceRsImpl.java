@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.tewrrss.business.resteasy.LoginServiceRs;
@@ -56,6 +57,13 @@ public class LoginServiceRsImpl implements LoginServiceRs {
 	@Override
 	public User myUser(String token) {
 		return gestor.getUser(token);
+	}
+
+	@Override
+	public User getUserByMail(String email) {
+		Optional<User> user = Factories.services.createUserService().findByEmail(email);
+		if (user.isPresent()) return user.get();
+		return null;
 	}
 
 }

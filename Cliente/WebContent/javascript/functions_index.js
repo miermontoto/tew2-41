@@ -60,7 +60,7 @@ this.setUserData = function(user) {
 	if (user.role == 0) $("#admin").show();
 	$("#communities").show();
 	$("#posts").show();
-	$("#userTypeTarget").text(user.role == 0 ? "Administrador" : "Usuario");
+	$("#userTypeTarget").text(user.role == 0 ? "Rol: admin" : "Rol: usuario");
 	$("#userTypeTarget").show();
 	$("#sessionSpacer").show();
 }
