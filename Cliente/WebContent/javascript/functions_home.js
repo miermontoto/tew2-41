@@ -1,5 +1,7 @@
 function Model() {
-
+	this.getToken = function() {
+		return sessionStorage.getItem("token");
+	}
 };
 
 function View() {
@@ -10,6 +12,7 @@ function View() {
 
 function Controller(model, view) {
 	this.init = function() {
+		if (!model.getToken()) window.location.href = "login.html";
 		view.init();
     }
 }

@@ -43,6 +43,11 @@ function View() {
 		}
 	}
 
+	this.loadError = function() {
+		$('#tableBody').empty();
+		$('#tableBody').append('<tr><td colspan="3">No se han podido cargar los posts.</td></tr>');
+	}
+
 	this.setDropdown = function(name) {
 		$('#dropdownMenuButtonCommunity').text(name);
 		$('#dropdownMenuButtonCommunity').addClass('btn-success');
@@ -59,11 +64,14 @@ function Controller(model, view) {
 		$('#communities').on('click', '.dropdown-item', function() {
 			let name = $(this).text();
 
-			view.loadTable(model.getPostsInCommunity({
+			let data = model.getPostsInCommunity({
 				name: name,
-				description: 'unknown description',
+				description: 'undefined',
 				token: model.getToken()
-			}));
+			});
+
+			if (data) view.loadTable(data);
+			else view.loadError();
 
 			view.setDropdown(name);
 		});
@@ -71,11 +79,14 @@ function Controller(model, view) {
 		// consumir la comunidad guardada si existe
 		let community = model.consumeCommunity();
 		if (community) {
-			view.loadTable(model.getPostsInCommunity({
+			let data = model.getPostsInCommunity({
 				name: community,
-				description: 'unknown description',
+				description: 'undefined',
 				token: model.getToken()
-			}));
+			});
+
+			if (data) view.loadTable(data);
+			else view.loadError();
 
 			view.setDropdown(community);
 		}

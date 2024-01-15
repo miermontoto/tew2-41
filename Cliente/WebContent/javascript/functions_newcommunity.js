@@ -27,11 +27,47 @@ function View() {
 		};
 		return formData;
 	}
+
+	this.hideErrors = function() {
+		$("#success").hide();
+		$("#error").hide();
+		$("#errorNameRepeated").hide();
+		$("#errorNameSpaces").hide();
+		$("#warning").hide();
+	}
+
+	this.showSuccess = function() {
+		$("#success").show();
+	}
+
+	this.showError = function() {
+		$("#error").show();
+	}
+
+	this.showErrorNameRepeated = function() {
+		$("#errorNameRepeated").show();
+	}
+
+	this.showErrorNameSpaces = function() {
+		$("#errorNameSpaces").show();
+	}
+
+	this.showWarning = function() {
+		$("#warning").show();
+	}
+
+	this.wipeForm = function() {
+		$("#inputCommunityName").val("");
+		$("#inputCommunityDescription").val("");
+	}
 };
 
 function Controller(model, view) {
     this.init = function() {
         $("#createCommunityForm").bind("submit", function(event) {
+			event.preventDefault();
+			view.hideErrors();
+
 			let data = view.loadFormData();
 			data.token = model.getToken();
 
@@ -40,19 +76,20 @@ function Controller(model, view) {
 				case "success":
 					break;
 				case "already_exists":
-					alert("Ya existe una comunidad con ese nombre");
+					view.showErrorNameRepeated();
 					return;
 				case "hasSpaces":
-					alert("El nombre de la comunidad no puede contener espacios");
+					view.showErrorNameSpaces();
 					return;
 				default:
-					alert("Error desconocido");
+					view.showError();
 					return;
 			}
 
 			result = model.join(data);
-			if (result == "success") alert("Comunidad creada y unido a ella");
-			else alert("Comunidad creada, error al unirse a ella");
+			if (result == "success") view.showSuccess();
+			else view.showWarning();
+			view.wipeForm();
         });
     }
 }

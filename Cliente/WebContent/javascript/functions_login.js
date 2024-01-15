@@ -81,13 +81,12 @@ function Controller(model, view) {
 			}
 
 			view.clearMessages();
-			console.log(token);
-            if (token == null || token == "" || token == "error" || token === "nullUser") {
+            if (token == null || token == "" || token == "error") {
 				view.errorMessage();
 				return;
 			}
 
-			if (token == "invalidAuth") {
+			if (token == "invalidAuth" || token === "nullUser") {
 				view.invalidMessage();
 				return;
 			}
