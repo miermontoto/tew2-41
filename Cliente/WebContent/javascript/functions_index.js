@@ -31,8 +31,10 @@ function Controller(model, view) {
 		}
 
 		$('#resetButton').on('click', function() {
-			model.reset();
+			let result = model.reset();
+			if (result != "success") return;
 			window.location.href = "index.html";
+			$('#iframe').contents().find('#alert-db').show();
 		});
 
 		$('#logoutButton').on('click', function() {

@@ -5,6 +5,7 @@ import java.util.List;
 import com.tewrrss.business.UserService;
 import com.tewrrss.business.resteasy.UserServiceRs;
 import com.tewrrss.dto.User;
+import com.tewrrss.dto.resteasy.UserRequestData;
 import com.tewrrss.infrastructure.GestorSesion;
 import com.tewrrss.util.Role;
 
@@ -28,6 +29,14 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 		String result = service.add(user);
 
 		return result.equals("success") ? gestor.register(user) : result;
+	}
+
+	@Override
+	public String batchAdd(UserRequestData user) {
+		User admin = gestor.getUser(user.getToken());
+		if (admin == null || admin.getRole() != Role.ADMIN) return "unauthorized";
+
+		return this.add(user);
 	}
 
 }
