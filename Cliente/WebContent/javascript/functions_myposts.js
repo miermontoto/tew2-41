@@ -20,6 +20,7 @@ function Model() {
 
 function View() {
 	this.loadTable = function(data) {
+		$("#tableBody").empty();
 		data.forEach(function(post) {
 			let row = "<tr><td>" + post.communityName + "</td><td>" + post.creationDate + "</td><td>" + post.content +
 				"</td><td>" +
@@ -32,6 +33,11 @@ function View() {
 			$("#tableBody").append("<tr><td colspan='4'>No has realizado ninguna publicación todavía.</td></tr>");
 		}
 	}
+
+	this.loadError = function() {
+		$("#tableBody").empty();
+		$("#tableBody").append("<tr><td colspan='4'>No se han podido cargar tus publicaciones.</td></tr>");
+	}
 };
 
 function Controller(model, view) {
@@ -39,7 +45,9 @@ function Controller(model, view) {
 		let user = model.getUser();
 		user.token = sessionStorage.getItem("token");
 
-		view.loadTable(model.list(user));
+		let list = model.list(user);
+		if (list) view.loadTable(list);
+		else view.loadError();
 
 		$("#tableBody").find("button.erase").each(function() {
 			$(this).click(function() {

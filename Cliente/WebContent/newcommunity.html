@@ -26,6 +26,21 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Crear comunidad</button>
             </form>
+            <div type="alert" id="success" class="alert alert-success mt-4" role="alert" style="display: none;">
+                <i class="bi-check-lg"></i> Comunidad creada correctamente
+            </div>
+            <div type="alert" id="error" class="alert alert-danger mt-4" role="alert" style="display: none;">
+                <i class="bi bi-exclamation-octagon"></i> Error desconocido al crear la comunidad
+            </div>
+            <div type="alert" id="errorNameRepeated" class="alert alert-danger mt-4" role="alert" style="display: none;">
+                <i class="bi bi-exclamation-octagon"></i> Ya existe una comunidad con ese nombre
+            </div>
+            <div type="alert" id="errorNameSpaces" class="alert alert-danger mt-4" role="alert" style="display: none;">
+                <i class="bi bi-exclamation-octagon"></i> El nombre de la comunidad no puede contener espacios
+            </div>
+            <div type="alert" id="warning" class="alert alert-warning mt-4" role="alert" style="display: none;">
+                <i class="bi bi-exclamation-octagon"></i> Comunidad creada, error al unirse a la comunidad
+            </div>
         </article>
     </main>
 </body>

@@ -21,11 +21,7 @@ function Model() {
 
 function View() {
 	this.loadTable = function(all, joined) {
-		if (all === null || joined === null) {
-			console.log("ERROR: null data received (token expired?)")
-			return
-		}
-
+		$("#tableBody").empty();
 		all.forEach(function(community) {
 			let row = "<tr><td>" + community.name + "</td><td>" + community.description + "</td>";
 			if (joined.filter(function(j) { return j.name === community.name; }).length === 0) {
@@ -35,6 +31,11 @@ function View() {
 			}
 			$("#tableBody").append(row);
 		});
+	}
+
+	this.loadError = function() {
+		$("#tableBody").empty();
+		$("#tableBody").append("<tr><td colspan='3'>No se han podido cargar las comunidades.</td></tr>");
 	}
 };
 
@@ -47,7 +48,10 @@ function Controller(model, view) {
 			});
 		})
 
-		view.loadTable(model.listAll(), model.listJoined());
+		let all = model.listAll();
+		let joined = model.listJoined();
+		if (!all || !joined) view.loadError();
+		else view.loadTable(all, joined);
 
 		let token = model.getToken();
 		$("#tableBody").find("button").each(function() {

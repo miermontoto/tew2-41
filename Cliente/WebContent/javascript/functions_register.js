@@ -37,6 +37,7 @@ function View() {
 	this.hideErrors = function() {
 		$("#mensajeError").hide();
 		$("#rgpdError").hide();
+		$("#emailError").hide();
 	}
 
 	this.rgpdError = function() {
@@ -45,6 +46,10 @@ function View() {
 
 	this.generalError = function() {
 		$("#mensajeError").show();
+	}
+
+	this.emailError = function() {
+		$("#emailError").show();
 	}
 
 	this.ackLogin = function(user) {
@@ -74,8 +79,13 @@ function Controller(model, view) {
 				return;
 			}
 
-            if (model == null || token == "" || token == "error") {
+            if (token == null || token == "") {
 				view.generalError();
+				return;
+			}
+
+			if (token == "error") {
+				view.emailError();
 				return;
 			}
 

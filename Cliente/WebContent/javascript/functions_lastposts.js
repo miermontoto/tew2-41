@@ -13,6 +13,7 @@ function Model() {
 
 function View() {
 	this.loadTable = function(data) {
+		$("#tableBody").empty();
 		data.forEach(function(post) {
 			let row = "<tr><td>" + post.content + "</td><td>" +
 				"<a href='#' class='gotoCommunity'>" + post.communityName + "</a></td><td>" +
@@ -29,6 +30,11 @@ function View() {
 			});
 		}
 	}
+
+	this.loadError = function() {
+		$("#tableBody").empty();
+		$("#tableBody").append("<tr><td colspan='4'>No se han podido cargar los posts recientes.</td></tr>");
+	}
 };
 
 function Controller(model, view) {
@@ -36,7 +42,9 @@ function Controller(model, view) {
 		let user = model.getUser();
 		user.token = sessionStorage.getItem("token");
 
-		view.loadTable(model.list(user));
+		let data = model.list(user);
+		if (data) view.loadTable(data);
+		else view.loadError();
 
 		$("#tableBody").find("a.gotoCommunity").each(function() {
 			$(this).click(function() {
