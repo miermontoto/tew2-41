@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -19,32 +19,36 @@ public interface PostServiceRs extends PostService {
 
 	@PUT
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.TEXT_PLAIN })
 	String add(PostRequestData data);
 
 	@DELETE
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.TEXT_PLAIN })
 	String remove(PostRequestData data);
 
-	@GET
+	@POST
 	@Path("/getPostsByUser")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getPostsByUser(UserRequestData data);
 
-	@GET
+	@POST
 	@Path("/getPostsByUserInCommunity")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getPostsByUserInCommunity(MemberRequestData data);
 
-	@GET
+	@POST
 	@Path("/getPostsInCommunity")
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getPostsInCommunity(CommunityRequestData data);
 
-	@GET
+	@POST
 	@Path("/getNewPosts")
-	@Produces({ MediaType.TEXT_PLAIN })
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	List<Post> getNewPosts(UserRequestData data);
 
 }

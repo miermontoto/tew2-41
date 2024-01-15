@@ -12,15 +12,21 @@ import javax.ws.rs.core.MediaType;
 
 import com.tewrrss.dto.Community;
 import com.tewrrss.dto.resteasy.CommunityRequestData;
-import com.tewrrss.dto.resteasy.MemberRequestData;
+import com.tewrrss.dto.resteasy.UserRequestData;
 
 @Path("/members")
 public interface MemberServiceRs {
 
 	@GET
-	@Path("/listJoined/{token}")
+	@Path("/listMyJoined/{token}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	List<Community> listJoined(@PathParam ("token") String token);
+	List<Community> listMyJoined(@PathParam ("token") String token);
+
+	@POST
+	@Path("/listJoined")
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	List<Community> listJoined(UserRequestData data);
 
 	@POST
 	@Path(value = "/join")

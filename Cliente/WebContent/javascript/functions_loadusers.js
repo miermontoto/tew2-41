@@ -1,4 +1,5 @@
 $("#loadUsersButton").on("click", function() {
+	let token = sessionStorage.getItem("token");
 	$.ajax({
 		url: "http://localhost:8080/Servidor/redsocial.json", // Cambiar esta URL por la que corresponde de nuestro proyecto
 		type: "GET",
@@ -6,51 +7,46 @@ $("#loadUsersButton").on("click", function() {
 
 		success: function(redsocial) {
 			let listaUsuarios = redsocial.usuarios;
-			console.log(listaUsuarios); // Muestro lista de usuarios.
 			alert("Usuarios cargados");
 			let contador = 0; // Contador para mirar los que llevamos subidos
 			listaUsuarios.forEach(function(usuario) {
+				let patchedRole = 1 // Por defecto el rol es 1 (usuario)
+				if (usuario.rol === "admin") patchedRole = 0; // Si es admin, el rol es 0
+
 			  	let user = {
 					email: usuario.email,
 					password: usuario.passwd,
-					role: 1,
-					username: usuario.nombre
+					role: patchedRole,
+					username: usuario.nombre,
+					token: token
 				};
 
 			  	contador = contador + 1; // Incremento el contador
 
 				// Envío al servidor lo requerido
-				UserServiceRs.add({
+				UserServiceRs.batchAdd({
 					$entity: user,
 					$contentType: "application/json"
 				});
 			});
 
 			if (contador === listaUsuarios.length) {
-				 // Se ha cargado con éxito la lista de usuarios.
-				showMessages("success"); // Llamo a la función que se encargará de mostrar que ha habido éxito, además de ocultar carga.
+				showMessages("success");
 			} else {
 				showMessages("error");
 			}
 		}, error: function() {
 			// Ha ocurrido un error durante la solicitud AJAX
-			showMessages("error"); // Muestro el mensaje de error
+			showMessages("error");
 		}
 	}); // Cierre de $.ajax
 }); // Cierre del método addEventListener
 
 function showMessages(operation) {
-    // Obtengo las referencias a los elementos usando jQuery
-    var opInfoSuccess = $("#opInfoSuccess");
-    var opInfoFailure = $("#opInfoFailure");
+    let opInfoSuccess = $("#opInfoSuccess");
+    let opInfoFailure = $("#opInfoFailure");
 
-    if (operation === "success") {
-        // Muestro el anuncio de éxito al usuario
-        opInfoSuccess.css("display", "block");
-        opInfoSuccess.html("Operación realizada con éxito");
-    } else {
-        // Muestro el anuncio de fallo al usuario
-        opInfoFailure.css("display", "block");
-        opInfoFailure.html("Ha ocurrido un problema");
-    }
+	opInfoSuccess.css("display", "block");
+    if (operation === "success") opInfoSuccess.html("Operación realizada con éxito");
+    else opInfoFailure.html("Ha ocurrido un problema");
 }

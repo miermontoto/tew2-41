@@ -9,32 +9,33 @@ Entrega 2 del trabajo de TEW Manuel Revilla, Juan Francisco Mier y Christian Gon
    - [x] a. Registrarse.
      - [x] Registro básico
      - [x] Inicio de sesión automático en cliente
-   - [ ] b. Iniciar sesión.
+   - [x] b. Iniciar sesión.
      - [x] Token en navegador
-     - [ ] Navegación a HOME tras inicio correcto
-     - [ ] Límite de intentos de inicio de sesión
+     - [x] Límite de intentos de inicio de sesión
 
 2. **A los usuarios autenticados:**
    - [x] a. Crear una comunidad
-     - [ ] Creación básica
-     - [ ] Error al crear comunidad con nombre existente
-     - [ ] Unirse automáticamente a la comunidad creada
-   - [ ] b. Unirse a una comunidad / Listado de comunidades
+     - [x] Creación básica
+     - [x] Error al crear comunidad con nombre existente
+     - [x] Unirse automáticamente a la comunidad creada
+   - [x] b. Unirse a una comunidad / Listado de comunidades
      - [x] Listado básico
      - [x] Fitro por nombre
      - [x] Botón de unirse
-   - [ ] c. Listar mis comunidades
+   - [x] c. Listar mis comunidades
      - [x] Listado básico
-     - [ ] Botón "Ver contenido"
+     - [x] Botón "Ver contenido"
      - [x] Botón "Salir de comunidad"
-     - [ ] Botón "Crear publicación"
-   - [ ] d. Listado de publicaciones de una comunidad
-   - [ ] e. Listar últimos mensajes de las comunidades a las que pertenece.
-   - [ ] f. [Realizar una publicación en una comunidad a la que pertenece.](Cliente/WebContent/javascript/template.js)
-   - [ ] g. Borrado de publicaciones realizadas.
-     - [ ] Listado de publicaciones propias
-     - [ ] Botón de borrado
-   - [ ] h. Cerrar sesión.
+     - [x] Botón "Crear publicación"
+   - [x] d. Listado de publicaciones de una comunidad
+     - [x] Listado básico
+     - [x] Realizar una publicación
+   - [x] e. Listar últimos mensajes de las comunidades a las que pertenece.
+     - [x] Enlazar a comunidades
+   - [x] g. Listado de publicaciones propias
+     - [x] Listado básico
+     - [x] Botón de borrado
+   - [x] h. Cerrar sesión.
 
 3. **A los administradores:**
    - [x] a. Reiniciar la base de datos a los valores por defecto.

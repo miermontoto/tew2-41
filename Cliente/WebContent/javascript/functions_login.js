@@ -1,7 +1,6 @@
 function Model() {
 	// Función que se comunica con el servidor, enviándole el usuario que se ha creado.
 	this.login = function(user) {
-		console.log(user);
 		return LoginServiceRs.login({
 			$entity : user,
 			$contentType : "application/json"
@@ -15,6 +14,10 @@ function Model() {
 
 	this.getToken = function() {
 		return sessionStorage.getItem("token");
+	}
+
+	this.myUser = function() {
+		return LoginServiceRs.myUser({token : sessionStorage.getItem("token")});
 	}
 }
 
@@ -32,6 +35,8 @@ function View() {
 		$("#mensajeError").hide();
 		$("#mensajeExito").hide();
 		$("#mensajeAlready").hide();
+		$("#mensajeInvalid").hide();
+		$("#mensajeBlocked").hide();
 	}
 
 	this.successMessage = function() {
@@ -42,22 +47,28 @@ function View() {
 		$("#mensajeError").show();
 	}
 
+	this.invalidMessage = function() {
+		$("#mensajeInvalid").show();
+	}
+
+	this.blockedMessage = function() {
+		$("#mensajeBlocked").show();
+	}
+
 	this.alreadyMessage = function() {
 		$("#mensajeAlready").show();
 	}
 
-	this.enableButton = function() {
-		$("#loginButton").prop("disabled", false);
-	}
-
-	this.disableButton = function() {
-		$("#loginButton").prop("disabled", true);
+	this.ackLogin = function(user) {
+		window.parent.setUserData(user);
+		window.location.replace("home.html");
 	}
 };
 
 function Controller(model, view) {
     this.init = function() {
-		if (model.getToken() !== null) view.alreadyMessage();
+		if (model.getToken() !== null) view.ackLogin(model.myUser());
+
 		$("#loginForm").bind("submit", function(event) {
         	event.preventDefault();
 
@@ -70,14 +81,23 @@ function Controller(model, view) {
 			}
 
 			view.clearMessages();
-
-            if (token == null || token == "") {
-            	view.errorMessage();
+            if (token == null || token == "" || token == "error") {
+				view.errorMessage();
 				return;
-            }
+			}
 
-			view.successMessage();
+			if (token == "invalidAuth" || token === "nullUser") {
+				view.invalidMessage();
+				return;
+			}
+
+			if (token == "blocked") {
+				view.blockedMessage();
+				return;
+			}
+
 			model.setToken(token);
+			view.ackLogin(model.myUser());
         });
     }
 }

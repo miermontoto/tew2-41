@@ -27,21 +27,69 @@ function View() {
 		};
 		return formData;
 	}
+
+	this.hideErrors = function() {
+		$("#success").hide();
+		$("#error").hide();
+		$("#errorNameRepeated").hide();
+		$("#errorNameSpaces").hide();
+		$("#warning").hide();
+	}
+
+	this.showSuccess = function() {
+		$("#success").show();
+	}
+
+	this.showError = function() {
+		$("#error").show();
+	}
+
+	this.showErrorNameRepeated = function() {
+		$("#errorNameRepeated").show();
+	}
+
+	this.showErrorNameSpaces = function() {
+		$("#errorNameSpaces").show();
+	}
+
+	this.showWarning = function() {
+		$("#warning").show();
+	}
+
+	this.wipeForm = function() {
+		$("#inputCommunityName").val("");
+		$("#inputCommunityDescription").val("");
+	}
 };
 
 function Controller(model, view) {
     this.init = function() {
         $("#createCommunityForm").bind("submit", function(event) {
+			event.preventDefault();
+			view.hideErrors();
+
 			let data = view.loadFormData();
 			data.token = model.getToken();
-			console.log(data)
-			if (model.createCommunity(data) === "success") {
-				$("#mensajeError").hide();
-				alert("Community created successfully");
-				$("#iframe").attr("src", "home.html");
-			} else {
-				$("#mensajeError").show();
+
+			let result = model.createCommunity(data);
+			switch (result) {
+				case "success":
+					break;
+				case "already_exists":
+					view.showErrorNameRepeated();
+					return;
+				case "hasSpaces":
+					view.showErrorNameSpaces();
+					return;
+				default:
+					view.showError();
+					return;
 			}
+
+			result = model.join(data);
+			if (result == "success") view.showSuccess();
+			else view.showWarning();
+			view.wipeForm();
         });
     }
 }

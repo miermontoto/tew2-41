@@ -20,13 +20,23 @@ function Model() {
 
 function View() {
 	this.loadTable = function(data) {
+		$("#tableBody").empty();
 		data.forEach(function(post) {
-			let row = "<tr><td>" + post.communityName + "</td><td>" + post.date + "</td><td>" + post.content +
+			let row = "<tr><td>" + post.communityName + "</td><td>" + post.creationDate + "</td><td>" + post.content +
 				"</td><td>" +
 				"<button type='button' class='btn btn-danger erase'><i class='bi bi-eraser-fill'></i> Eliminar</button> " +
 				"</td></tr>";
 			$("#tableBody").append(row);
 		});
+
+		if (data.length == 0) {
+			$("#tableBody").append("<tr><td colspan='4'>No has realizado ninguna publicación todavía.</td></tr>");
+		}
+	}
+
+	this.loadError = function() {
+		$("#tableBody").empty();
+		$("#tableBody").append("<tr><td colspan='4'>No se han podido cargar tus publicaciones.</td></tr>");
 	}
 };
 
@@ -34,7 +44,10 @@ function Controller(model, view) {
     this.init = function() {
 		let user = model.getUser();
 		user.token = sessionStorage.getItem("token");
-		view.loadTable(model.list(user));
+
+		let list = model.list(user);
+		if (list) view.loadTable(list);
+		else view.loadError();
 
 		$("#tableBody").find("button.erase").each(function() {
 			$(this).click(function() {
@@ -45,13 +58,15 @@ function Controller(model, view) {
 
 				let result = model.remove({
 					communityName: community,
-					date: date,
+					creationDate: date,
 					content: content,
+					userEmail: user.email,
+					userName: user.name,
 					token: user.token
 				});
 
 				if (result === "success") {
-					$(this).parent().html("<span class='badge badge-failure'>Eliminado</span>");
+					$(this).parent().html("<span class='badge badge-danger'>Eliminado</span>");
 				}
 			})
 		})

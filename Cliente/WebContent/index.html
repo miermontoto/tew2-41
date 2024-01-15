@@ -6,7 +6,7 @@
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="http://localhost:8080/Servidor/rest-jsapi"></script>
@@ -18,7 +18,7 @@
 		<div class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item dropdown">
+					<li class="nav-item dropdown" style="display: none" id="communities">
 						<a class="nav-link dropdown-toggle" href="#" id="comunidadesDropdown" role="button"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="bi bi-people-fill"></i> Comunidades</a>
@@ -29,17 +29,16 @@
 						</div>
 					</li>
 
-					<li class="nav-item dropdown">
+					<li class="nav-item dropdown" style="display: none" id="posts">
 						<a class="nav-link dropdown-toggle" href="#" id="postsDropdown" role="button"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-postcard-fill"></i> Publicaciones</a>
 						<div class="dropdown-menu" aria-labelledby="postsDropdown">
-							<a class="dropdown-item" href="newpost.html" target="formulario">Crear una publicación</a>
-							<a class="dropdown-item" href="listposts.html" target="formulario">Listado de publicaciones</a>
+							<a class="dropdown-item" href="lastposts.html" target="formulario">Últimas publicaciones</a>
 							<a class="dropdown-item" href="myposts.html" target="formulario">Mis publicaciones</a>
 						</div>
 					</li>
 
-					<li class="nav-item dropdown">
+					<li class="nav-item dropdown" style="display: none" id="admin">
 						<a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-gpu-card"></i> Administración</a>
 						<div class="dropdown-menu" aria-labelledby="adminDropdown">
@@ -61,10 +60,14 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="sessionDropdown" role="button" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-badge"></i> Sesión</a>
+							aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-badge"></i> <span id="usernameTarget">Sesión</span></a>
 						<div class="dropdown-menu" aria-labelledby="sessionDropdown">
-							<a class="dropdown-item" href="login.html" target="formulario">Iniciar sesión</a>
-							<a class="dropdown-item" href="register.html" target="formulario">Registrarse</a>
+							<span class="dropdown-item disabled" id="userTypeTarget" style="display: none"></span>
+							<a class="dropdown-item" href="#" id="viewProfile" style="display: none">Mi perfil</a>
+							<div class="dropdown-divider" style="display: none" id="sessionSpacer"></div>
+							<a class="dropdown-item" href="login.html" target="formulario" id="loginButton">Iniciar sesión</a>
+							<a class="dropdown-item" href="register.html" target="formulario" id="registerButton">Registrarse</a>
+							<a class="dropdown-item btn btn-danger" id="logoutButton" style="display: none">Cerrar sesión</a>
 						</div>
 					</li>
 				</ul>
@@ -74,11 +77,11 @@
 
 	<main class="container w-100 h-100">
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-9">
 				<iframe name="formulario" width="100%" height="100%" title="views" src="login.html" id="iframe"></iframe>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<aside class="card">
 					<div class="card-body">
 						<h2 class="card-title">Proyecto TEWRRSS</h2>
@@ -101,6 +104,7 @@
 	<footer class="footer mt-auto py-3 bg-light">
 		<nav class="navbar navbar-light bg-light">
 			<a class="nav-link" href="home.html" target="formulario">Inicio</a>
+			<span class="navbar-text">TEWrrss, tew2-41</span>
 			<a class="nav-link" href="https://mier.info">Contacto</a>
 		</nav>
 	</footer>

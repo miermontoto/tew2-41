@@ -11,6 +11,10 @@ function Model() {
     this.setToken = function(token) {
         sessionStorage.setItem("token", token);
     }
+
+	this.myUser = function() {
+		return LoginServiceRs.myUser({token : sessionStorage.getItem("token")});
+	}
 };
 
 function View() {
@@ -25,23 +29,68 @@ function View() {
 
 		return user;
 	}
+
+	this.isRgpdChecked = function() {
+		return $("#rgpdCheck").is(":checked");
+	}
+
+	this.hideErrors = function() {
+		$("#mensajeError").hide();
+		$("#rgpdError").hide();
+		$("#emailError").hide();
+	}
+
+	this.rgpdError = function() {
+		$("#rgpdError").show();
+	}
+
+	this.generalError = function() {
+		$("#mensajeError").show();
+	}
+
+	this.emailError = function() {
+		$("#emailError").show();
+	}
+
+	this.ackLogin = function(user) {
+		window.parent.setUserData(user);
+		window.location.replace("home.html");
+	}
 };
 
 function Controller(model, view) {
-    // Inicialización del modelo y la vista.
-    let userModel = model;
-    let userView = view;
-
     this.init = function() {
         $("#registrationForm").bind("submit", function(event) {
-            let user = userView.loadUserFromForm(); // Genero un usuario a la espera de enviarlo
-            let token = userModel.register(user); // Enviamos el token y se obtiene como respuesta (o no) un user.
+			event.preventDefault();
+			view.hideErrors();
 
-            if (token === "") { // El token es nulo (el usuario está mal)
-            	$("#mensajeError").show(); // Muestra el mensaje de error que puse en el HTML.
-            } else {
-                userModel.setToken(token);
-            }
+			if (!view.isRgpdChecked()) {
+				view.rgpdError();
+				return;
+			}
+
+            let user = view.loadUserFromForm(); // Genero un usuario a la espera de enviarlo
+			let token;
+			try {
+				token = model.register(user); // Envío el usuario al servidor para que lo registre
+			} catch (error) {
+				view.generalError();
+				console.log(error);
+				return;
+			}
+
+            if (token == null || token == "") {
+				view.generalError();
+				return;
+			}
+
+			if (token == "error") {
+				view.emailError();
+				return;
+			}
+
+			model.setToken(token); // Guardo el token en el almacenamiento local
+			view.ackLogin(model.myUser()); // Redirijo a la página de inicio
         });
     }
 }

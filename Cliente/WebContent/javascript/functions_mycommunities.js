@@ -1,6 +1,6 @@
 function Model() {
 	this.list = function() {
-		return MemberServiceRs.listJoined({token : sessionStorage.getItem("token")});
+		return MemberServiceRs.listMyJoined({token : sessionStorage.getItem("token")});
 	}
 
 	this.leave = function(mixedData) {
@@ -17,6 +17,7 @@ function Model() {
 
 function View() {
 	this.loadTable = function(data) {
+		$("#tableBody").empty();
 		data.forEach(function(community) {
 			let row = "<tr><td>" + community.name + "</td><td>" + community.description +
 				"</td><td>" +
@@ -27,11 +28,18 @@ function View() {
 			$("#tableBody").append(row);
 		});
 	}
+
+	this.loadError = function() {
+		$("#tableBody").empty();
+		$("#tableBody").append("<tr><td colspan='3'>No se han podido cargar las comunidades.</td></tr>");
+	}
 };
 
 function Controller(model, view) {
     this.init = function() {
-		view.loadTable(model.list());
+		let data = model.list();
+		if (data) view.loadTable(data);
+		else view.loadError();
 
 		let token = model.getToken();
 		$("#tableBody").find("button.leave").each(function() {
@@ -46,13 +54,33 @@ function Controller(model, view) {
 					token: token
 				});
 
-				console.log(result)
-
 				if (result === "success") {
-					$(this).parent().html("<span class='badge badge-failure'>Abandonado</span>");
+					$(this).parent().html("<span class='badge badge-primary'>Abandonado</span>");
+				} else {
+					$(this).parent().html("<span class='badge badge-danger'>Error</span>");
 				}
 			})
 		})
+
+		$("#tableBody").find("button.watch").each(function() {
+			$(this).click(function() {
+				let target = $(this).parent().parent()
+				let name = target.find("td:nth-child(1)").text()
+
+				sessionStorage.setItem("community", name)
+				window.location.href = "viewcommunity.html"
+			})
+		})
+
+		$("#tableBody").find("button.post").each(function() {
+			$(this).click(function() {
+				let target = $(this).parent().parent()
+				let name = target.find("td:nth-child(1)").text()
+
+				sessionStorage.setItem("community", name)
+				window.location.href = "createpost.html"
+			});
+		});
     }
 }
 

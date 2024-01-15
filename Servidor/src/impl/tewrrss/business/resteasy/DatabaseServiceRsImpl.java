@@ -10,11 +10,11 @@ import impl.tewrrss.business.DatabaseServiceImpl;
 public class DatabaseServiceRsImpl extends DatabaseServiceImpl implements DatabaseServiceRs {
 
 	@Override
-	public boolean reset(String token) {
+	public String reset(String token) {
 		User user = GestorSesion.getInstance().getUser(token);
-		if (user == null || user.getRole() != Role.ADMIN) return false;
+		if (user == null || user.getRole() != Role.ADMIN) return "unauthorized";
 
-		return reset();
+		return super.reset() ? "success" : "error";
 	}
 
 }

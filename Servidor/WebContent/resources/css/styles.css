@@ -63,10 +63,6 @@ a, a:visited {
 	color: var(--link) !important;
 }
 
-a:hover, a:visited:hover {
-	animation: MULTICOLOR 1s infinite;
-}
-
 button {
 	color: black;
 	background-color: var(--white);

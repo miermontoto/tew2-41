@@ -4,12 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import impl.tewrrss.business.resteasy.CommunityServiceRsImpl;
-import impl.tewrrss.business.resteasy.DatabaseServiceRsImpl;
-import impl.tewrrss.business.resteasy.LoginServiceRsImpl;
-import impl.tewrrss.business.resteasy.MemberServiceRsImpl;
-import impl.tewrrss.business.resteasy.PostServiceRsImpl;
-import impl.tewrrss.business.resteasy.UserServiceRsImpl;
+import impl.tewrrss.business.resteasy.*;
 
 public class Application extends javax.ws.rs.core.Application {
 
@@ -21,7 +16,7 @@ public class Application extends javax.ws.rs.core.Application {
 		classes.add(UserServiceRsImpl.class);
 		classes.add(CommunityServiceRsImpl.class);
 		classes.add(PostServiceRsImpl.class);
-		// classes.add(DatabaseServiceRsImpl.class); // FIXME: <- roto porque devuelve un boolean (no adecuado para REST)
+		classes.add(DatabaseServiceRsImpl.class);
 		classes.add(MemberServiceRsImpl.class);
 	}
 

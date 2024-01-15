@@ -1,7 +1,6 @@
 package com.tewrrss.business.resteasy;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,13 +18,19 @@ public interface LoginServiceRs {
 	@Produces({ MediaType.TEXT_PLAIN })
 	String login(User user);
 
-	@DELETE
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	String logout(String token);
+	@GET
+	@Path("/logout/{token}")
+	@Produces({ MediaType.TEXT_PLAIN })
+	String logout(@PathParam("token") String token);
 
 	@GET
 	@Path("/myUser/{token}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	User myUser(@PathParam("token") String token);
+
+	@GET
+	@Path("/getUserByMail/{email}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	User getUserByMail(@PathParam("email") String email);
 
 }
