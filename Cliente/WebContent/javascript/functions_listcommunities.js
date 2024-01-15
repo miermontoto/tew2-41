@@ -4,7 +4,7 @@ function Model() {
 	}
 
 	this.listJoined = function() {
-		return MemberServiceRs.listJoined({token : sessionStorage.getItem("token")});
+		return MemberServiceRs.listMyJoined({token : sessionStorage.getItem("token")});
 	}
 
 	this.join = function(mixedData) {

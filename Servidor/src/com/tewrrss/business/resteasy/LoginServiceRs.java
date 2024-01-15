@@ -28,4 +28,9 @@ public interface LoginServiceRs {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	User myUser(@PathParam("token") String token);
 
+	@GET
+	@Path("/getUserByMail/{email}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	User getUserByMail(@PathParam("email") String email);
+
 }

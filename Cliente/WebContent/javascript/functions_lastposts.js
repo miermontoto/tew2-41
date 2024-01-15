@@ -17,7 +17,7 @@ function View() {
 		data.forEach(function(post) {
 			let row = "<tr><td>" + post.content + "</td><td>" +
 				"<a href='#' class='gotoCommunity'>" + post.communityName + "</a></td><td>" +
-				post.userName + "</td><td>" + post.creationDate + "</td></tr>";
+				"<a href='#' class='gotoProfile' email='" + post.userEmail + "'>" + post.userName + "</a></td><td>" + post.creationDate + "</td></tr>";
 			$("#tableBody").append(row);
 		});
 
@@ -52,6 +52,14 @@ function Controller(model, view) {
 				sessionStorage.setItem("community", community);
 				window.location.href = "viewcommunity.html";
 			})
+		});
+
+		$("#tableBody").find("a.gotoProfile").each(function() {
+			$(this).click(function() {
+				let email = $(this).attr("email");
+				sessionStorage.setItem("user", email);
+				window.location.href = "viewprofile.html";
+			});
 		});
     }
 }
