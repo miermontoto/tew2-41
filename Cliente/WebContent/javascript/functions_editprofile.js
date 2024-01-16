@@ -15,7 +15,7 @@ function Model() {
 function View() {
 
 	this.loadUser = function(data) {
-		$("#username").val(data.name);
+		$("#username").val(data.username);
 		$("#email").val(data.email);
 	}
 
