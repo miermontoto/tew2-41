@@ -47,14 +47,14 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 		if (!userReal.getEmail().equals(user.getEmail()) && userReal.getRole() != Role.ADMIN) return "unauthorized";
 		if (user.getUsername().equals("") || user.getUsername() == null) return "emptyUser";
 		User dbUser = Factories.services.createLoginService().verify(user.getEmail(), user.getPassword());
-		if (dbUser == null) return "invalidOldPasswd";
+		if (dbUser.getEmail().equals("invalidAuth")) return "invalidOldPasswd";
 		
 		// En caso de contraseña nueva vacia no se cambia la contraseña
 		if (user.getNewPassword().equals("") || user.getNewPassword() == null) {
-			return super.update(new User(user.getEmail(), user.getUsername(), user.getPassword(), user.getRole()));
+			return super.update(new User(user.getEmail(), user.getUsername(), dbUser.getPassword(), user.getRole()));
 		}
 		
-		if (user.getNewPassword().equals(user.getPassword())) return "samePasswords";
+		if (user.getNewPassword().equals(dbUser.getPassword())) return "samePasswords";
 		
 		// en este caso se modifican tanto el usuario como la contraseña
 		return super.update(new User(user.getEmail(), user.getUsername(), user.getNewPassword(), user.getRole()));

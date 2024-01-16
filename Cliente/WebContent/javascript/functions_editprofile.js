@@ -41,6 +41,7 @@ function View() {
 		$("#unauthorized").hide();
 		$("emptyuser").hide();
 		$("#success").hide();
+		
 	}
 
 	this.showError = function() {
@@ -51,7 +52,7 @@ function View() {
 		$("#errorPasswd").show();
 	}
 
-	this.showOldPassError = function(){
+	this.showOldPassError = function() {
 		$("#oldPassError").show();
 	}
 
@@ -59,12 +60,12 @@ function View() {
 		$("#samePasswords").show();
 	}
 
-	this.showUnauthorizedError = function(){
+	this.showUnauthorizedError = function() {
 		$("#unauthorized").show();
 	}
 
-	this.showEmptyUserError = function () {
-		$("emptyuser").show();
+	this.showEmptyUserError = function() {
+		$("#emptyuser").show();
 	}
 
 	this.showSuccess = function() {
@@ -79,9 +80,9 @@ function Controller(model, view) {
 
 		view.loadUser(user);
 
-		view.hideMessages();
 		$("#submit").click(function(event) {
 			event.preventDefault();
+			view.hideMessages();
 			if (!view.checkSamePasswd()) {
 				view.showPasswdError();
 				return;
@@ -92,9 +93,7 @@ function Controller(model, view) {
 			data.role = user.role;
 			data.token = model.getToken();
 
-			console.log(data);
 			let result = model.updateUser(data);
-
 			switch(result){
 				case "success":
 					view.showSuccess();
