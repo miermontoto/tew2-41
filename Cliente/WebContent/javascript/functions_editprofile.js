@@ -13,7 +13,6 @@ function Model() {
 };
 
 function View() {
-
 	this.loadUser = function(data) {
 		$("#username").val(data.username);
 		$("#email").val(data.email);
@@ -75,7 +74,8 @@ function Controller(model, view) {
 		view.loadUser(user);
 
 		view.hideMessages();
-		$("#submit").click(function() {
+		$("#submit").click(function(event) {
+			event.preventDefault();
 			if (!view.checkSamePasswd()) {
 				view.showPasswdError();
 				return;
