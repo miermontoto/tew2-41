@@ -36,6 +36,7 @@ public interface UserServiceRs extends UserService {
 	String batchAdd(UserRequestData user);
 
 	@PUT
+	@Path("/update")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.TEXT_PLAIN })
 	String update(UserRequestData user);

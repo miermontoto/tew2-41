@@ -44,7 +44,7 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 	public String update(UserRequestData user) {
 		User userReal = gestor.getUser(user.getToken());
 		
-		if (!userReal.getEmail().equals(user.getEmail()) || userReal.getRole() != Role.ADMIN) return "unauthorized";
+		if (!userReal.getEmail().equals(user.getEmail()) && userReal.getRole() != Role.ADMIN) return "unauthorized";
 		if (user.getUsername().equals("") || user.getUsername() == null) return "emptyUser";
 		User dbUser = Factories.services.createLoginService().verify(user.getEmail(), user.getPassword());
 		if (dbUser == null) return "invalidOldPasswd";

@@ -8,7 +8,10 @@ function Model() {
 	}
 
 	this.updateUser = function(mixedData) {
-		return UserServiceRs.update(mixedData);
+		return UserServiceRs.update({
+			$entity: mixedData,
+			$contentType: "application/json"
+		});
 	}
 };
 
@@ -88,6 +91,7 @@ function Controller(model, view) {
 			data.role = user.role;
 			data.token = model.getToken();
 
+			console.log(data);
 			let result = model.updateUser(data);
 
 			switch(result){
