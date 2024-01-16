@@ -33,8 +33,12 @@ function View() {
 	this.hideMessages = function() {
 		$("#errorNull").hide();
 		$("#errorPasswd").hide();
-		$("#success").hide();
 		$("#oldPassError").hide();
+		$("#unauthorized").hide();
+		$("emptyuser").hide();
+		$("#success").hide();
+
+
 	}
 
 	this.showError = function() {
