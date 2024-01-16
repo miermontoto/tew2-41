@@ -37,6 +37,7 @@ function View() {
 		$("#errorNull").hide();
 		$("#errorPasswd").hide();
 		$("#oldPassError").hide();
+		$("#samePasswords").hide();
 		$("#unauthorized").hide();
 		$("emptyuser").hide();
 		$("#success").hide();
