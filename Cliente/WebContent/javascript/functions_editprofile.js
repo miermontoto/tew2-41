@@ -30,7 +30,7 @@ function View() {
 	}
 
 	this.checkSamePasswd = function() {
-		return $("#password").val() === $("#password2").val();
+		return $("#password1").val() === $("#password2").val();
 	}
 
 	this.hideMessages = function() {
