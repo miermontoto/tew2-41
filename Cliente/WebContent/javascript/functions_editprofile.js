@@ -13,6 +13,7 @@ function Model() {
 };
 
 function View() {
+
 	this.loadUser = function(data) {
 		$("#username").val(data.name);
 		$("#email").val(data.email);
@@ -55,7 +56,7 @@ function Controller(model, view) {
 
 		view.loadUser(user);
 
-		view.hideMessages();
+		view.hideErrors();
 		$("#submit").click(function() {
 			if (!view.checkSamePasswd()) {
 				view.showPasswdError();
@@ -74,9 +75,9 @@ function Controller(model, view) {
 				return;
 			}
 
-			view.showSuccess();
-		});
-    }
+			view.showSuccess(); // Se muestra el mensaje de exito.
+		}
+    )}
 }
 
 // Se ejecuta al cargarse la página. Inicializa el modelo, vista, y finalmente, el controlador.
