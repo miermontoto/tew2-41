@@ -74,7 +74,7 @@ function Controller(model, view) {
 				return;
 			}
 
-			view.showSuccess();
+			view.showSuccess(); // Se muestra el mensaje de exito.
 		}
     }
 }

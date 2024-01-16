@@ -73,7 +73,6 @@ this.setUserData = function(user) {
 		$("#iframe").attr("src", "viewprofile.html");
 	});
 	$("#editProfile").on("click", function() {
-		sessionStorage.setItem("user", user.email);
 		$("#iframe").attr("src", "editprofile.html");
 	});
 
