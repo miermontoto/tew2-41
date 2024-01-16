@@ -20,7 +20,7 @@ function View() {
 
 	this.loadFromForm = function() {
 		return {
-			name: $("#username").val(),
+			username: $("#username").val(),
 			password: $("#password0").val(),
 			newPassword: $("#password1").val()
 		}
@@ -37,8 +37,6 @@ function View() {
 		$("#unauthorized").hide();
 		$("emptyuser").hide();
 		$("#success").hide();
-
-
 	}
 
 	this.showError = function() {
