@@ -41,7 +41,16 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 
 	@Override
 	public String update(UserRequestData user) {
+		User userReal = gestor.getUser(user.getToken());
+		if (userReal.getEmail().equals(user.getEmail()) || userReal.getRole() == Role.ADMIN) return "invalid";
 
+		if (user.getPassword().equals("") || user.getPassword() ==null) {
+			// no cambiamos la contraseña solo el nombre de usuario
+			return super.update(new User(user.getEmail(), user.getPassword(), user.getRole()));
+		}
+		// en este caso se modifican tanto el usuario como la contraseña
+		
+		return super.update(new User(user.getEmail(), user.getNewPassword(), user.getRole()));
 	}
 
 }
