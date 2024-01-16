@@ -21,8 +21,8 @@ function View() {
 	this.loadFromForm = function() {
 		return {
 			name: $("#username").val(),
-			password: $("#password0").val(),
-			newPassword: $("#password1").val()
+			password: $("#password0").val(), // Contraseña antigua que se envía al backend
+			newPassword: $("#password1").val() // Contraseña nueva que el usuario ha introducido.
 		}
 	}
 
@@ -37,8 +37,6 @@ function View() {
 		$("#unauthorized").hide();
 		$("emptyuser").hide();
 		$("#success").hide();
-
-
 	}
 
 	this.showError = function() {
