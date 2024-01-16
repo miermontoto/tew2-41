@@ -1,81 +1,92 @@
 function Model() {
+	this.list = function(mixedData) {
+		return PostServiceRs.getPostsByUser({
+			$entity: mixedData,
+			$contentType : "application/json"
+		});
+	}
+
+	this.listJoined = function(mixedData) {
+		return MemberServiceRs.listJoined({
+			$entity: mixedData,
+			$contentType : "application/json"
+		});
+	}
+
+	this.getUser = function(email) {
+		return LoginServiceRs.getUserByMail({email : email});
+	}
+
 	this.myUser = function() {
 		return LoginServiceRs.myUser({token : sessionStorage.getItem("token")});
+	}
+
+	this.consumeUser = function() {
+		let user = sessionStorage.getItem("user");
+		sessionStorage.removeItem("user");
+		return user;
 	}
 
 	this.getToken = function() {
 		return sessionStorage.getItem("token");
 	}
-
-	this.updateUser = function(mixedData) {
-		return UserServiceRs.update(mixedData);
-	}
 };
 
 function View() {
-	this.loadUser = function(data) {
-		$("#username").val(data.name);
-		$("#email").val(data.email);
+	this.loadProfile = function(data) {
+		$("#tableProfile").empty();
+		$("#tableProfile").append("<tr><td>Nombre de usuario</td><td>" + data.username + "</td></tr>");
+		$("#tableProfile").append("<tr><td>Correo electrónico</td><td>" + data.email + "</td></tr>");
+		$("#tableProfile").append("<tr><td>Rol</td><td>" + data.role + "</td></tr>");
+		$("#tableProfile").append("<tr><td>Comunidades a las que pertenece</td><td>" + data.communities + "</td></tr>");
+		$("#tableProfile").append("<tr><td>Número de publicaciones</td><td>" + data.numPosts + "</td></tr>");
 	}
 
-	this.loadFromForm = function() {
-		return {
-			name: $("#username").val(),
-			password: $("#password").val(),
-		}
+	this.loadPosts = function(data) {
+		$("#tablePosts").empty();
+		data.forEach(function(post) {
+			let row = "<tr><td>" + post.communityName + "</td><td>" + post.creationDate + "</td><td>" + post.content +
+				"</td></tr>";
+			$("#tablePosts").append(row);
+		});
 	}
 
-	this.checkSamePasswd = function() {
-		return $("#password").val() === $("#password2").val();
-	}
+	this.loadError = function() {
+		$("#tablePosts").empty();
+		$("#tablePosts").append("<tr><td colspan='4'>No se han podido cargar tus publicaciones.</td></tr>");
 
-	this.hideMessages = function() {
-		$("#errorNull").hide();
-		$("#errorPasswd").hide();
-		$("#success").hide();
-	}
-
-	this.showError = function() {
-		$("#errorNull").show();
-	}
-
-	this.showPasswdError = function() {
-		$("#errorPasswd").show();
-	}
-
-	this.showSuccess = function() {
-		$("#success").show();
+		$("#tableProfile").empty();
+		$("#tableProfile").append("<tr><td colspan='4'>No se han podido cargar tus datos.</td></tr>");
 	}
 };
 
 function Controller(model, view) {
 	this.init = function() {
-		let user = model.myUser();
-		if (!user) view.showError();
-
-		view.loadUser(user);
-
-		view.hideErrors();
-		$("#submit").click(function() {
-			if (!view.checkSamePasswd()) {
-				view.showPasswdError();
-				return;
-			}
-
-			let data = view.loadFromForm();
-			data.email = user.email;
-			data.role = user.role;
-			data.token = model.getToken();
-
-			let result = model.updateUser(data);
-
-			if (result !== "success") {
-				view.showError();
-				return;
-			}
-
-			view.showSuccess();
+		let user = model.consumeUser();
+		if (!user) {
+			user = model.myUser();
+		} else {
+			user = model.getUser(user);
 		}
+
+		user.token = model.getToken();
+
+		let posts = model.list(user);
+		if (posts) view.loadPosts(posts);
+		else view.loadError();
+
+		let communities = model.listJoined(user);
+		if (communities) {
+			let names = [];
+			communities.forEach(function(community) {
+				names.push(community.name);
+			});
+			user.communities = names.join(", ");
+		}
+		user.numPosts = posts.length;
+		user.role = user.role == "0" ? "Administrador" : "Usuario";
+
+		view.loadProfile(user);
     }
 }
 
