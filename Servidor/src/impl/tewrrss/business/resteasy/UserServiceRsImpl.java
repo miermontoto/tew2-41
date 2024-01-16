@@ -39,4 +39,9 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 		return this.add(user);
 	}
 
+	@Override
+	public String update(UserRequestData user) {
+
+	}
+
 }
