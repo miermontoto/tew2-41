@@ -39,9 +39,8 @@ function View() {
 		$("#oldPassError").hide();
 		$("#samePasswords").hide();
 		$("#unauthorized").hide();
-		$("emptyuser").hide();
+		$("#emptyuser").hide();
 		$("#success").hide();
-		
 	}
 
 	this.showError = function() {
@@ -56,7 +55,7 @@ function View() {
 		$("#oldPassError").show();
 	}
 
-	this.samePasswordsError = function() {
+	this.showSamePasswordsError = function() {
 		$("#samePasswords").show();
 	}
 
