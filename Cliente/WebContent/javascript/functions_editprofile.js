@@ -13,7 +13,6 @@ function Model() {
 };
 
 function View() {
-
 	this.loadUser = function(data) {
 		$("#username").val(data.username);
 		$("#email").val(data.email);
@@ -22,7 +21,8 @@ function View() {
 	this.loadFromForm = function() {
 		return {
 			name: $("#username").val(),
-			password: $("#password").val(),
+			password: $("#password0").val(),
+			newPassword: $("#password1").val()
 		}
 	}
 
@@ -74,7 +74,8 @@ function Controller(model, view) {
 		view.loadUser(user);
 
 		view.hideMessages();
-		$("#submit").click(function() {
+		$("#submit").click(function(event) {
+			event.preventDefault();
 			if (!view.checkSamePasswd()) {
 				view.showPasswdError();
 				return;
@@ -106,7 +107,6 @@ function Controller(model, view) {
 				default:
 					view.showError();
 			}
-			
 		}
     )}
 }
