@@ -34,6 +34,7 @@ function View() {
 		$("#errorNull").hide();
 		$("#errorPasswd").hide();
 		$("#success").hide();
+		$("#oldPassError").hide();
 	}
 
 	this.showError = function() {
@@ -42,6 +43,22 @@ function View() {
 
 	this.showPasswdError = function() {
 		$("#errorPasswd").show();
+	}
+
+	this.showOldPassError = function(){
+		$("#oldPassError").show();
+	}
+
+	this.samePasswordsError = function() {
+		$("#samePasswords").show();
+	}
+
+	this.showUnauthorizedError = function(){
+		$("#unauthorized").show();
+	}
+
+	this.showEmptyUserError = function () {
+		$("emptyuser").show();
 	}
 
 	this.showSuccess = function() {
@@ -56,7 +73,7 @@ function Controller(model, view) {
 
 		view.loadUser(user);
 
-		view.hideErrors();
+		view.hideMessages();
 		$("#submit").click(function() {
 			if (!view.checkSamePasswd()) {
 				view.showPasswdError();
@@ -70,12 +87,26 @@ function Controller(model, view) {
 
 			let result = model.updateUser(data);
 
-			if (result !== "success") {
-				view.showError();
-				return;
+			switch(result){
+				case "success":
+					view.showSuccess();
+					return;
+				case "samePasswords":
+					view.showSamePasswordsError();
+					return;
+				case "invalidOldPasswd":
+					view.showOldPassError();
+					return;
+				case "unauthorized":
+					view.showUnauthorizedError();
+					return;
+				case "emptyUser":
+					view.showEmptyUserError();
+					return;
+				default:
+					view.showError();
 			}
-
-			view.showSuccess(); // Se muestra el mensaje de exito.
+			
 		}
     )}
 }
