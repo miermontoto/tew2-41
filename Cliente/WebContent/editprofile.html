@@ -16,7 +16,41 @@
     <main class="container mt-4">
         <article>
 			<h2>Editar perfil</h2>
+            
+            <form>
+
+                <!-- Campo para introducir un usuario nuevo -->
+                <div class="form-group">
+                    <label for="username">Usuario Nuevo:</label>
+                    <input type="text" class="form-control" id="username" placeholder="Introduce el nuevo usuario">
+                </div>
+
+                <!-- Campo no editable para el rol -->
+                <div class="form-group">
+                    <label for="role">Rol:</label>
+                    <input type="text" class="form-control" id="role" value="Rol Actual" readonly>
+                </div>
+
+                <!-- Campo no editable para el email -->
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" class="form-control" id="email" value="" readonly>
+                </div>
+
+                <!-- Campo para la contraseña -->
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Introduce la nueva contraseña">
+                    <label for="password2">Contraseña:</label>
+                    <input type="password2" class="form-control" id="password" placeholder="Introduce la nueva contraseña">
+                </div>
+
+                <!-- Botón para enviar el formulario -->
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+            </form>
+            
         </article>
     </main>
-
 </body>
+</html>
