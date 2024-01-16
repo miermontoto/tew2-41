@@ -66,9 +66,16 @@ this.setUserData = function(user) {
 	$("#userTypeTarget").show();
 	$("#sessionSpacer").show();
 	$("#viewProfile").show();
+	$("#editProfile").show();
 
 	$("#viewProfile").on("click", function() {
 		sessionStorage.setItem("user", user.email);
 		$("#iframe").attr("src", "viewprofile.html");
 	});
+	$("#editProfile").on("click", function() {
+		sessionStorage.setItem("user", user.email);
+		$("#iframe").attr("src", "editprofile.html");
+	});
+
+
 }
