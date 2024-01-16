@@ -6,6 +6,7 @@ import com.tewrrss.business.UserService;
 import com.tewrrss.business.resteasy.UserServiceRs;
 import com.tewrrss.dto.User;
 import com.tewrrss.dto.resteasy.UserRequestData;
+import com.tewrrss.infrastructure.Factories;
 import com.tewrrss.infrastructure.GestorSesion;
 import com.tewrrss.util.Role;
 
@@ -42,15 +43,21 @@ public class UserServiceRsImpl extends UserServiceImpl implements UserServiceRs 
 	@Override
 	public String update(UserRequestData user) {
 		User userReal = gestor.getUser(user.getToken());
-		if (userReal.getEmail().equals(user.getEmail()) || userReal.getRole() == Role.ADMIN) return "invalid";
-
-		if (user.getPassword().equals("") || user.getPassword() ==null) {
-			// no cambiamos la contraseña solo el nombre de usuario
-			return super.update(new User(user.getEmail(), user.getPassword(), user.getRole()));
-		}
-		// en este caso se modifican tanto el usuario como la contraseña
 		
-		return super.update(new User(user.getEmail(), user.getNewPassword(), user.getRole()));
+		if (!userReal.getEmail().equals(user.getEmail()) || userReal.getRole() != Role.ADMIN) return "unauthorized";
+		if (user.getUsername().equals("") || user.getUsername() == null) return "emptyUser";
+		User dbUser = Factories.services.createLoginService().verify(user.getEmail(), user.getPassword());
+		if (dbUser == null) return "invalidOldPasswd";
+		
+		// En caso de contraseña nueva vacia no se cambia la contraseña
+		if (user.getNewPassword().equals("") || user.getNewPassword() == null) {
+			return super.update(new User(user.getEmail(), user.getUsername(), user.getPassword(), user.getRole()));
+		}
+		
+		if (user.getNewPassword().equals(user.getPassword())) return "samePasswords";
+		
+		// en este caso se modifican tanto el usuario como la contraseña
+		return super.update(new User(user.getEmail(), user.getUsername(), user.getNewPassword(), user.getRole()));
 	}
 
 }
