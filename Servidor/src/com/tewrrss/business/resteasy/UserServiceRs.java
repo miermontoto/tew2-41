@@ -35,4 +35,9 @@ public interface UserServiceRs extends UserService {
 	@Produces({ MediaType.TEXT_PLAIN })
 	String batchAdd(UserRequestData user);
 
+	@PUT
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.TEXT_PLAIN })
+	String update(UserRequestData user);
+
 }
