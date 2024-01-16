@@ -55,7 +55,7 @@ function Controller(model, view) {
 
 		view.loadUser(user);
 
-		view.hideErrors();
+		view.hideMessages();
 		$("#submit").click(function() {
 			if (!view.checkSamePasswd()) {
 				view.showPasswdError();
