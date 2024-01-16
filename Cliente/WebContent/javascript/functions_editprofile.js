@@ -22,7 +22,8 @@ function View() {
 	this.loadFromForm = function() {
 		return {
 			name: $("#username").val(),
-			password: $("#password").val(),
+			password: $("#password0").val(),
+			newPassword: $("#password1").val()
 		}
 	}
 
@@ -106,7 +107,6 @@ function Controller(model, view) {
 				default:
 					view.showError();
 			}
-			
 		}
     )}
 }
