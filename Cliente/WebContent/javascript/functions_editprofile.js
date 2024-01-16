@@ -23,7 +23,7 @@ function View() {
 
 	this.loadFromForm = function() {
 		return {
-			name: $("#username").val(),
+			username: $("#username").val(),
 			password: $("#password0").val(), // Contraseña antigua que se envía al backend
 			newPassword: $("#password1").val() // Contraseña nueva que el usuario ha introducido.
 		}
